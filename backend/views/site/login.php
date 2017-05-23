@@ -6,6 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
+
 $this->title = 'Sign In';
 
 $fieldOptions1 = [
