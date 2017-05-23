@@ -36,6 +36,7 @@
                     ['label' => '班级管理', 'icon' => 'file-code-o', 'url' => ['/educlass']],
                     ['label' => '试卷管理', 'icon' => 'file-code-o', 'url' => ['/edupaper']],
                     ['label' => '题目管理', 'icon' => 'file-code-o', 'url' => ['/edusubject']],
+                    
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
