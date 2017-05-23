@@ -56,6 +56,7 @@ class EduTeacher extends \yii\db\ActiveRecord
             'school' => Yii::t('app', '学校'),
             'faculty' => Yii::t('app', '院系'),
         ];
+        
     }
 
     /**
