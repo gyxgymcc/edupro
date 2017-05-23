@@ -1,0 +1,779 @@
+/* Variables
+------------------------------------------------------------------
+{
+  Color: [
+     {
+      value: 'lilac',
+      sample: '#bd5353',
+	  MainColor: '#bd5353',
+      NormalColor: '#bd5353',
+      HoverColor: '#e67f7f',
+	  NavColor: '#903f3f',
+	  SubNavColor: '#723131',
+	  LandingBg: '#f7f2eb'
+    },
+    {
+      value: 'pink',
+      sample: '#e465ad',
+	  MainColor: '#e465ad',
+      NormalColor: '#e465ad',
+      HoverColor: '#ff8ece',
+	  NavColor: '#d73e95',
+	  SubNavColor: '#b91673',
+	  LandingBg: '#fcf2f3'
+    },
+    {
+      value: 'orange',
+      sample: '#e78238',
+	  MainColor: '#e78238',
+      NormalColor: '#e78238',
+      HoverColor: '#ffa05a',
+	  NavColor: '#d4691a',
+	  SubNavColor: '#c95601',
+	  LandingBg: '#fdf6f1'
+    },
+    {
+      value: 'blue',
+      sample: '#376a8a',
+	  MainColor: '#376a8a',
+      NormalColor: '#3c769b',
+      HoverColor: '#4e9ccd',
+	  NavColor: '#24597a',
+	  SubNavColor: '#124666',
+	  LandingBg: '#f1f4f3'
+    },
+    {
+      value: 'gold',
+      sample: '#ebb058',
+	  MainColor: '#ebb058',
+      NormalColor: '#d29234',
+      HoverColor: '#ebb058',
+	  NavColor: '#d29234',
+	  SubNavColor: '#b8730e',
+	  LandingBg: '#fcf5eb'
+    },
+    {
+      value: 'green',
+      sample: '#518c53',
+	  MainColor: '#518c53',
+      NormalColor: '#5a9e5d',
+      HoverColor: '#7ac37e',
+	  NavColor: '#3e713f',
+	  SubNavColor: '#2d562e',
+	  LandingBg: '#f1f6ea'
+    },
+    {
+      value: 'purple',
+      sample: '#856f9c',
+	  MainColor: '#856f9c',
+      NormalColor: '#856f9c',
+      HoverColor: '#b093ce',
+	  NavColor: '#664b82',
+	  SubNavColor: '#4f3769',
+	  LandingBg: '#f6f1f5'
+    },
+    {
+      value: 'turquoise',
+      sample: '#53bdbc',
+	  MainColor: '#53bdbc',
+      NormalColor: '#53bdbc',
+      HoverColor: '#6ad8d7',
+	  NavColor: '#2a8382',
+	  SubNavColor: '#175d5c',
+	  LandingBg: '#f2f4f0'
+    }
+  ]
+}
+------------------------------------------------------------------
+*/
+
+
+/* General Styling and Structure
+--------------------------------------------------------------------------------*/
+
+h3 {
+	font-size: 1.3em;
+	margin: 0 0 10px 0;
+}
+
+a {
+	text-decoration: none;
+	color: $NormalColor;
+}
+
+a:hover {
+	color: $HoverColor;
+}
+
+a img {
+	border: 0;
+}
+
+body {
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #878787;
+	margin: 0;
+	background: #f6f0e7 url(container-bg-$Color.png) center top repeat-y;
+}
+
+h2 {
+	font-size: 1.4em;
+	margin: 0;
+	padding: .3em 0;
+	line-height: 1.3;
+	font-family: "Lato", Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	color: $MainColor;
+	text-transform: uppercase;
+}
+
+p {
+	font-size: 1em;
+	line-height: 1.5;
+	margin: 0;
+	padding: .5em 0;
+}
+
+blockquote {
+	font-style:italic;
+	border-left:4px solid $normalColor;
+	margin:10px 0 10px 0;
+	padding-left:20px;
+	line-height:1.5;
+	color:#888;
+}
+
+#content p {
+	color: #878787;
+}
+
+#container {
+	margin: 0 auto;
+	width: 956px;
+	padding: 0 20px 0 26px;
+}
+
+#sidebar {
+	float: left;
+	width: 222px;
+	padding: 22px 9px 0 10px;
+}
+
+#main-wrap {
+	float: right;
+	width: 710px;
+}
+
+#header {
+	clear: both;
+	padding: 0 0 0 0;
+}
+
+.wsite-logo,
+.wsite-logo a {
+	color: #ffffff;
+	display: inline-block;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 36px;
+	color: #ffffff;
+	font-family: "Lato", Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	-webkit-text-stroke-width: 0.3px;
+	padding-left: 7px;
+}
+
+#header-right a {
+	color: #bd5353;
+}
+
+#header-right a:hover {
+	color: #e67f7f;
+}
+
+/* Header Right Area
+--------------------------------------------------------------------------------*/
+
+#header-right {
+	height: 90px;
+}
+
+#header-right,
+#header-right table {
+	float: right;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#header-right td {
+	padding: 0;
+	vertical-align: middle;
+	text-align: right;
+}
+
+/* TOP RIGHT: Phone Number
+--------------------------------------------------------------------------------*/
+
+#header-right .phone-number .wsite-text {
+	color: #878787;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 20px 0 0 15px;
+}
+
+/* TOP RIGHT: Content Area
+--------------------------------------------------------------------------------*/
+
+#header-right .wsite-social {
+	vertical-align: middle;
+	margin: 0 0 0 10px;
+}
+
+
+.wsite-social-item {
+	width: 23px;
+	height: 23px;
+	margin: 0 0 0 3px;
+	background-image:url(social-dark.png);
+}
+
+#footer .wsite-social-item {
+	background-image:url(social-lightgold.png);
+}
+
+.wsite-social-facebook {background-position:0 0;}
+	.wsite-social-facebook:hover {background-position:0 -23px;}
+	.wsite-social-facebook:active {background-position:0 -46px;}
+.wsite-social-pinterest {background-position:-23px 0;}
+	.wsite-social-pinterest:hover {background-position:-23px -23px;}
+	.wsite-social-pinterest:active {background-position:-23px -46px;}
+.wsite-social-twitter {background-position:-46px 0;}
+	.wsite-social-twitter:hover {background-position:-46px -23px;}
+	.wsite-social-twitter:active {background-position:-46px -46px;}
+.wsite-social-linkedin {background-position:-69px 0;}
+	.wsite-social-linkedin:hover {background-position:-69px -23px;}
+	.wsite-social-linkedin:active {background-position:-69px -46px;}
+.wsite-social-mail {background-position:-92px 0;}
+	.wsite-social-mail:hover {background-position:-92px -23px;}
+	.wsite-social-mail:active {background-position:-92px -46px;}
+.wsite-social-rss {background-position:-115px 0;}
+	.wsite-social-rss:hover {background-position:-115px -23px;}
+	.wsite-social-rss:active {background-position:-115px -46px;}
+.wsite-social-flickr {background-position:-138px 0;}
+	.wsite-social-flickr:hover {background-position:-138px -23px;}
+	.wsite-social-flickr:active {background-position:-138px -46px;}
+.wsite-social-plus {background-position:-161px 0;}
+	.wsite-social-plus:hover {background-position:-161px -23px;}
+	.wsite-social-plus:active {background-position:-161px -46px;}
+.wsite-social-vimeo {background-position:-184px 0;}
+	.wsite-social-vimeo:hover {background-position:-184px -23px;}
+	.wsite-social-vimeo:active {background-position:-184px -46px;}
+.wsite-social-yahoo {background-position:-207px 0;}
+	.wsite-social-yahoo:hover {background-position:-207px -23px;}
+	.wsite-social-yahoo:active {background-position:-207px -46px;}
+.wsite-social-youtube {background-position:-230px 0;}
+	.wsite-social-youtube:hover {background-position:-230px -23px;}
+	.wsite-social-youtube:active {background-position:-230px -46px;}
+ 
+/* TOP RIGHT: Search Box
+--------------------------------------------------------------------------------*/
+
+#header-right .search {
+}
+
+#header-right .wsite-search {
+	padding: 0 0 0 15px;
+	vertical-align: middle;
+}
+
+#header-right .wsite-search-input {
+	width: 140px;
+	height: 24px;
+	border: none;
+	padding: 11px 7px 9px 10px;
+	color: #878787;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url(input-bg.png) no-repeat;
+}
+
+#header-right .wsite-search-button {
+	width: 23px;
+	height: 32px;
+	border: none;
+	margin: 0;
+	padding: 0;
+	background: url(submit-bg.png) no-repeat;
+}
+
+/* side-nav
+--------------------------------------------------------------------------------*/
+
+#avmenu {
+	clear: left;
+	margin: 70px 0 0;
+	padding: 0;
+}
+
+#avmenu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#avmenu li {
+	list-style: none;
+}
+
+#avmenu li a {
+	font-weight: 400;
+	text-decoration: none;
+	color: #fff;
+	font-family: "Lato", Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	display: block;
+	line-height: 1;
+	margin: 0;
+	padding: 10px 5px 10px 14px;
+	border-bottom: 1px solid $NavColor;
+}
+
+#avmenu ul > li:last-child a,
+#avmenu ul > span:last-child li a {
+	border-bottom: none;
+}
+
+#avmenu li#active a,
+#avmenu a:hover {
+	color: #fff;
+	background: $NavColor;
+}
+
+/* Navigation Drop-Down Menu Customization
+--------------------------------------------------------------------------------*/
+
+#wsite-menus .wsite-menu {
+	border-top: 1px solid $NavColor;
+	position: relative;
+	top: -1px;
+}
+
+#wsite-menus .wsite-menu li a {
+	padding: 8px;
+	background: $NavColor;
+	border: none;
+	border-bottom: 1px solid $MainColor;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #fff;
+}
+
+#wsite-menus .wsite-menu li a:hover {
+	color: #fff;
+	background: $SubNavColor;
+}
+
+/* main
+--------------------------------------------------------------------------------*/
+
+#main {
+	margin: 0 7px 0 13px;
+}
+
+#content {
+	margin: 0;
+	padding: 20px 0;
+	min-height: 400px;
+	overflow-x: visible !important;
+	overflow-x: hidden;
+}
+
+#banner {
+}
+
+.tall-header-page .wsite-header {
+	width: 710px;
+	height: 324px;
+	background: url(banner-tall.jpg) no-repeat;
+}
+
+/* PAGE TYPE: banner-tall
+--------------------------------------------------------------------------------*/
+
+.short-header-page .wsite-header {
+	width: 710px;
+	height: 184px;
+	background: url(banner-short.jpg) no-repeat;
+}
+
+/* TOP RIGHT: banner-landing
+--------------------------------------------------------------------------------*/
+
+.landing-page #banner {
+	background: $LandingBg;
+}
+
+#bannerleft {
+	clear: left;
+	float: left;
+	width: 375px;
+}
+
+.landing-page .wsite-header {
+	width: 416px;
+	height: 375px;
+	background: url(banner-landing.jpg) no-repeat;
+}
+
+.landing-banner-outer {
+	display: table;
+	#position: relative;
+	overflow: hidden;
+}
+
+.landing-banner-mid {
+	#position: absolute;
+	#top: 50%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.landing-banner-inner {
+	#position: relative;
+	#top: -50%;
+}
+
+#bannerright {
+	float: right;
+	width: 245px;
+	height: 375px;
+	margin: 0 22px;
+}
+
+#bannerright h2 {
+	color: $MainColor;
+	font-size: 26px;
+	font-weight: normal;
+	-webkit-text-stroke-width: 0.2px;
+	padding: 0px;
+	line-height: 26px;
+}
+
+#bannerright p {
+	color: #414141;
+	padding: 20px 0px;
+	line-height: 140%;
+	margin: 0;
+}
+
+#bannerright .wsite-button {
+	margin: 0;
+}
+
+/* TOP RIGHT: banner-short
+--------------------------------------------------------------------------------*/
+
+.very-tall-header-page .wsite-header {
+	width: 760px;
+	height: 225px;
+	background: url(banner-tall.jpg) no-repeat;
+}
+
+/* PAGE TYPE: nobanner
+--------------------------------------------------------------------------------*/
+
+.no-header-page #banner {
+	height: auto;
+	padding: 0;
+	display: none;
+}
+
+.no-header-page #content {
+	border-top: 5px solid #ebe3d7;
+	padding-top: 12px;
+}
+
+/* PAGE TYPE: banner-splash
+--------------------------------------------------------------------------------*/
+
+.splash-page {
+	margin: 0 auto;
+	padding: 0;
+	background: #f4f4f4 url(splash-bodybg.jpg) top center repeat-y;
+}
+
+.splash-page #header {
+	width: 570px;
+}
+
+.splash-page #header-right {
+	float: right;
+	padding-right: 8px;
+}
+
+.splash-page #banner {
+	width: 560px;
+	height: 115px;
+	border: none;
+	padding: 5px 0 0 0;
+}
+
+.splash-page .wsite-header {
+	width: 560px;
+	height: 115px;
+	border: none;
+	background: url(banner-splash.jpg) no-repeat;
+}
+
+.splash-page #wrap {
+	width: 560px;
+	padding: 0 10px 0 10px;
+}
+
+.splash-page #content {
+	width: 538px;
+}
+
+.splash-page #footer {
+	width: 560px;
+}
+
+/* Footer
+--------------------------------------------------------------------------------*/
+
+#footer {
+	clear: both;
+	padding: 45px 7px 50px 0;
+	color: #878787;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	border-top: 5px solid #ebe3d7;
+	text-align: right;
+}
+
+#footer p {
+	color: #878787;
+	font-size: 12px;
+}
+
+#footer blockquote {font-size:11px; color:#999;}
+
+#footer a {
+	color: #a59b8c;
+}
+
+#footer a:hover {
+	color: #cab99f;
+}
+
+#footer span {
+	vertical-align: middle;
+}
+
+#footer h2 {
+	font-size: 15px;
+	margin: 0 0 2px;
+	padding: .3em 0;
+	line-height: 1.5;
+	font-family: "Lato", Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	color: $MainColor;
+	border-bottom:1px solid #EBE3D7;
+}
+
+.wsite-footer {  /* make sure enough space between element footer and attribution */
+	margin-bottom: 15px;
+}
+
+/* Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-label {
+	display: inline-block;
+	color: #878787;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	padding: 12px 0 5px 0;
+}
+
+.form-radio-container {
+	color: #878787;
+	font-size: 1em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.wsite-form-input, .wsite-search-element-input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	color: #878787;
+	background: #fff;
+	border: 1px solid #ddd8d1;
+	padding: 8px 4px 5px !important;
+	line-height: 1;
+	background: url#fff (field.png);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.form-select {
+	color: #878787;
+	border: 1px solid #ddd8d1;
+	font-size: 1em;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 3px 4px;
+	height: 27px;
+	line-height: 27px;
+	background: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+
+/* Footer Form Customization
+--------------------------------------------------------------------------------*/
+
+.wsite-form-container {
+	margin-top:0px !important;
+	text-align:left;
+}
+
+.wsite-footer .wsite-form-label {
+	font-size: 1em;
+	padding: 5px 0 2px 0;
+}
+
+.wsite-footer .form-radio-container {
+	font-size:1em;
+}
+
+.wsite-footer .wsite-form-input {
+	font-size: 1em;
+	width: 100% !important;
+
+}
+
+.wsite-footer .form-select {
+	width: 100%;
+}
+
+/* Buttons
+--------------------------------------------------------------------------------*/
+
+/*
+  Buttons are styled with background image sprites. There are 4 unique image files:
+   - small & normal-colored  (button_small_grey.png)
+   - large & normal-colored  (button_large_grey.png)
+   - small & highlight-colored  (button_small_orange.png)
+   - large & highlight-colored  (button_large_orange.png)
+
+  Each of these 4 types of buttons must define a :hover state (when user's mouse is over)
+  as well as an :active state (when the user presses down).
+
+  Look at the CSS (especially the inner .wsite-button-inner wrapper), as well as the
+  image files to understand how the liquid-width nature of these buttons work.
+ */
+
+/* small */
+
+.wsite-button {
+	color: #fff !important;
+	font-family: Arial, Helvetica, sans-serif;
+	height: 34px;
+	display: inline-block;
+	font-size: 12px;
+	border: none;
+	font-weight: bold;
+	font-size: 13px;
+	text-decoration: none;
+	padding: 0 15px 0 0;
+	background: url(button.png) no-repeat 100% -105px;
+	text-shadow:0 -1px 0 rgba(0,0,0,0.9);
+}
+
+.wsite-button:hover {
+	background-position: 100% -140px;
+}
+
+.wsite-button:active {
+	background-position: 100% -175px;
+}
+
+.wsite-button-inner {
+	height: 34px;
+	line-height: 34px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	text-decoration: none;
+	padding: 0 10px 0 25px;
+	background: url(button.png) no-repeat 0 0;
+}
+
+.wsite-button:hover .wsite-button-inner {
+	background-position: 0 -35px;
+}
+
+.wsite-button:active .wsite-button-inner {
+	background-position: 0 -70px;
+}
+
+/* large */
+
+.wsite-button-large {
+	height: 41px;
+	background: url(button_large.png) no-repeat 100% -126px;
+	padding: 0 15px 0 0;
+}
+
+.wsite-button-large:hover {
+	background-position: 100% -168px;
+}
+
+.wsite-button-large:active {
+	background-position: 100% -210px;
+}
+
+.wsite-button-large .wsite-button-inner {
+	height: 41px;
+	line-height: 41px;
+	padding: 0 10px 0 25px;
+	background: url(button_large.png) no-repeat 0 0;
+}
+
+.wsite-button-large:hover .wsite-button-inner {
+	background-position: 0 -42px;
+}
+
+.wsite-button-large:active .wsite-button-inner {
+	background-position: 0 -84px;
+}
+
+/* highlight */
+
+/*
+Making the highlighted versions of the buttons is easy because we just need
+to switch out the background images. This works because the different button
+states (normal, :hover, :active) have their sprite coordinates in the same places.
+*/
+
+.wsite-button-large.wsite-button-highlight {
+	background-image: url(button_large_highlight_$Color.png);
+}
+
+.wsite-button-large.wsite-button-highlight .wsite-button-inner {
+	background-image: url(button_large_highlight_$Color.png);
+}
+
+.wsite-button-highlight {
+	background-image: url(button_highlight_$Color.png);
+}
+
+.wsite-button-highlight .wsite-button-inner {
+	background-image: url(button_highlight_$Color.png);
+}
