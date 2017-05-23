@@ -36,6 +36,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@app/views/red-zen',
+                ],
+                'baseUrl'   => '@app/views/red-zen',
+            ],
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
