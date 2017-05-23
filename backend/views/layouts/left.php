@@ -31,6 +31,11 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
+                    ['label' => '教师管理', 'icon' => 'file-code-o', 'url' => ['/eduteacher']],
+                    ['label' => '课堂管理', 'icon' => 'file-code-o', 'url' => ['/eduroom']],
+                    ['label' => '班级管理', 'icon' => 'file-code-o', 'url' => ['/educlass']],
+                    ['label' => '试卷管理', 'icon' => 'file-code-o', 'url' => ['/edupaper']],
+                    ['label' => '题目管理', 'icon' => 'file-code-o', 'url' => ['/edusubject']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
