@@ -36,14 +36,12 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@app/views' => '@app/views/red-zen',
-                ],
-                'baseUrl'   => '@app/views/red-zen',
-            ],
-        ],
+        // 'view' => [
+        //     'theme' => [
+        //         'pathMap' => ['@app/views' => '@vendor/yiister/yii2-gentelella/views'],
+        //         //'baseUrl'   => '@app/views/canyon',
+        //     ],
+        // ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
