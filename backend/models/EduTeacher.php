@@ -33,7 +33,7 @@ class EduTeacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['teacher_name', 'email', 'avatar', 'birth', 'sex', 'phone', 'school', 'faculty'], 'required'],
+            [['email', 'school', 'faculty'], 'required'],
             [['teacher_name', 'email', 'birth', 'school', 'faculty'], 'string', 'max' => 50],
             [['avatar'], 'string', 'max' => 200],
             [['sex', 'phone'], 'string', 'max' => 20],
