@@ -13,6 +13,9 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 $bundle = yiister\gentelella\assets\Asset::register($this);
+
+
+
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -184,7 +187,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 <li>
                                     <a href="javascript:;">Help</a>
                                 </li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                <li><a href="index.php?r=site/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
