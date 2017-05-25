@@ -53,4 +53,9 @@ class EduClass extends \yii\db\ActiveRecord
     {
         return new EduClassQuery(get_called_class());
     }
+
+    public function getTeacher()
+    {
+        return $this->hasOne(EduTeacher::className(),['id' => 'relate_teacher']);
+    }
 }
