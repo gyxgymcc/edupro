@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\EduClass;
 use backend\models\EduclassSearch;
+use backend\models\EduTeacher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,10 +38,12 @@ class EduclassController extends Controller
     {
         $searchModel = new EduclassSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $teacherModel = new EduTeacher();
+        $teacher = $teacherModel->find()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'teacher' => $teacher,
         ]);
     }
 
