@@ -22,6 +22,11 @@
       <script src="assets/js/html5shiv.js"></script>
       <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    	.icon{
+    		font-size: 100px;
+    	}
+    </style>
   </head>
 
   <body>
@@ -36,8 +41,9 @@
     				<img class="img-responsive" src="assets/img/avatar.jpg" alt="">
 					<ul class="nav nav-tabs nav-stacked" id="myTab">
 					  <li><a href="#about">关于</a></li>
-					  <li><a href="#profile">主要功能</a></li>
-					  <li class="active"><a href="#portfolio">角色选择</a></li>
+					  <li><a href="#profile">简介</a></li>
+					  <li class="active"><a href="#portfolio">教师专区</a></li>
+					  <li><a href="#student">学生专区</a></li>
 					  <li><a href="#contact">制作组</a></li>
 					</ul>    			
 				</div><!-- col-md-4 -->
@@ -86,30 +92,52 @@
 						  <div class="row">
 							  <div class="col-xs-6 centered">
 							  	<a href="">
-							  		<i class="icon iconfont icon-kaoshi"></i>
+							  		<i class="icon iconfont icon-teacher"></i>
 							  		<p>教师登录</p>
 							  	</a>
 							  </div><!-- col-xs-6 -->
 							  <div class="col-xs-6 centered">
+							  	<a href="index.php?r=site/register">
+							  		<i class="icon iconfont icon-register"></i>
+							  		<p>教师注册</p>
+							  	</a>
+							  </div>
+						  </div><!-- row -->
+						  
+						  <!-- <div class="row">
+						  	<br>	
+							  <div class="col-xs-6 centered">
 							  	<a href="">
-							  		<i class="fa fa-graduation-cap" style="font-size: 100px;"></i>
+							  		<i class="icon iconfont icon-register"></i>
+							  		<p>教师注册</p>
+							  	</a>
+							  </div>
+							  <div class="col-xs-6 centered">
+							  	<a href="">
+							  		<i class="icon iconfont icon-student"></i>
+							  		<p>学生注册</p>
+							  	</a>
+							  </div>
+						  </div> -->
+					  </div><!-- /Tab Portfolio -->
+
+
+					  <div class="tab-pane" id="student">
+						  <div class="row">
+							  <div class="col-xs-6 centered">
+							  	<a href="">
+							  		<i class="icon iconfont icon-education"></i>
 							  		<p>学生登录</p>
 							  	</a>
 							  </div><!-- col-xs-6 -->
-						  </div><!-- row -->
-						  
-						  <div class="row">
-						  	<br>	
 							  <div class="col-xs-6 centered">
-							  	<img class="img-responsive" src="assets/img/p03.png" alt="">
-							  	<a href="#"><h6><i class="icon-link"></i> Project Name</h6></a>
-							  </div><!-- col-xs-6 -->
-							  <div class="col-xs-6 centered">
-							  	<img class="img-responsive" src="assets/img/p04.png" alt="">
-							  	<a href="#"><h6><i class="icon-link"></i> Project Name</h6></a>
-							  </div><!-- col-xs-6 -->
-						  </div><!-- row -->
-					  </div><!-- /Tab Portfolio -->
+							  	<a href="">
+							  		<i class="icon iconfont icon-student"></i>
+							  		<p>学生注册</p>
+							  	</a>
+							  </div>
+						  </div>
+					  </div>
 					  
 	    			  <!-- ===== Fourth Tab ===== -->
 					  <div class="tab-pane" id="contact">

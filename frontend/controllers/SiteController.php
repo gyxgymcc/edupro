@@ -174,6 +174,11 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionTreg()
+    {
+        return $this->renderpartial();
+    }
+
     /**
      * Requests password reset.
      *
