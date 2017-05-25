@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "yiister/yii2-gentelella": "~1.0"
+        "yiister/yii2-gentelella": "~1.0",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-select2": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

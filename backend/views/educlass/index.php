@@ -1,8 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\grid\GridView;
+use kartik\widgets\Select2;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EduclassSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,17 +19,34 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', '添加班级'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'class_name',
-            'relate_teacher',
+            [
+                'label' => '教师',
+                'attribute' => 'relate_teacher',
+                'value' => 'teacher.teacher_name',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'relate_teacher',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
+                    'options' => [
+                        'placeholder' => '选择以筛选',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+</div>
