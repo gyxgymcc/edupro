@@ -7,5 +7,6 @@ return [
         ],
     ],
     'language' => 'zh-CN',
+    
     'timeZone' => 'Asia/ShangHai',
 ];
