@@ -7,16 +7,15 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\EdupaperSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Edu Papers');
+$this->title = Yii::t('app', '试卷管理');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edu-paper-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Edu Paper'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', '添加试卷'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,

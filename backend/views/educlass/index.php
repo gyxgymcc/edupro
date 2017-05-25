@@ -7,12 +7,11 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\EduclassSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Edu Classes');
+$this->title = Yii::t('app', '班级管理');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edu-class-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>

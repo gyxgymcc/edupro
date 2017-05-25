@@ -5,16 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EduPaper */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Edu Paper',
-]) . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Edu Papers'), 'url' => ['index']];
+$this->title = Yii::t('app', '修改 {modelClass}: ', [
+    'modelClass' => '试卷',
+]) . $model->paper_name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', '试卷管理'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', '修改');
 ?>
 <div class="edu-paper-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
