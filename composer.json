@@ -21,7 +21,7 @@
         "dmstr/yii2-adminlte-asset": "2.*",
         "yiister/yii2-gentelella": "~1.0",
         "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-select2": "*"
+        "kartik-v/yii2-widgets": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
