@@ -97,7 +97,7 @@
 							  	</a>
 							  </div><!-- col-xs-6 -->
 							  <div class="col-xs-6 centered">
-							  	<a href="index.php?r=site/register">
+							  	<a href="index.php?r=teacher/reg">
 							  		<i class="icon iconfont icon-register"></i>
 							  		<p>教师注册</p>
 							  	</a>
@@ -131,7 +131,7 @@
 							  	</a>
 							  </div><!-- col-xs-6 -->
 							  <div class="col-xs-6 centered">
-							  	<a href="">
+							  	<a href="index.php?r=student/reg">
 							  		<i class="icon iconfont icon-student"></i>
 							  		<p>学生注册</p>
 							  	</a>
