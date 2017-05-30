@@ -21,7 +21,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model,'start_time')->widget(DatePicker::classname(), [
 		    'options' => ['placeholder' => 'Enter birth date ...'],
 		    //'value' => date('Y-m-d',$model->start_time),
-		    'value' => '12/31/2010',
+		    //'value' => '12/31/2010',
 		    'pluginOptions' => [
 			    'autoclose'=>true,
 			    'format' => 'yyyy-m-d',

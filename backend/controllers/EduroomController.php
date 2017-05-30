@@ -99,7 +99,11 @@ class EduroomController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             // $model->start_time = strtotime($model->start_time);
+            
             return $this->render('update', [
+                'start_time' => date('Y-m-d',$model->start_time),
+                // var_dump($model->start_time);
+                // exit();
                 'model' => $model,
             ]);
         }
