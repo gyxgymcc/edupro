@@ -9,6 +9,7 @@ use backend\models\EduTeacher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 
 /**
  * EduroomController implements the CRUD actions for EduRoom model.
@@ -98,12 +99,10 @@ class EduroomController extends Controller
             //exit();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            // $model->start_time = strtotime($model->start_time);
-            
+            $model->start_time = date('Y-m-d',$model->start_time);
+            // VarDumper::dump($model,10,true);
+            // exit();
             return $this->render('update', [
-                'start_time' => date('Y-m-d',$model->start_time),
-                // var_dump($model->start_time);
-                // exit();
                 'model' => $model,
             ]);
         }
