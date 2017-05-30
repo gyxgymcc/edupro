@@ -28,7 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'room_name',
-            'start_time',
+            //'start_time',
+            [
+                'attribute' => 'start_time',
+                'value' => function($model){
+                    return date('Y-m-d',$model->start_time);
+                }
+            ],
             'relate_teacher',
             'relate_class',
         ],
