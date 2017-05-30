@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\EduRoom;
 use backend\models\EduroomSearch;
+use backend\models\EduTeacher;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,10 +38,12 @@ class EduroomController extends Controller
     {
         $searchModel = new EduroomSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $teacherModel = new EduTeacher();
+        $teacher = $teacherModel->find()->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'teacher' => $teacher,
         ]);
     }
 
@@ -64,8 +67,10 @@ class EduroomController extends Controller
     public function actionCreate()
     {
         $model = new EduRoom();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //&& $model->save()
+        if ($model->load(Yii::$app->request->post())) {
+            $model->start_time = strtotime($model->start_time);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -84,9 +89,16 @@ class EduroomController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->start_time = strtotime($model->start_time);
+            //var_dump($model->start_time);
+            //exit();
+            $model->save();
+            //var_dump(gettype($model->start_time));
+            //exit();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            // $model->start_time = strtotime($model->start_time);
             return $this->render('update', [
                 'model' => $model,
             ]);

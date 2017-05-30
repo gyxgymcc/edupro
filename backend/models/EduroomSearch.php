@@ -63,8 +63,15 @@ class EduroomSearch extends EduRoom
             'relate_teacher' => $this->relate_teacher,
         ]);
 
+        if(!empty($this->start_time)){
+            // $query->andFilterWhere(['>','start_time', strtotime($this->start_time)])
+            // ->andFilterWhere(['<','start_time', strtotime($this->start_time)+86400]);
+            $query->andFilterWhere([
+                'start_time' => strtotime($this->start_time),
+            ]);
+        }
+
         $query->andFilterWhere(['like', 'room_name', $this->room_name])
-            ->andFilterWhere(['like', 'start_time', $this->start_time])
             ->andFilterWhere(['like', 'relate_class', $this->relate_class]);
 
         return $dataProvider;

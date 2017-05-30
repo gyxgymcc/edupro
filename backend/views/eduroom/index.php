@@ -4,6 +4,9 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\widgets\Select2;
+use kartik\widgets\DatePicker;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EduroomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -28,10 +31,52 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'room_name',
-            'start_time',
-            'relate_teacher',
+            //'start_time',
+            [
+                'label' => '开启时间',
+                'attribute' => 'start_time',
+                // 'filter' => DatePicker::widget([
+                //     'name' => 'start_time',
+                //     'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                //     'pluginOptions' => [
+                //         'autoclose'=>true,
+                //         'attribute' => 'start_time',
+                //         'format' => 'yyyy-mm-dd'
+                //     ],
+                // ]),
+                'value' => function($model){
+                    return date('Y-m-d',$model->start_time);
+                },
+                'filterType' => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => [
+                        'format' => 'yyyy-m-d',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
+                ],
+            ],
+            //'relate_teacher',
+            [
+                'label' => '教师',
+                'attribute' => 'relate_teacher',
+                'value' => 'teacher.teacher_name',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'relate_teacher',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
+                    'options' => [
+                        'placeholder' => '选择教师',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
             'relate_class',
 
             ['class' => 'yii\grid\ActionColumn'],

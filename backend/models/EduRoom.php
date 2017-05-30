@@ -31,7 +31,7 @@ class EduRoom extends \yii\db\ActiveRecord
         return [
             [['room_name', 'start_time', 'relate_teacher', 'relate_class'], 'required'],
             [['relate_teacher'], 'integer'],
-            [['room_name', 'start_time', 'relate_class'], 'string', 'max' => 50],
+            [['room_name', 'relate_class'], 'string', 'max' => 50],
         ];
     }
 
@@ -56,5 +56,9 @@ class EduRoom extends \yii\db\ActiveRecord
     public static function find()
     {
         return new EduRoomQuery(get_called_class());
+    }
+    public function getTeacher()
+    {
+        return $this->hasOne(EduTeacher::className(),['id' => 'relate_teacher']);
     }
 }
