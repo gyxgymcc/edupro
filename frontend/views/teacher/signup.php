@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use frontend\assets\AppAsset;
 
 $this->title = '教师注册';
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = $this->title;
 AppAsset::register($this);
 
 ?>
@@ -25,26 +25,35 @@ AppAsset::register($this);
 </head>
 <?php $this->beginBody() ?>
 <body class="teacher-signup">
-<div >
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
-
+<div class="container">
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <h1><?= Html::encode($this->title) ?></h1>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <p>以下均为必填内容:</p>
 
-                
+            <div class="row">
+                <div class="col-lg-12">
+                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                        <?= $form->field($model, 'teacher_name')->textInput(['autofocus' => true]) ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                        <?= $form->field($model, 'username')->textInput() ?>
+
+                        <?= $form->field($model, 'password')->passwordInput() ?>
+
+                        <?= $form->field($model, 'school')->textInput() ?>
+
+                        <?= $form->field($model, 'faculty')->textInput() ?>
+
+                        <div class="form-group">
+                            <?= Html::submitButton('注册', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                        </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
 </div>
