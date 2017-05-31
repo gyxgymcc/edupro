@@ -26,9 +26,25 @@ use yii\helpers\ArrayHelper;
 		    ],
 	]);?>
 
-    <?= $form->field($model, 'relate_teacher')->textInput() ?>
+    <?= $form->field($model, 'relate_teacher')->widget(Select2::classname(), [
+            'language' => 'de',
+            'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
+            'options' => ['placeholder' => '请选择教师'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+         ]); 
+    ?>
 
-    <?= $form->field($model, 'relate_class')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'relate_class')->widget(Select2::classname(), [
+            'language' => 'de',
+            'data' => ArrayHelper::map($class, 'id', 'class_name'),
+            'options' => ['placeholder' => '请选择班级'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+         ]);  
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '添加') : Yii::t('app', '修改'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

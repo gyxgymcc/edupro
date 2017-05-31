@@ -4,6 +4,7 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\widgets\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EduteacherSearch */
@@ -33,7 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
             'teacher_name',
             'email:email',
             'avatar',
-            'birth',
+            //'birth',
+            [
+                'label' => '生日',
+                'attribute' => 'birth',
+                'headerOptions' => ['style' => 'width:250px;'],
+                'value' => function($model){
+                    return date('Y-m-d',$model->birth);
+                },
+                'filterType' => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => [
+                        'format' => 'yyyy-m-d',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
+                ],
+            ],
             // 'sex',
             // 'phone',
             // 'school',

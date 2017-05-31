@@ -4,6 +4,9 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\widgets\Select2;
+use kartik\widgets\DatePicker;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdusubjectSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,8 +33,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'relate_paper',
+            //'id',
+            //'relate_paper',
+            [
+                'label' => '试卷名称',
+                'attribute' => 'relate_paper',
+                'value' => 'paper.paper_name',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'relate_paper',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($paper, 'id', 'paper_name'),
+                    'options' => [
+                        'placeholder' => '选择试卷',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
             'type',
             'maxval',
             'dif',

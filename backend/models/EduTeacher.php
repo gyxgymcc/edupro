@@ -34,9 +34,10 @@ class EduTeacher extends \yii\db\ActiveRecord
     {
         return [
             [['email', 'school', 'faculty'], 'required'],
-            [['teacher_name', 'email', 'birth', 'school', 'faculty'], 'string', 'max' => 50],
+            [['teacher_name', 'email', 'school', 'faculty'], 'string', 'max' => 50],
             [['avatar'], 'string', 'max' => 200],
             [['sex', 'phone'], 'string', 'max' => 20],
+            ['birth','safe'],
         ];
     }
 

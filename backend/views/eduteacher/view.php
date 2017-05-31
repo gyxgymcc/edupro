@@ -30,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'teacher_name',
             'email:email',
             'avatar',
-            'birth',
+            //'birth',
+            [
+                'attribute' => 'birth',
+                'value' => function($model){
+                    return date('Y-m-d',$model->birth);
+                }
+            ],
             'sex',
             'phone',
             'school',

@@ -53,4 +53,8 @@ class EduPaper extends \yii\db\ActiveRecord
     {
         return new EduPaperQuery(get_called_class());
     }
+    public function getRoom()
+    {
+        return $this->hasOne(EduRoom::className(),['id' => 'relate_room']);
+    }
 }

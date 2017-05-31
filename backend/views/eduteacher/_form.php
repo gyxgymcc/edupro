@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\widgets\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EduTeacher */
 /* @var $form yii\widgets\ActiveForm */
@@ -18,7 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'avatar')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'birth')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'birth')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => '请选这日期'],
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy-m-d',
+            ],
+    ]);?>
 
     <?= $form->field($model, 'sex')->textInput(['maxlength' => true]) ?>
 

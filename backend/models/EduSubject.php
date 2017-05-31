@@ -63,4 +63,8 @@ class EduSubject extends \yii\db\ActiveRecord
     {
         return new EduSubjectQuery(get_called_class());
     }
+    public function getPaper()
+    {
+        return $this->hasOne(EduPaper::className(),['id' => 'relate_paper']);
+    }
 }

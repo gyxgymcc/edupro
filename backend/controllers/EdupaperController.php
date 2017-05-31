@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\EduPaper;
 use backend\models\EdupaperSearch;
+use backend\models\EduRoom;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -37,10 +38,13 @@ class EdupaperController extends Controller
     {
         $searchModel = new EdupaperSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $roomModel = new EduRoom();
+        $room = $roomModel->find()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'room' => $room,
         ]);
     }
 
@@ -68,8 +72,11 @@ class EdupaperController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $roomModel = new EduRoom();
+            $room = $roomModel->find()->all();
             return $this->render('create', [
                 'model' => $model,
+                'room' => $room,
             ]);
         }
     }
@@ -87,8 +94,11 @@ class EdupaperController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $roomModel = new EduRoom();
+            $room = $roomModel->find()->all();
             return $this->render('update', [
                 'model' => $model,
+                'room' => $room,
             ]);
         }
     }

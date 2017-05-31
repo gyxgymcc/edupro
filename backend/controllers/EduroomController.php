@@ -6,6 +6,7 @@ use Yii;
 use backend\models\EduRoom;
 use backend\models\EduroomSearch;
 use backend\models\EduTeacher;
+use backend\models\EduClass;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -41,10 +42,16 @@ class EduroomController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $teacherModel = new EduTeacher();
         $teacher = $teacherModel->find()->all();
+        $classModel = new EduClass();
+        $class = $classModel->find()->all();
+        // var_dump($teacher);
+        // var_dump($class);
+        // die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'teacher' => $teacher,
+            'class' => $class,
         ]);
     }
 
@@ -74,8 +81,14 @@ class EduroomController extends Controller
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $teacherModel = new EduTeacher();
+            $teacher = $teacherModel->find()->all();
+            $classModel = new EduClass();
+            $class = $classModel->find()->all();
             return $this->render('create', [
                 'model' => $model,
+                'teacher' => $teacher,
+                'class' => $class,
             ]);
         }
     }
@@ -95,15 +108,19 @@ class EduroomController extends Controller
             //var_dump($model->start_time);
             //exit();
             $model->save();
-            //var_dump(gettype($model->start_time));
-            //exit();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $teacherModel = new EduTeacher();
+            $teacher = $teacherModel->find()->all();
+            $classModel = new EduClass();
+            $class = $classModel->find()->all();
             $model->start_time = date('Y-m-d',$model->start_time);
-            // VarDumper::dump($model,10,true);
+            // VarDumper::dump($teacher,10,true);
             // exit();
             return $this->render('update', [
                 'model' => $model,
+                'teacher' => $teacher,
+                'class' => $class,
             ]);
         }
     }

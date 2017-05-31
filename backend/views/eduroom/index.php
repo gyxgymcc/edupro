@@ -93,7 +93,25 @@ $this->registerJs("
                     
                 ]),
             ],
-            'relate_class',
+            //'relate_class',
+            [
+                'label' => '班级',
+                'attribute' => 'relate_class',
+                'value' => 'class.class_name',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'relate_class',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($class, 'id', 'class_name'),
+                    'options' => [
+                        'placeholder' => '选择班级',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

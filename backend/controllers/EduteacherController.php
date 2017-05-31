@@ -65,7 +65,9 @@ class EduteacherController extends Controller
     {
         $model = new EduTeacher();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->birth = strtotime($model->birth);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -84,9 +86,12 @@ class EduteacherController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->birth = strtotime($model->birth);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->birth = date('Y-m-d',$model->birth);
             return $this->render('update', [
                 'model' => $model,
             ]);

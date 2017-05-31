@@ -61,4 +61,8 @@ class EduRoom extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduTeacher::className(),['id' => 'relate_teacher']);
     }
+    public function getClass()
+    {
+        return $this->hasOne(EduClass::className(),['id' => 'relate_class']);
+    }
 }

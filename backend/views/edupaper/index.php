@@ -4,6 +4,9 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\widgets\Select2;
+use kartik\widgets\DatePicker;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdupaperSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,10 +33,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'paper_name',
-            'relate_room',
-
+            //'relate_room',
+            [
+                'label' => '所属课堂',
+                'attribute' => 'relate_room',
+                'value' => 'room.room_name',
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'relate_room',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($room, 'id', 'room_name'),
+                    'options' => [
+                        'placeholder' => '选择课堂',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

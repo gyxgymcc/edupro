@@ -6,6 +6,7 @@ use Yii;
 use backend\models\EduSubject;
 use backend\models\EdusubjectSearch;
 use yii\web\Controller;
+use backend\models\EduPaper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -37,10 +38,12 @@ class EdusubjectController extends Controller
     {
         $searchModel = new EdusubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $paperModel = new EduPaper();
+        $paper = $paperModel->find()->all();      
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'paper' => $paper,
         ]);
     }
 
