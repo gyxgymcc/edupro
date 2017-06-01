@@ -80,4 +80,9 @@ class EduSubject extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduPaper::className(),['id' => 'relate_paper']);
     }
+
+    public static function findEt($typeid){
+        $examType = Yii::$app->params['examType'];
+        return $examType[$typeid]['name'];
+    }
 }

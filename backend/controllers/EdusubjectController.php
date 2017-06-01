@@ -41,7 +41,7 @@ class EdusubjectController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $paperModel = new EduPaper();
         $paper = $paperModel->find()->all();    
-        $examType = Yii::$app->params['examType'];  
+        $examType = Yii::$app->params['examType'];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

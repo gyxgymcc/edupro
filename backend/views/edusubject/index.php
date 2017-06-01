@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <p>
         <?= Html::a(Yii::t('app', '添加题目'), ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'panel' => [
@@ -58,8 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => '题型',
                 'attribute' => 'type',
-                'value' => function($examType,$this,$model){
-                    return json_encode($model->type);
+                'value' => function($model,$examType){
+                    $val = $model::findEt($model->type);
+                    return $val;
                 },
                 //'value' => $examType[$model->type]['name'],
                 'filter' => Select2::widget([
@@ -68,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'hideSearch' => false,
                     'data' => ArrayHelper::map($examType, 'id', 'name'),
                     'options' => [
-                        'placeholder' => '选择试卷',
+                        'placeholder' => '选择题型',
                     ],
                     'pluginOptions' => [
                         'allowClear' => true,
@@ -85,4 +86,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+</div>
