@@ -37,13 +37,17 @@ class EdusubjectController extends Controller
     public function actionIndex()
     {
         $searchModel = new EdusubjectSearch();
+        //$model = new EduSubject();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $paperModel = new EduPaper();
-        $paper = $paperModel->find()->all();      
+        $paper = $paperModel->find()->all();    
+        $examType = Yii::$app->params['examType'];  
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'paper' => $paper,
+            'examType' => $examType,
+            //'model' => $model,
         ]);
     }
 

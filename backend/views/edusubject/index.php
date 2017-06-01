@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('app', '题目管理');
 $this->params['breadcrumbs'][] = $this->title;
+//echo json_encode($model);
 ?>
 <div class="edu-subject-index">
 
@@ -53,7 +54,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                 ]),
             ],
-            'type',
+            //'type',
+            [
+                'label' => '题型',
+                'attribute' => 'type',
+                'value' => function($examType,$this,$model){
+                    return json_encode($model->type);
+                },
+                //'value' => $examType[$model->type]['name'],
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'type',
+                    'hideSearch' => false,
+                    'data' => ArrayHelper::map($examType, 'id', 'name'),
+                    'options' => [
+                        'placeholder' => '选择试卷',
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true,
+                    ],
+                    
+                ]),
+            ],
             'maxval',
             'dif',
             // 'que:ntext',

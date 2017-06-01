@@ -55,6 +55,19 @@ class EduSubject extends \yii\db\ActiveRecord
         ];
     }
 
+    public function attributeValues()
+    {
+        return [
+            'type' => [
+                '0' => '单选题',
+                '1' => '多选题',
+                '2' => '填空题',
+                '3' => '应用题',
+            ],
+        ];
+    }
+
+
     /**
      * @inheritdoc
      * @return EduSubjectQuery the active query used by this AR class.
