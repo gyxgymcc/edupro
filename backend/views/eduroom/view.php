@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'room_name',
             //'start_time',
             [
@@ -35,8 +35,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     return date('Y-m-d',$model->start_time);
                 }
             ],
-            'relate_teacher',
-            'relate_class',
+            //'relate_teacher',
+            [
+                'label' => '教师',
+                'attribute' => 'relate_teacher',
+                'value' => $teacher['teacher_name'],
+            ],
+            //'relate_class',
+            [
+                'label' => '班级',
+                'attribute' => 'relate_class',
+                'value' => $class['class_name'],
+            ],
         ],
     ]) ?>
 

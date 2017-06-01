@@ -32,6 +32,19 @@ $this->registerJs("
         $('.kv-plugin-loading').remove();
         $('.select2-dropdown').remove();
 
+
+        var el1 = $('#eduroomsearch-relate_class');
+        settings = el1.attr('data-krajee-select2');
+        id = el1.attr('id');
+        settings = window[settings];
+        el1.select2(settings);
+
+        var el3 = $('#eduroomsearch-relate_class');
+        id2 = el3.attr('id');
+        el3.select2(settings);
+        $('.kv-plugin-loading').remove();
+        $('.select2-dropdown').remove();
+
     });
 
     ", \yii\web\View::POS_END);

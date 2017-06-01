@@ -62,8 +62,15 @@ class EduroomController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $teacherModel = new EduTeacher();
+        $classModel = new EduClass();
+        $teacher = $teacherModel->findOne($model->relate_teacher);
+        $class = $classModel->findOne($model->relate_class);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'teacher' => $teacher,
+            'class' => $class,
         ]);
     }
 

@@ -55,8 +55,12 @@ class EdupaperController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $roomModel = new EduRoom();
+        $room = $roomModel->findOne($model->relate_room);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'room' => $room,
         ]);
     }
 

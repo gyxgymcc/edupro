@@ -13,6 +13,28 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('app', '试卷管理');
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs("
+
+    $(document).on('pjax:complete', function(){
+        var el = $('#edupapersearch-relate_room');
+        settings = el.attr('data-krajee-select2');
+        id = el.attr('id');
+        settings = window[settings];
+        el.select2(settings);
+        // $('.kv-plugin-loading').remove();
+        // $('.select2-dropdown').remove();
+
+
+        var el2 = $('#edupapersearch-relate_room');
+        id2 = el2.attr('id');
+        el2.select2(settings);
+        $('.kv-plugin-loading').remove();
+        $('.select2-dropdown').remove();
+
+    });
+
+    ", \yii\web\View::POS_END);
+
 ?>
 <div class="edu-paper-index">
 
@@ -24,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pjax' => true,
         'panel' => [
             'heading' => '<h3 class="panel-title">' . $this->title,
             'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>添加', ['create'],

@@ -7,9 +7,9 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', '修改 {modelClass}: ', [
     'modelClass' => '题目',
-]) . $model->id;
+]) ;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '题目管理'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => '题目', 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', '修改');
 ?>
 <div class="edu-subject-update">
@@ -18,6 +18,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', '修改');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'paper' => $paper,
+        'examType' => $examType,
+        'examDif' => $examDif,
     ]) ?>
 
 </div>

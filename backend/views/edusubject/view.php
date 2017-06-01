@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EduSubject */
 
-$this->title = $model->relate_paper;
+$this->title = $paper['paper_name'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '题目管理'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,11 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'relate_paper',
-            'type',
+            //'id',
+            //'relate_paper',
+            [
+                'label' => '试卷名称',
+                'attribute' => 'relate_paper',
+                'value' => $paper['paper_name'],
+            ],
+            //'type',
+            [
+                'label' => '题型',
+                'attribute' => 'type',
+                'value' => function($model,$examType){
+                    $val = $model::findEt($model->type);
+                    return $val;
+                },
+            ],
             'maxval',
-            'dif',
+            //'dif',
+            [
+                'label' => '难度',
+                'attribute' => 'type',
+                'value' => function($model,$examType){
+                    $val = $model::findDi($model->type);
+                    return $val;
+                },
+            ],
             'que:ntext',
             'que_sec:ntext',
             'answer:ntext',

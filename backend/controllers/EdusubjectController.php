@@ -37,17 +37,17 @@ class EdusubjectController extends Controller
     public function actionIndex()
     {
         $searchModel = new EdusubjectSearch();
-        //$model = new EduSubject();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $paperModel = new EduPaper();
         $paper = $paperModel->find()->all();    
         $examType = Yii::$app->params['examType'];
+        $examDif = Yii::$app->params['examDif'];
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'paper' => $paper,
             'examType' => $examType,
-            //'model' => $model,
+            'examDif' => $examDif,
         ]);
     }
 
@@ -57,9 +57,18 @@ class EdusubjectController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {
+    {   
+
+        $model = $this->findModel($id);
+        $paperModel = new EduPaper();
+        $paper = $paperModel->findOne($model->relate_paper);
+        $examType = Yii::$app->params['examType'];
+        $examDif = Yii::$app->params['examDif'];
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'paper' => $paper,
+            'examType' => $examType,
+            'examDif' => $examDif,
         ]);
     }
 
@@ -75,8 +84,15 @@ class EdusubjectController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $paperModel = new EduPaper();
+            $paper = $paperModel->find()->all();    
+            $examType = Yii::$app->params['examType'];
+            $examDif = Yii::$app->params['examDif'];
             return $this->render('create', [
                 'model' => $model,
+                'paper' => $paper,
+                'examType' => $examType,
+                'examDif' => $examDif,
             ]);
         }
     }
@@ -94,8 +110,16 @@ class EdusubjectController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $paperModel = new EduPaper();
+            $paper = $paperModel->find()->all();    
+            $examType = Yii::$app->params['examType'];
+            $examDif = Yii::$app->params['examDif'];
             return $this->render('update', [
                 'model' => $model,
+                'paper' => $paper,
+                'examType' => $examType,
+                'examDif' => $examDif,
+
             ]);
         }
     }

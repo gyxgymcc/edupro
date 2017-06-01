@@ -54,8 +54,12 @@ class EduclassController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $teacherModel = new EduTeacher();
+        $teacher = $teacherModel->findOne($model->relate_teacher);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'teacher' => $teacher,
         ]);
     }
 

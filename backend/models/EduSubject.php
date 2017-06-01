@@ -85,4 +85,8 @@ class EduSubject extends \yii\db\ActiveRecord
         $examType = Yii::$app->params['examType'];
         return $examType[$typeid]['name'];
     }
+    public static function findDi($typeid){
+        $examDif = Yii::$app->params['examDif'];
+        return $examDif[$typeid]['name'];
+    }
 }

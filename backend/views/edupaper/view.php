@@ -26,9 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'paper_name',
-            'relate_room',
+            //'relate_room',
+            [
+                'label' => '课堂名称',
+                'attribute' => 'relate_room',
+                'value' => $room['room_name'],
+            ],
         ],
     ]) ?>
 
