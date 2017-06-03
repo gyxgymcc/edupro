@@ -7,13 +7,26 @@ use kartik\grid\GridView;
 use kartik\widgets\Select2;
 use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
+use kartik\dialog\Dialog;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdupaperSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+echo Dialog::widget();
 $this->title = Yii::t('app', '试卷管理');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs("
+    
+
+    function dialog(key){
+        krajeeDialog.prompt({label:'Provide reason', placeholder:'Upto 30 characters...'}, function (result) {
+            if (result) {
+                alert('Great! You provided a reason:' + result);
+            } else {
+                alert('Oops! You declined to provide a reason!');
+            }
+        });
+        
+    };
 
     $(document).on('pjax:complete', function(){
         var el = $('#edupapersearch-relate_room');
@@ -77,7 +90,38 @@ $this->registerJs("
                     
                 ]),
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label'=>'操作题目',
+                'format'=>'raw',
+                'value' => function($data,$key){
+                    return Html::button('添加试卷',$options = [
+                        'onclick'=>'dialog('.$key.')',
+                        'id'=>'btn-prompt',
+                        'class'=>'btn btn-primary',
+                    ]);
+                }
+            ],
+
+            [
+                'header'=>'操作试卷',
+                'class' => 'yii\grid\ActionColumn',
+                // 'template' => '{user-view} {update} {delete}',
+                // 'buttons' => [
+                //     // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
+                //     'user-view' => function ($url, $model, $key) {
+                //         $options = [
+                //             'title' => '添加本试卷题目',//Yii::t('yii', 'View'),
+                //             'aria-label' => Yii::t('yii', 'View'),
+                //             'data-pjax' => '0',
+                //             'id' => 'sss',
+                //         ];
+                //         return Html::a('<span class="dd" style="border:1px solid  #DBDBDB; border-radius:5px; padding:5px;background-color:#EAEAEA;">添加本试卷题目</span>',"", $options);
+                //     },
+
+                // ],
+               
+            ],
         ],
     ]); ?>
-<?php Pjax::end(); ?></div>
+<?php Pjax::end();?></div>
+
