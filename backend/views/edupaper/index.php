@@ -101,7 +101,6 @@ $this->registerJs("
                     ]);
                 }
             ],
-
             [
                 'header'=>'操作试卷',
                 'class' => 'yii\grid\ActionColumn',
