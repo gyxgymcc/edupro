@@ -1,13 +1,16 @@
 <?php
 
 use yii\helpers\Html;
-//use yii\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\grid\GridView;
+use kartik\grid\FormulaColumn;
 use kartik\widgets\Select2;
 use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
 use kartik\dialog\Dialog;
+use backend\models\EduSubject;
+use backend\models\EdusubjectSearch;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EdupaperSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -57,9 +60,12 @@ $this->registerJs("
     <!-- <p>
         <?= Html::a(Yii::t('app', '添加试卷'), ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'hover' => true,
+        'showPageSummary' => true,
+        'striped' => true,
         'pjax' => true,
         'panel' => [
             'heading' => '<h3 class="panel-title">' . $this->title,
@@ -68,8 +74,35 @@ $this->registerJs("
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>刷新', ['index'], ['class' => 'btn btn-info']),
         ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'kartik\grid\SerialColumn',
+                'header' => '试卷序号',
+                'pageSummary' => '',
+                'pageSummaryOptions' => ['class'=>'text-left text-warning'],
+            ],
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'expandAllTitle' => 'Expand all',
+                'collapseTitle' => 'Collapse all',
+                'expandIcon'=>'<span class="glyphicon glyphicon-expand"></span>',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail'=>function ($model, $key, $index, $column) {
+                    $sC = new EdusubjectSearch;
+                    $sC->relate_paper = $key;
+                    $dP = $sC->search(Yii::$app->request->queryParams);
+                    return Yii::$app->controller->renderPartial('_subject-expand.php', [
+                        'searchModel' => $sC,
+                        'dataProvider' => $dP,
+                    ]);
+                },
+                'detailOptions'=>[
+                    'class'=> 'kv-state-enable',
+                ],
 
+
+            ],
             //'id',
             'paper_name',
             //'relate_room',
@@ -90,6 +123,7 @@ $this->registerJs("
                     ],
                     
                 ]),
+
             ],
             [
                 'label'=>'操作题目',
@@ -105,7 +139,7 @@ $this->registerJs("
             [
                 'header'=>'操作试卷',
                 'headerOptions' => ['style' => 'width:200px;'],
-                'class' => 'yii\grid\ActionColumn',
+                'class' => 'kartik\grid\ActionColumn',
                 // 'template' => '{user-view} {update} {delete}',
                 // 'buttons' => [
                 //     // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
@@ -124,5 +158,5 @@ $this->registerJs("
             ],
         ],
     ]); ?>
-<?php Pjax::end();?></div>
+</div>
 

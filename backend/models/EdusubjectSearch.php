@@ -69,7 +69,6 @@ class EdusubjectSearch extends EduSubject
         $query->andFilterWhere(['like', 'que', $this->que])
             ->andFilterWhere(['like', 'que_sec', $this->que_sec])
             ->andFilterWhere(['like', 'answer', $this->answer]);
-
         return $dataProvider;
     }
 }
