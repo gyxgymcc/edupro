@@ -18,13 +18,14 @@ $this->registerJs("
     
 
     function dialog(key){
-        krajeeDialog.prompt({label:'Provide reason', placeholder:'Upto 30 characters...'}, function (result) {
+        window.location.href='http://edupro.app/index.php?r=edusubject%2Fcreate&id='+key; 
+        /*krajeeDialog.prompt({label:'Provide reason', placeholder:'Upto 30 characters...'}, function (result) {
             if (result) {
                 alert('Great! You provided a reason:' + result);
             } else {
-                alert('Oops! You declined to provide a reason!');
+                alert('哦!你拒绝提供一个理由!');
             }
-        });
+        });*/
         
     };
 
@@ -94,7 +95,7 @@ $this->registerJs("
                 'label'=>'操作题目',
                 'format'=>'raw',
                 'value' => function($data,$key){
-                    return Html::button('添加试卷',$options = [
+                    return Html::button('添加本试卷题目',$options = [
                         'onclick'=>'dialog('.$key.')',
                         'id'=>'btn-prompt',
                         'class'=>'btn btn-primary',
@@ -103,6 +104,7 @@ $this->registerJs("
             ],
             [
                 'header'=>'操作试卷',
+                'headerOptions' => ['style' => 'width:200px;'],
                 'class' => 'yii\grid\ActionColumn',
                 // 'template' => '{user-view} {update} {delete}',
                 // 'buttons' => [

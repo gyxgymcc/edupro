@@ -79,8 +79,24 @@ class EdusubjectController extends Controller
      */
     public function actionCreate()
     {
+        $requestdata = Yii::$app->request->get();
         $model = new EduSubject();
+        if(isset($requestdata['id'])){
+            $paperModel = new EduPaper();
+            $paper = $paperModel->find()->all();    
+            $examType = Yii::$app->params['examType'];
+            $examDif = Yii::$app->params['examDif'];
+            return $this->render('create', [
+                'model' => $model,
+                'paper' => $paper,
+                'examType' => $examType,
+                'examDif' => $examDif,
+                'key' => $requestdata['id'],
+            ]);
+        }
+        
 
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -93,6 +109,7 @@ class EdusubjectController extends Controller
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
+                'key' => 0,
             ]);
         }
     }

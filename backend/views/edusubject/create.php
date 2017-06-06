@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'paper' => $paper,
         'examType' => $examType,
         'examDif' => $examDif,
+        'key' => $key,
     ]) ?>
 
 </div>

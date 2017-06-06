@@ -18,7 +18,10 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'relate_paper')->widget(Select2::classname(), [
             'language' => 'de',
             'data' => ArrayHelper::map($paper, 'id', 'paper_name'),
-            'options' => ['placeholder' => '请选择试卷'],
+            'options' => [
+                'placeholder' => '请选择试卷',
+                'value' => $key,
+            ],
             'pluginOptions' => [
                 'allowClear' => true
             ],
