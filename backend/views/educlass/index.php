@@ -32,7 +32,6 @@ $this->registerJs("
         $('.select2-dropdown').remove();
 
     });
-
     ", \yii\web\View::POS_END);
 
 ?>
@@ -74,7 +73,6 @@ $this->registerJs("
                     
                 ]),
             ],
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
