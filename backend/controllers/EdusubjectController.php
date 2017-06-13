@@ -9,6 +9,7 @@ use yii\web\Controller;
 use backend\models\EduPaper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use backend\models\EduSelection;
 
 /**
  * EdusubjectController implements the CRUD actions for EduSubject model.
@@ -81,6 +82,8 @@ class EdusubjectController extends Controller
     {
         $requestdata = Yii::$app->request->get();
         $model = new EduSubject();
+        $modelSelection = [new EduSelection];
+
         if(isset($requestdata['id'])){
             $paperModel = new EduPaper();
             $paper = $paperModel->find()->all();    
@@ -110,6 +113,7 @@ class EdusubjectController extends Controller
                 'examType' => $examType,
                 'examDif' => $examDif,
                 'key' => 0,
+                'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         }
     }
