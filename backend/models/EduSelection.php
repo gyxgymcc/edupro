@@ -28,7 +28,7 @@ class EduSelection extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['relate_subject', 'content'], 'required'],
+            [['content'], 'required'],
             [['relate_subject', 'iscorrect'], 'integer'],
             [['content'], 'string'],
         ];

@@ -10,6 +10,7 @@ use backend\models\EduPaper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EduSelection;
+use backend\models\Model;
 
 /**
  * EdusubjectController implements the CRUD actions for EduSubject model.
@@ -116,6 +117,67 @@ class EdusubjectController extends Controller
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         }
+    }
+
+
+    public function actionCreatesel(){
+        $model = new EduSubject();
+        $modelSelection = [new EduSelection];
+        $paperModel = new EduPaper();
+        $paper = $paperModel->find()->all();
+        $examType = Yii::$app->params['examType'];
+        $examDif = Yii::$app->params['examDif'];
+
+
+        // if ($model->load(Yii::$app->request->post())) {
+
+        //     $modelsAddress = Model::createMultiple(Address::classname());
+        //     Model::loadMultiple($modelsAddress, Yii::$app->request->post());
+
+        //     // validate all models
+        //     $valid = $model->validate();
+        //     $valid = Model::validateMultiple($modelsAddress) && $valid;
+
+        //     if ($valid) {
+        //         $transaction = \Yii::$app->db->beginTransaction();
+
+        //         try {
+        //             if ($flag = $model->save(false)) {
+        //                 foreach ($modelsAddress as $modelAddress) {
+        //                     $modelAddress->customer_id = $model->id;
+        //                     if (! ($flag = $modelAddress->save(false))) {
+        //                         $transaction->rollBack();
+        //                         break;
+        //                     }
+        //                 }
+        //             }
+
+        //             if ($flag) {
+        //                 $transaction->commit();
+        //                 return $this->redirect(['view', 'id' => $model->id]);
+        //             }
+        //         } catch (Exception $e) {
+        //             $transaction->rollBack();
+        //         }
+        //     }
+        // }
+
+        if($model->load(Yii::$app->request->post()))
+        {
+            $requestdata = Yii::$app->request->post();
+            //var_dump(Yii::$app->request->post());
+            var_dump($requestdata);
+            // die;
+        }
+
+        return $this->render('create_sel', [
+            'model' => $model,
+            'paper' => $paper,
+            'examType' => $examType,
+            'examDif' => $examDif,
+            'key' => 0,
+            'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
+        ]);
     }
 
     /**

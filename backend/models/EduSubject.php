@@ -32,8 +32,9 @@ class EduSubject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['relate_paper', 'type', 'maxval', 'dif', 'que', 'que_sec', 'answer'], 'required'],
+            [['relate_paper', 'maxval', 'dif', 'que', 'answer'], 'required'],
             [['relate_paper', 'type', 'maxval', 'dif'], 'integer'],
+            [['type','que_sec'],'safe'],
             [['que', 'que_sec', 'answer'], 'string'],
         ];
     }

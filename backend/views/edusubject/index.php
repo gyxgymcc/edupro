@@ -73,8 +73,16 @@ $this->registerJs("
         'pjax' => true,
         'panel' => [
             'heading' => '<h3 class="panel-title">' . $this->title,
-            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>添加', ['create'],
-                    ['class' => 'btn btn-success']) . ' ' .
+            'before' =>
+                '<div class="btn-group">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="glyphicon glyphicon-plus"></i>添加题目 <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>'.Html::a('选择题', ['createsel']).'</li>
+                    <li>'.Html::a('非选择题', ['createunsel']).'</li>
+                  </ul>
+                </div>'.' '.
                 Html::a('<i class="glyphicon glyphicon-repeat"></i>刷新', ['index'], ['class' => 'btn btn-info']),
         ],
         'columns' => [
