@@ -79,7 +79,7 @@ class EdusubjectController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreateunsel()
     {
         $requestdata = Yii::$app->request->get();
         $model = new EduSubject();
@@ -165,19 +165,35 @@ class EdusubjectController extends Controller
         if($model->load(Yii::$app->request->post()))
         {
             $requestdata = Yii::$app->request->post();
-            //var_dump(Yii::$app->request->post());
-            var_dump($requestdata);
-            // die;
-        }
-
-        return $this->render('create_sel', [
-            'model' => $model,
-            'paper' => $paper,
-            'examType' => $examType,
-            'examDif' => $examDif,
-            'key' => 0,
-            'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
-        ]);
+            $aaa = count($requestdata['EduSelection']);  
+            $nums = 0;       
+            for($i=0;$i<$aaa;$i++){
+                $numIsc = $requestdata['EduSelection'][$i]['iscorrect'];
+                if($numIsc==1){
+                    $nums = $nums+1;
+                };
+            };
+            //echo $nums;
+            if($nums==1){
+                $requestdata['type']=0;
+            }else{
+                $requestdata['type']=1;
+            };
+           // $requestdata['EduSelection']['iscorrect']
+           // die;
+            $model->save();
+           // return $this->redirect(['view', 'id' => $model->id]);
+        }else{
+            return $this->render('create_sel', [
+                'model' => $model,
+                'paper' => $paper,
+                'examType' => $examType,
+                'examDif' => $examDif,
+                'key' => 0,
+                'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
+            ]);
+        };
+   
     }
 
     /**
