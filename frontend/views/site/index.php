@@ -19,6 +19,12 @@ $this->title = 'My Yii Application';
     .row .col-xs-12:nth-child(2) .tile-stats{
         background-color: green;
     }
+    .row .col-xs-12:nth-child(3) .tile-stats{
+        background-color: #00a65a;
+    }
+    .row .col-xs-12:nth-child(4) .tile-stats{
+        background-color: green;
+    }
 </style>
 <div class="site-index">
     <section class="content">
