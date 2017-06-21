@@ -11,10 +11,9 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use backend\models\EduStudent;
+use kartik\dialog\Dialog;
 
 $bundle = yiister\gentelella\assets\Asset::register($this);
-
-
 
 ?>
 <?php $this->beginPage(); ?>
@@ -66,7 +65,10 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <!-- menu prile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
+                    <?php
+                        echo Dialog::widget();
+                    ?>
+                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img" id='profile_img'>
                     </div>
                     <div class="profile_info">
                         <span>学生</span>

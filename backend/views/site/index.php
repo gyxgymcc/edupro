@@ -5,49 +5,133 @@
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
+    <div class="row">
+        <div class="col-md=12">
+            <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Monthly Recap Report</h3>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-wrench"></i></button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: block;">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="text-center">
+                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                  </p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                  <div class="chart">
+                    <!-- Sales Chart Canvas -->
+                    <canvas id="salesChart" style="height: 180px; width: 703px;" height="180" width="703"></canvas>
+                  </div>
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <p class="text-center">
+                    <strong>Goal Completion</strong>
+                  </p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                  <div class="progress-group">
+                    <span class="progress-text">Add Products to Cart</span>
+                    <span class="progress-number"><b>160</b>/200</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    <span class="progress-text">Complete Purchase</span>
+                    <span class="progress-number"><b>310</b>/400</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    <span class="progress-text">Visit Premium Page</span>
+                    <span class="progress-number"><b>480</b>/800</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    <span class="progress-text">Send Inquiries</span>
+                    <span class="progress-number"><b>250</b>/500</span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <!-- ./box-body -->
+            <div class="box-footer" style="display: block;">
+              <div class="row">
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                    <h5 class="description-header">$35,210.43</h5>
+                    <span class="description-text">TOTAL REVENUE</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                    <h5 class="description-header">$10,390.90</h5>
+                    <span class="description-text">TOTAL COST</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block border-right">
+                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                    <h5 class="description-header">$24,813.53</h5>
+                    <span class="description-text">TOTAL PROFIT</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-3 col-xs-6">
+                  <div class="description-block">
+                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                    <h5 class="description-header">1200</h5>
+                    <span class="description-text">GOAL COMPLETIONS</span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+              </div>
+              <!-- /.row -->
             </div>
+            <!-- /.box-footer -->
+          </div>
         </div>
-
     </div>
 </div>
