@@ -24,19 +24,33 @@ class TeacherController extends Controller
 		if ($model->load(Yii::$app->request->post())){
 			$request = Yii::$app->request->post();
 			
-			if($teacher->load(Yii::$app->request->post())){
-				VarDumper::dump($teacher,10,true);
-				exit();
-			}
-			//$teacher->teacher_name = 
-			// VarDumper::dump($model,10,true);
-			// exit();
-			// if ($user = $model->signup()) {
-			// 	if (Yii::$app->getUser()->login($user)) {
-   //                  VarDumper::dump(Yii::$app->getUser()->id,10,true);
-			// 		exit();
-   //              }
+			// if($teacher->load(Yii::$app->request->post())){
+			// 	VarDumper::dump($teacher,10,true);
+			// 	exit();
 			// }
+			if ($user = $model->signup()) {
+				if (Yii::$app->getUser()->login($user)) {
+					$userId = Yii::$app->user->getId();
+					$teacher->relate_user = $userId;
+					$teacher->teacher_name = $request['TregForm']['teacher_name'];
+					$teacher->email = $request['TregForm']['username'];
+					$teacher->school = $request['TregForm']['school'];
+					$teacher->faculty = $request['TregForm']['faculty'];
+					if($teacher->save()){
+						header("Location: http://edu.app");
+						exit();
+					}
+					else{
+						return $this->renderpartial('signup', [
+				            'model' => $model,
+				        ]);
+					}
+                }
+			}
+
+			return $this->renderpartial('signup', [
+	            'model' => $model,
+	        ]);
 		}
 
 		return $this->renderpartial('signup', [
