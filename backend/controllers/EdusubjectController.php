@@ -161,15 +161,17 @@ class EdusubjectController extends Controller
             //          $modelSelection->save();  
             //     } 
             // }  
-            //$model->save(false);
-            
+            $model->save(false);
+               
+
+               
             // var_dump($model->id);
             // var_dump($modelSelection);
             
             for ($e=0; $e < $aaa; $e++) { 
                 $modelSelection = $requestdata['EduSelection'][$e];
                 //var_dump($modelSelection);
-                $modelSelection[$e]['relate_subject'] = $model->id;
+                $modelSelection->relate_subject = $model->id;
              $modelSelection->save();
                 //echo $e;
             }
