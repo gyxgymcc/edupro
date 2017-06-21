@@ -162,9 +162,7 @@ class EdusubjectController extends Controller
             //     } 
             // }  
             $model->save(false);
-               
 
-               
             // var_dump($model->id);
             // var_dump($modelSelection);
             
