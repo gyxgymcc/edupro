@@ -16,16 +16,13 @@ class SregForm extends Model
 	public function rules()
 	{
 		return [
-			[['teacher_name', 'username'], 'trim'],
-			[['teacher_name', 'username', 'school', 'faculty', 'password'], 'required'],
-			['teacher_name', 'string', 'min' => 2, 'max' => 20],
+			[['student_name', 'username'], 'trim'],
+			[['student_name', 'username', 'password'], 'required'],
+			['student_name', 'string', 'min' => 2, 'max' => 20],
 
 			['username', 'string', 'max' => 50],
 			['username', 'unique', 'targetClass' => '\common\models\User', 'message' => '此邮箱地址已存在'],
 			['username','email'],
-
-			['school', 'string', 'max' => 50],
-			['faculty', 'string', 'max' => 50],
 
 		];
 	}
@@ -33,11 +30,9 @@ class SregForm extends Model
 	public function attributeLabels()
     {
         return [
-            'teacher_name' => '教师姓名',
+            'student_name' => '学生姓名',
             'username' => '邮箱',
             'password' => '密码',
-            'school' => '学校',
-            'faculty' => '院系',
         ];
     }
 
@@ -52,6 +47,7 @@ class SregForm extends Model
         $user->email = $this->username;
         $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->role = 1;
         
         return $user->save() ? $user : null;
     }

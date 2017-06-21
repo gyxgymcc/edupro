@@ -37,6 +37,7 @@ class TeacherController extends Controller
 					$teacher->school = $request['TregForm']['school'];
 					$teacher->faculty = $request['TregForm']['faculty'];
 					if($teacher->save()){
+						Yii::$app->user->logout();
 						header("Location: http://edu.app");
 						exit();
 					}

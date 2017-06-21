@@ -4,13 +4,13 @@
  * @var string $content
  * @var \yii\web\View $this
  */
-
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use backend\models\EduStudent;
 
 $bundle = yiister\gentelella\assets\Asset::register($this);
 
@@ -44,7 +44,22 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>
+                        <?php
+                        $userId = Yii::$app->user->getId();
+                        $studentModel = new EduStudent();
+                        $userInfo = $studentModel->findOne(['relate_user' => $userId]);
+                        if(!empty($userInfo))
+                        {
+                            $username = $userInfo['student_name'];
+                            echo "欢迎你,同学";
+                        }
+                        else{
+                            $username = '游客';
+                            echo "欢迎你,游客";
+                        }
+                        ?>
+                    </span></a>
                 </div>
                 <div class="clearfix"></div>
 
@@ -54,8 +69,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span>学生</span>
+                        <h2><?php echo $username;?></h2>
                     </div>
                 </div>
                 <!-- /menu prile quick info -->
@@ -66,7 +81,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                     <div class="menu_section">
-                        <h3>General</h3>
+                        <h3>&nbsp;</h3>
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [

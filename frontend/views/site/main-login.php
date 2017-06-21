@@ -125,7 +125,7 @@
 					  <div class="tab-pane" id="student">
 						  <div class="row">
 							  <div class="col-xs-6 centered">
-							  	<a href="">
+							  	<a href="index.php?r=student/login">
 							  		<i class="icon iconfont icon-education"></i>
 							  		<p>学生登录</p>
 							  	</a>
