@@ -100,7 +100,6 @@ class EdusubjectController extends Controller
         }
         
 
-        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -128,55 +127,58 @@ class EdusubjectController extends Controller
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];
 
-
+        $model->type = 0;
         if($model->load(Yii::$app->request->post()))
         {
             $requestdata = Yii::$app->request->post();
-            $aaa = count($requestdata['EduSelection']);  
-            $nums = 0;       
-            for($i=0;$i<$aaa;$i++){
-                $numIsc = $requestdata['EduSelection'][$i]['iscorrect'];
-                if($numIsc==1){
-                    $nums = $nums+1;
-                };
-            };
-            //echo $nums;
-            if($nums==1){
-                $model->type=0;
-            }else{
-                $model->type=1;
-            };
+            // $aaa = count($requestdata['EduSelection']);  
+            // $nums = 0;       
+            // for($i=0;$i<$aaa;$i++){
+            //     $numIsc = $requestdata['EduSelection'][$i]['iscorrect'];
+            //     if($numIsc==1){
+            //         $nums = $nums+1;
+            //     };
+            // };
+            // //echo $nums;
+            // if($nums==1){
+            //     $model->type=0;
+            // }else{
+            //     $model->type=1;
+            // };
             
             // var_dump($_POST['EduSelection']);
 
             
-            // if ($model->save(false))  
-            // {  
-            //     $modelSelection = $requestdata['EduSelection'];
-            //     foreach($modelSelection as $modelSelection)  
-            //     {  
-            //         $modelSelection['relate_subject'] = $model->id;
-            //          //$_model = clone $modelSelection;  
-            //          $modelSelection->setAttributes($modelSelection);  
-            //          $modelSelection->save();  
-            //     } 
-            // }  
-            $model->save(false);
+            if ($model->save(false))  
+            {  
+                $selectionData = $requestdata['EduSelection'];
+                foreach($selectionData as $sd)  
+                {  
+                    $modelSelection = new EduSelection();
+                    $modelSelection['relate_subject'] = $model->id;
+                    $modelSelection['content'] = $sd['content'];
+                    $modelSelection['iscorrect'] = $sd['iscorrect'];
+                     //$_model = clone $modelSelection; 
+                     //$modelSelection->setAttributes($modelSelection);  
+                    $modelSelection->save();  
+                } 
+            }
+            //$model->save(false);
 
             // var_dump($model->id);
             // var_dump($modelSelection);
             
-            for ($e=0; $e < $aaa; $e++) { 
-                $modelSelection = $requestdata['EduSelection'][$e];
-                //var_dump($modelSelection);
-                $modelSelection->relate_subject = $model->id;
-             $modelSelection->save();
-                //echo $e;
-            }
+            // for ($e=0; $e < $aaa; $e++) { 
+            //     $modelSelection = $requestdata['EduSelection'][$e];
+            //     //var_dump($modelSelection);
+            //     $modelSelection->relate_subject = $model->id;
+            //  $modelSelection->save();
+            //     //echo $e;
+            // }
             
             
              
-             die;         
+            //  die;         
          //$model->save();
            return $this->redirect(['view', 'id' => $model->id]);
         }else{
