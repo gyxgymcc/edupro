@@ -131,20 +131,20 @@ class EdusubjectController extends Controller
         if($model->load(Yii::$app->request->post()))
         {
             $requestdata = Yii::$app->request->post();
-            // $aaa = count($requestdata['EduSelection']);  
-            // $nums = 0;       
-            // for($i=0;$i<$aaa;$i++){
-            //     $numIsc = $requestdata['EduSelection'][$i]['iscorrect'];
-            //     if($numIsc==1){
-            //         $nums = $nums+1;
-            //     };
-            // };
-            // //echo $nums;
-            // if($nums==1){
-            //     $model->type=0;
-            // }else{
-            //     $model->type=1;
-            // };
+            $selectdata = count($requestdata['EduSelection']);  
+            $nums = 0;       
+            for($i=0;$i<$selectdata;$i++){
+                $numIsc = $requestdata['EduSelection'][$i]['iscorrect'];
+                if($numIsc==1){
+                    $nums = $nums+1;
+                };
+            };
+            //echo $nums;
+            if($nums==1){
+                $model->type=0;
+            }else{
+                $model->type=1;
+            };
             
             // var_dump($_POST['EduSelection']);
 

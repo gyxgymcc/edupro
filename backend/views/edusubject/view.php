@@ -9,6 +9,8 @@ use yii\widgets\DetailView;
 $this->title = $paper['paper_name'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '题目管理'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerJs("
+    ", \yii\web\View::POS_END);
 ?>
 <div class="edu-subject-view">
 
