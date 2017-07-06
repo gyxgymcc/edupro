@@ -222,7 +222,7 @@ class EdusubjectController extends Controller
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
-
+                'key' => $model->relate_paper,
             ]);
         }
     }

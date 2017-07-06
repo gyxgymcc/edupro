@@ -21,7 +21,7 @@ $this->registerJs("
     
 
     function dialog(key){
-        window.location.href='http://edupro.app/index.php?r=edusubject%2Fcreate&id='+key; 
+        window.location.href='/index.php?r=edusubject%2Fcreateunsel&id='+key; 
         /*krajeeDialog.prompt({label:'Provide reason', placeholder:'Upto 30 characters...'}, function (result) {
             if (result) {
                 alert('Great! You provided a reason:' + result);

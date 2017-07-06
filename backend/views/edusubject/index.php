@@ -14,6 +14,16 @@ use yii\helpers\ArrayHelper;
 $this->title = Yii::t('app', '题目管理');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs("
+    function test(type,key){
+        console.log(type);
+        var url = '/index.php?r=edusubject/update&id='+key;
+        var url1 = '/index.php?r=edusubject/updatesel&id='+key;
+        if(type == 2 || type == 3){
+            location.href = url;
+        }else if(type == 0 || type == 1) {
+            location.href = url1;
+        };
+    }; 
 
     $(document).on('pjax:complete', function(){
         var el = $('#edusubjectsearch-relate_paper');
@@ -159,7 +169,24 @@ $this->registerJs("
             // 'que_sec:ntext',
             // 'answer:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
+                    'update' => function ($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', 'update'),
+                            'aria-label' => Yii::t('yii', 'update'),
+                            'data-pjax' => '0',
+                            'onClick' => 'test('.$model->type.','.$key.')',
+                            'id' => 'sss'.$key,
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>',"javascript:void(0)", $options);
+                    },
+
+                ],
+            ],
         ],
     ]); ?>
 </div>

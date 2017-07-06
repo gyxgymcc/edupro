@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'examType' => $examType,
         'examDif' => $examDif,
         'key' => $key,
-        'modelSelection' => $modelSelection,
+        //'modelSelection' => $modelSelection,
     ]) ?>
 
 
