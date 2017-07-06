@@ -10,6 +10,16 @@ $this->title = $paper['paper_name'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '题目管理'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerJs("
+    var type = $model->type;
+    var s= document.getElementById('w0').getElementsByTagName('tr');
+    window.onload=function()
+    {
+        if(type == 2 || type == 3){
+            console.log(s[5]);
+            s[5].style.display='none';
+        };
+        
+    };
     ", \yii\web\View::POS_END);
 ?>
 <div class="edu-subject-view">
@@ -55,7 +65,12 @@ $this->registerJs("
                 },
             ],
             'que:ntext',
-            'que_sec:ntext',
+            //'que_sec:ntext',
+            [
+                'label' => '选择题候选答案',
+                'attribute' => 'que_sec:ntext',
+                'value'=>$model->que_sec,
+            ],
             'answer:ntext',
         ],
     ]) ?>

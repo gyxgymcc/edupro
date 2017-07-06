@@ -64,6 +64,12 @@ class EdusubjectController extends Controller
         $model = $this->findModel($id);
         $paperModel = new EduPaper();
         $paper = $paperModel->findOne($model->relate_paper);
+        // $modelSelection = new EduSelection;
+        // $select = $modelSelection->find([''=>$id])->all();
+        $model->que_sec = 'ssss';
+        // var_dump($model->que_sec);
+        // die;
+
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];
         return $this->render('view', [
