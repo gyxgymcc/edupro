@@ -129,11 +129,20 @@ $this->registerJs("
                 'label'=>'操作题目',
                 'format'=>'raw',
                 'value' => function($data,$key){
-                    return Html::button('添加本试卷题目',$options = [
-                        'onclick'=>'dialog('.$key.')',
-                        'id'=>'btn-prompt',
-                        'class'=>'btn btn-primary',
-                    ]);
+                    // return Html::button('添加本试卷题目',$options = [
+                    //     'onclick'=>'dialog('.$key.')',
+                    //     'id'=>'btn-prompt',
+                    //     'class'=>'btn btn-primary',
+                    // ]);
+                    return '<div class="btn-group">
+                  <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="glyphicon glyphicon-plus"></i>添加本试卷题目 <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>'.Html::a('选择题', '/index.php?r=edusubject%2Fcreatesel&papreid='.$key).'</li>
+                    <li>'.Html::a('非选择题', '/index.php?r=edusubject%2Fcreateunsel&id='.$key).'</li>
+                  </ul>
+                </div>';
                 }
             ],
             [

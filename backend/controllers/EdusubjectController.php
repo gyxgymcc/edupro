@@ -130,6 +130,7 @@ class EdusubjectController extends Controller
         $modelSelection = [new EduSelection];
         $paperModel = new EduPaper();
         $paper = $paperModel->find()->all();
+        $requestdata = Yii::$app->request->get();
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];
 
@@ -193,7 +194,7 @@ class EdusubjectController extends Controller
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
-                'key' => 0,
+                'key' => $requestdata['papreid'],
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         };
