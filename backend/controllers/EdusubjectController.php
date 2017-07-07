@@ -91,7 +91,6 @@ class EdusubjectController extends Controller
         $model = new EduSubject();
         $modelSelection = [new EduSelection];
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
