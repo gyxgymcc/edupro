@@ -91,24 +91,15 @@ class EdusubjectController extends Controller
         $model = new EduSubject();
         $modelSelection = [new EduSelection];
 
-        if(isset($requestdata['id'])){
-            $paperModel = new EduPaper();
-            $paper = $paperModel->find()->all();    
-            $examType = Yii::$app->params['examType'];
-            $examDif = Yii::$app->params['examDif'];
-            return $this->render('create', [
-                'model' => $model,
-                'paper' => $paper,
-                'examType' => $examType,
-                'examDif' => $examDif,
-                'key' => $requestdata['id'],
-            ]);
-        }
-        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            if(isset($requestdata['id'])){
+                $id = $requestdata['id'];
+            }else{
+                $id = 0;
+            };
             $paperModel = new EduPaper();
             $paper = $paperModel->find()->all();    
             $examType = Yii::$app->params['examType'];
@@ -118,7 +109,7 @@ class EdusubjectController extends Controller
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
-                'key' => 0,
+                'key' => $id,
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         }
@@ -151,11 +142,8 @@ class EdusubjectController extends Controller
                 $model->type=0;
             }else{
                 $model->type=1;
-            };
-            
+            };            
             // var_dump($_POST['EduSelection']);
-
-            
             if ($model->save(false))  
             {  
                 $selectionData = $requestdata['EduSelection'];
@@ -170,31 +158,20 @@ class EdusubjectController extends Controller
                     $modelSelection->save();  
                 } 
             }
-            //$model->save(false);
 
-            // var_dump($model->id);
-            // var_dump($modelSelection);
-            
-            // for ($e=0; $e < $aaa; $e++) { 
-            //     $modelSelection = $requestdata['EduSelection'][$e];
-            //     //var_dump($modelSelection);
-            //     $modelSelection->relate_subject = $model->id;
-            //  $modelSelection->save();
-            //     //echo $e;
-            // }
-            
-            
-             
-            //  die;         
-         //$model->save();
            return $this->redirect(['view', 'id' => $model->id]);
         }else{
+            if(isset($requestdata['papreid'])){
+                $papreid = $requestdata['papreid'];
+            }else{
+                $papreid = 0;
+            }
             return $this->render('create_sel', [
                 'model' => $model,
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
-                'key' => $requestdata['papreid'],
+                'key' => $papreid,
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         };
