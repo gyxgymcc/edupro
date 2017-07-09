@@ -64,11 +64,25 @@ class EdusubjectController extends Controller
         $model = $this->findModel($id);
         $paperModel = new EduPaper();
         $paper = $paperModel->findOne($model->relate_paper);
-        // $modelSelection = new EduSelection;
-        // $select = $modelSelection->find([''=>$id])->all();
-        $model->que_sec = 'ssss';
-        // var_dump($model->que_sec);
-        // die;
+        $modelSelection = new EduSelection;
+        $select = $modelSelection->find()->where(['relate_subject'=>$id])->all();
+        $ansdatas = $modelSelection->find()->where(['relate_subject'=>$id,'iscorrect'=>1])->all();
+        $num = count($select);
+        $ansnum = count($ansdatas);
+        $condata = '';
+        $ansdata = '';
+        for($i=0;$i<$num;$i++){
+            $condata = $select[$i]['content'].','.$condata;
+        };
+        for ($a=0; $a < $ansnum; $a++) { 
+            $ansdata = $ansdatas[$a]['content'].','.$ansdata;
+        }
+        $model->que_sec = $condata;//选择题候选答案
+        if ($model->type==0 || $model->type==1) {
+            $model->answer = $ansdata;//选择题正确答案
+        }
+        
+        //$model->answer =
 
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];
