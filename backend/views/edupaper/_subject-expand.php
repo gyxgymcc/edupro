@@ -19,7 +19,13 @@ use yii\widgets\DetailView;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-            'que',
+            [
+                'label' => '题干',
+                'attribute' => 'que',
+                'value' => function($model){
+                    return mb_substr($model->que,0,20);
+                },
+            ],
             [
                 'label' => '题型',
                 'attribute' => 'type',
