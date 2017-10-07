@@ -52,6 +52,16 @@ $examTypes = array(['id' => 2,'name' => '填空题'], ['id' => 3,'name' => '应�
          ]);  
     ?>
 
+    <?= $form->field($tagModel, 'id')->widget(Select2::classname(), [
+            'data' => $finalTags,
+            'options' => ['placeholder' => '选择标签'],
+            'pluginOptions' => [
+                'multiple' => true,
+            ],
+        ])->label('标签');
+
+    ?>
+
     <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?>
 
 

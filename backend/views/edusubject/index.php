@@ -118,6 +118,14 @@ $this->registerJs("
                     
                 ]),
             ],
+            //'que:ntext',
+            [
+                'label' => '题干',
+                'attribute' => 'que',
+                'value' => function($model){
+                    return mb_substr($model->que, 0,15);
+                }
+            ],
             //'type',
             [
                 'label' => '题型',
@@ -165,7 +173,7 @@ $this->registerJs("
                     
                 ]),
             ],
-            // 'que:ntext',
+            
             // 'que_sec:ntext',
             // 'answer:ntext',
 

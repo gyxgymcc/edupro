@@ -41,16 +41,32 @@ use wbraganca\dynamicform\DynamicFormWidget;
          ]);  
     ?>
 
+    <?= $form->field($tagModel, 'id')->widget(Select2::classname(), [
+            'data' => $finalTags,
+            'options' => ['placeholder' => '选择标签'],
+            'pluginOptions' => [
+                'multiple' => true,
+            ],
+        ])->label('标签');
+
+    ?>
+
     <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?>
 
-    <?php DynamicFormWidget::begin([
+    <?php 
+        $delbtn = '';
+        if($model->isNewRecord){
+            $delbtn = '.remove-item';
+        }
+        DynamicFormWidget::begin([
         'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
         'widgetBody' => '.container-items', // required: css class selector
         'widgetItem' => '.item', // required: css class
         'limit' => 4, // the maximum times, an element can be cloned (default 999)
         'min' => 0, // 0 or 1 (default 1)
         'insertButton' => '.add-item', // css class
-        'deleteButton' => '.remove-item', // css class
+        'deleteButton' => $delbtn,
+        //'deleteButton' => '.remove-item', // css class
         'model' => $modelSelection[0],
         'formId' => 'dynamic-form',
         'formFields' => [

@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => '题目', 'url' => ['view', 'id' =>
 $this->params['breadcrumbs'][] = Yii::t('app', '修改');
 ?>
 <div class="edu-subject-update">
-    <?= $this->render('_form', [
+    <?= $this->render('_formsel', [
         'model' => $model,
         'paper' => $paper,
         'examType' => $examType,
@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', '修改');
         'key' => $key,
         'finalTags' => $finalTags,
         'tagModel' => $tagModel,
+        'modelSelection' => $modelSelection,
     ]) ?>
 
 </div>

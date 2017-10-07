@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'examType' => $examType,
         'examDif' => $examDif,
         'key' => $key,
+        'finalTags' => $finalTags,
+        'tagModel' => $tagModel,
         //'modelSelection' => $modelSelection,
     ]) ?>
 

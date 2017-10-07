@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = '教育平台后台管理';
 ?>
 <div class="site-index">
     <div class="row">
@@ -10,21 +10,6 @@ $this->title = 'My Yii Application';
             <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Monthly Recap Report</h3>
-              <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <span class="jiathis_txt">分享到：</span>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_fb"></a>
-  <a class="jiathis_button_twitter"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

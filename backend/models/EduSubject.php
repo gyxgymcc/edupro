@@ -32,7 +32,7 @@ class EduSubject extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['relate_paper', 'maxval', 'dif', 'que', 'answer'], 'required'],
+            [['relate_paper', 'maxval', 'dif', 'que', 'answer'], 'safe'],
             [['relate_paper', 'type', 'maxval', 'dif'], 'integer'],
             [['type','que_sec'],'safe'],
             [['que', 'que_sec', 'answer'], 'string'],
@@ -53,6 +53,7 @@ class EduSubject extends \yii\db\ActiveRecord
             'que' => Yii::t('app', '题干'),
             'que_sec' => Yii::t('app', '选择题候选'),
             'answer' => Yii::t('app', '答案'),
+            'tags' => Yii::t('app', '标签'),
         ];
     }
 

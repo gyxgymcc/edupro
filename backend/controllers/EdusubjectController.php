@@ -9,6 +9,8 @@ use yii\web\Controller;
 use backend\models\EduPaper;
 use backend\models\EduTeacher;
 use backend\models\EduRoom;
+use backend\models\EduTags;
+use backend\models\EduSubtags;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EduSelection;
@@ -116,9 +118,19 @@ class EdusubjectController extends Controller
         $requestdata = Yii::$app->request->get();
         $model = new EduSubject();
         $modelSelection = [new EduSelection];
+        $tagModel = new EduTags();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $postData = Yii::$app->request->post();
+            if(!empty($postData['EduTags']['id'])){
+                foreach ($postData['EduTags']['id'] as $key => $st) {
+                    $subtagModel = new EduSubtags();
+                    $subtagModel->subid = $model->id;
+                    $subtagModel->tagid = $st;
+                    $subtagModel->save();
+                }
+            }
+            return $this->redirect(['index']);
         } else {
             if(isset($requestdata['id'])){
                 $id = $requestdata['id'];
@@ -126,7 +138,6 @@ class EdusubjectController extends Controller
                 $id = 0;
             };
             $paperModel = new EduPaper();
-            //$paper = $paperModel->find()->all();
 
             if(!EduTeacher::isAdmin()){
                 $uid = Yii::$app->user->identity->id;
@@ -142,12 +153,26 @@ class EdusubjectController extends Controller
 
             $examType = Yii::$app->params['examType'];
             $examDif = Yii::$app->params['examDif'];
+
+            $tags = EduTags::find()->where(['>','id',1])->asArray()->all();
+            $finalTags = array();
+            foreach ($tags as $key => $tg) {
+                if($tg['lvl'] == 1){
+                    $rootid = $tg['root'];
+                    $r = array_filter($tags, function($t) use ($rootid) { return $t['id'] == $rootid; });
+                    $rootname = current($r)['name'];
+                    $finalTags[$rootname][$tg['id']] = $tg['name'];
+                }
+            }
+
             return $this->render('create', [
                 'model' => $model,
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
                 'key' => $id,
+                'tagModel' => $tagModel,
+                'finalTags' => $finalTags,
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         }
@@ -159,6 +184,7 @@ class EdusubjectController extends Controller
         $modelSelection = [new EduSelection];
         $paperModel = new EduPaper();
         //$paper = $paperModel->find()->all();
+        $tagModel = new EduTags();
 
         if(!EduTeacher::isAdmin()){
             $uid = Yii::$app->user->identity->id;
@@ -179,6 +205,16 @@ class EdusubjectController extends Controller
         $model->type = 0;
         if($model->load(Yii::$app->request->post()))
         {
+            $postData = Yii::$app->request->post();
+            if(!empty($postData['EduTags']['id'])){
+                foreach ($postData['EduTags']['id'] as $key => $st) {
+                    $subtagModel = new EduSubtags();
+                    $subtagModel->subid = $model->id;
+                    $subtagModel->tagid = $st;
+                    $subtagModel->save();
+                }
+            }
+
             $requestdata = Yii::$app->request->post();
             $selectdata = count($requestdata['EduSelection']);  
             $nums = 0;       
@@ -212,6 +248,17 @@ class EdusubjectController extends Controller
 
            return $this->redirect(['view', 'id' => $model->id]);
         }else{
+            $tags = EduTags::find()->where(['>','id',1])->asArray()->all();
+            $finalTags = array();
+            foreach ($tags as $key => $tg) {
+                if($tg['lvl'] == 1){
+                    $rootid = $tg['root'];
+                    $r = array_filter($tags, function($t) use ($rootid) { return $t['id'] == $rootid; });
+                    $rootname = current($r)['name'];
+                    $finalTags[$rootname][$tg['id']] = $tg['name'];
+                }
+            }
+
             if(isset($requestdata['papreid'])){
                 $papreid = $requestdata['papreid'];
             }else{
@@ -223,6 +270,8 @@ class EdusubjectController extends Controller
                 'examType' => $examType,
                 'examDif' => $examDif,
                 'key' => $papreid,
+                'tagModel' => $tagModel,
+                'finalTags' => $finalTags,
                 'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
             ]);
         };
@@ -235,23 +284,141 @@ class EdusubjectController extends Controller
      * @param integer $id
      * @return mixed
      */
+
+    public function actionUpdatesel($id)
+    {
+        $model = $this->findModel($id);
+        $tagModel = new EduTags();
+        $tagsPart1 = EduSubtags::find()->select('tagid')->where(['subid' => $id])->asArray()->all();
+        $selectedtags = array();
+        if(!empty($tagsPart1)){
+            foreach ($tagsPart1 as $key => $tp1) {
+                //$selectedtags[$key] = $tp1['tagid'];
+                array_push($selectedtags, $tp1['tagid']);
+            }
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            EduSubtags::deleteAll(['subid' => $id]);
+            $postData = Yii::$app->request->post();
+            
+            if(!empty($postData['EduTags']['id'])){
+                foreach ($postData['EduTags']['id'] as $key => $st) {
+                    $subtagModel = new EduSubtags();
+                    $subtagModel->subid = $model->id;
+                    $subtagModel->tagid = $st;
+                    $subtagModel->save();
+                }  
+            }
+
+            $selectionData = $postData['EduSelection'];
+            $ids = array();
+            foreach($selectionData as $sd => $value)  
+            {  
+                //array_push($ids, $value['id']);
+                $modelSelection = EduSelection::findOne($value['id']);
+                // var_dump($modelSelection);
+                // exit();
+                $modelSelection['relate_subject'] = $id;
+                $modelSelection['content'] = $value['content'];
+                $modelSelection['iscorrect'] = $value['iscorrect'];
+                 //$_model = clone $modelSelection; 
+                 //$modelSelection->setAttributes($modelSelection);  
+                $modelSelection->save();
+            }
+
+            return $this->redirect(['index']);
+        }
+        else {
+            $paperModel = new EduPaper();
+            $paper = $paperModel->find()->all();    
+            $examType = Yii::$app->params['examType'];
+            $examDif = Yii::$app->params['examDif'];
+
+            $modelSelection = EduSelection::find()->where(['relate_subject' => $id])->all();
+
+            $tags = EduTags::find()->where(['>','id',1])->asArray()->all();
+            $finalTags = array();
+            foreach ($tags as $key => $tg) {
+                if($tg['lvl'] == 1){
+                    $rootid = $tg['root'];
+                    $r = array_filter($tags, function($t) use ($rootid) { return $t['id'] == $rootid; });
+                    $rootname = current($r)['name'];
+                    $finalTags[$rootname][$tg['id']] = $tg['name'];
+                }
+            }
+
+            // var_dump($selectedtags);
+            // exit();
+            $tagModel->id = $selectedtags;
+            return $this->render('updatesel', [
+                'model' => $model,
+                'paper' => $paper,
+                'examType' => $examType,
+                'examDif' => $examDif,
+                'finalTags' => $finalTags,
+                'tagModel' => $tagModel,
+                'key' => $model->relate_paper,
+                'modelSelection' => (empty($modelSelection)) ? [new EduSelection] : $modelSelection,
+            ]);
+        }
+
+    }
+
+
+
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $tagModel = new EduTags();
+        $tagsPart1 = EduSubtags::find()->select('tagid')->where(['subid' => $id])->asArray()->all();
+        $selectedtags = array();
+        if(!empty($tagsPart1)){
+            foreach ($tagsPart1 as $key => $tp1) {
+                //$selectedtags[$key] = $tp1['tagid'];
+                array_push($selectedtags, $tp1['tagid']);
+            }
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            EduSubtags::deleteAll(['subid' => $id]);
+            $postData = Yii::$app->request->post();
+            
+            if(!empty($postData['EduTags']['id'])){
+                foreach ($postData['EduTags']['id'] as $key => $st) {
+                    $subtagModel = new EduSubtags();
+                    $subtagModel->subid = $model->id;
+                    $subtagModel->tagid = $st;
+                    $subtagModel->save();
+                }  
+            }
+            return $this->redirect(['index']);
         } else {
             $paperModel = new EduPaper();
             $paper = $paperModel->find()->all();    
             $examType = Yii::$app->params['examType'];
             $examDif = Yii::$app->params['examDif'];
+
+            $tags = EduTags::find()->where(['>','id',1])->asArray()->all();
+            $finalTags = array();
+            foreach ($tags as $key => $tg) {
+                if($tg['lvl'] == 1){
+                    $rootid = $tg['root'];
+                    $r = array_filter($tags, function($t) use ($rootid) { return $t['id'] == $rootid; });
+                    $rootname = current($r)['name'];
+                    $finalTags[$rootname][$tg['id']] = $tg['name'];
+                }
+            }
+
+            // var_dump($selectedtags);
+            // exit();
+            $tagModel->id = $selectedtags;
             return $this->render('update', [
                 'model' => $model,
                 'paper' => $paper,
                 'examType' => $examType,
                 'examDif' => $examDif,
-                'key' => $model->relate_paper,
+                'finalTags' => $finalTags,
+                'tagModel' => $tagModel,
+                'key' => $model->relate_paper
             ]);
         }
     }

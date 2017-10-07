@@ -14,8 +14,6 @@ $this->title = '题目标签管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="edu-tags-index">
-
-<h1><?= Html::encode($this->title) ?></h1>
 <?php 
 
 echo TreeView::widget([
