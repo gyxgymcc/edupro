@@ -93,4 +93,24 @@ class EduTeacher extends \yii\db\ActiveRecord
         }
         return $teacherInfo['teacher_name'];
     }
+
+    public static function selfbirth()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $teacherInfo = self::findOne(['relate_user' => $uid]);
+        if(empty($teacherInfo)){
+            return '管理员';
+        }
+        return '生日: '.date('Y-m-d',$teacherInfo['birth']);
+    }
+
+    public static function selfavatar()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $teacherInfo = self::findOne(['relate_user' => $uid]);
+        if(empty($teacherInfo)){
+            return '管理员';
+        }
+        return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$teacherInfo['avatar'];;
+    }
 }

@@ -8,6 +8,7 @@ use backend\models\EduteacherSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * EduteacherController implements the CRUD actions for EduTeacher model.
@@ -64,14 +65,19 @@ class EduteacherController extends Controller
     public function actionCreate()
     {
         $model = new EduTeacher();
-
+        $omPic = $omConf = $osPic = $osConf = [];
         if ($model->load(Yii::$app->request->post())) {
             $model->birth = strtotime($model->birth);
+
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'omPic' => $omPic,
+                'omConf' => $omConf,
+                'osPic' => $osPic,
+                'osConf' => $osConf,
             ]);
         }
     }
@@ -85,15 +91,46 @@ class EduteacherController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $omPic = $omConf = $osPic = $osConf = [];
+        $oldAvatar = $model->avatar;
         if ($model->load(Yii::$app->request->post())) {
             $model->birth = strtotime($model->birth);
+            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/teacher/';
+            $image = UploadedFile::getInstance($model, 'avatar');
+
+            if($image != '' || $image != NULL || !empty($image)){
+                $filename = $image->name;
+                $extp1 = explode(".", $image->name);
+                $ext = end($extp1);
+                $avatar = Yii::$app->security->generateRandomString().".{$ext}";
+                $path = Yii::$app->params['uploadPath'] . $avatar;
+                $image->saveAs($path);
+                $model->avatar = $avatar;
+            }
+            else{
+                $model->avatar = $oldAvatar;
+            }
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $model->birth = date('Y-m-d',$model->birth);
+            if($oldAvatar != ''){
+                $omPic = ['http://'.$_SERVER['HTTP_HOST'].'/uploads/teacher/'.$oldAvatar];
+                $omConf = [
+                    'caption' => $oldAvatar,
+                    'size' => 2099
+                ];
+            }
+            else{
+                $omPic = [];
+                $omConf = [];
+            }
             return $this->render('update', [
                 'model' => $model,
+                'omPic' => $omPic,
+                'omConf' => $omConf,
+                'osPic' => $osPic,
+                'osConf' => $osConf,
             ]);
         }
     }

@@ -16,6 +16,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', '修改');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'omPic' => $omPic,
+        'omConf' => $omConf,
+        'osPic' => $osPic,
+        'osConf' => $osConf,
     ]) ?>
 
 </div>

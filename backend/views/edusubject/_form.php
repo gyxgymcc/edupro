@@ -1,12 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use kartik\grid\GridView;
 use kartik\widgets\Select2;
 use kartik\widgets\DatePicker;
 use yii\helpers\ArrayHelper;
 use wbraganca\dynamicform\DynamicFormWidget;
+use dosamigos\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EduSubject */
 /* @var $form yii\widgets\ActiveForm */
@@ -62,8 +64,35 @@ $examTypes = array(['id' => 2,'name' => '填空题'], ['id' => 3,'name' => '应�
 
     ?>
 
-    <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?>
+   <!--  <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?> -->
 
+    <?= $form->field($model, 'que')->widget(CKEditor::className(), [
+        'options' => [
+            'rows' => 12,
+        ],
+        'preset' => 'advance',
+        'clientOptions' => [
+            'filebrowserUploadUrl' => Url::to(['/ckeditor/upload']),
+            'toolbarGroups' => 
+                [
+                    [ 'name' => 'clipboard',   'groups' => [ 'clipboard', 'undo' ] ],
+                    [ 'name' => 'editing',     'groups' => [ 'find', 'selection', 'spellchecker' ] ],
+                    [ 'name' => 'links' ],
+                    [ 'name' => 'insert' ],
+                    [ 'name' => 'forms' ],
+                    [ 'name' => 'tools' ],
+                    [ 'name' => 'document',    'groups' => [ 'mode', 'document', 'doctools' ] ],
+                    [ 'name' => 'others' ],
+              
+                    [ 'name' => 'basicstyles', 'groups' => [ 'basicstyles', 'cleanup' ] ],
+                    [ 'name' => 'paragraph',   'groups' => [ 'list', 'indent', 'blocks', 'align' ] ],
+                    [ 'name' => 'styles' ],
+                    [ 'name' => 'colors' ],
+                    [ 'name' => 'about' ]
+                ]
+        ],
+        
+    ]) ?>
 
 
     <?= $form->field($model, 'answer')->textarea(['rows' => 6]) ?>

@@ -22,22 +22,22 @@ use backend\models\EduTeacher;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <img src="<?= EduTeacher::selfavatar() ?>" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?= EduTeacher::selfname()?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
+                            <img src="<?= EduTeacher::selfavatar() ?>" class="img-circle"
                                  alt="User Image"/>
 
                             <p>
                                 <?=\Yii::$app->user->identity->username?>
-                                <small>Member since Nov. 2012</small>
+                                <small><?= EduTeacher::selfbirth()?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
-                        <li class="user-body">
+                        <!-- <li class="user-body">
                             <div class="col-xs-4 text-center">
                                 <a href="#">Followers</a>
                             </div>
@@ -47,15 +47,15 @@ use backend\models\EduTeacher;
                             <div class="col-xs-4 text-center">
                                 <a href="#">Friends</a>
                             </div>
-                        </li>
+                        </li> -->
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="index.php?r=eduteacher/view&id=<?= EduTeacher::relateUser() ?>" class="btn btn-default btn-flat">个人资料</a>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
-                                    'Sign out',
+                                    '注销',
                                     ['/site/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

@@ -10,26 +10,23 @@ $this->title = $model->teacher_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '教师信息'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="edu-teacher-view">
-
-    <p>
-        <?= Html::a(Yii::t('app', '修改'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', '删除'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
+<div class="col-md-2">
+</div>
+<div class="edu-teacher-view col-md-4">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             //'id',
             'teacher_name',
             'email:email',
-            'avatar',
+            //'avatar',
+            [
+                'attribute' => 'avatar',
+                'value' => function($model){
+                    return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$model->avatar;
+                },
+                'format' => ['image',['width'=>'200','height'=>'200']],
+            ],
             //'birth',
             [
                 'attribute' => 'birth',
@@ -43,5 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'faculty',
         ],
     ]) ?>
-
+    <p>
+        <?= Html::a(Yii::t('app', '修改'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    </p>
 </div>

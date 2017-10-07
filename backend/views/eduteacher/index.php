@@ -33,7 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'teacher_name',
             'email:email',
-            'avatar',
+            //'avatar',
+            [
+                'label' => '头像',
+                'attribute' => 'avatar',
+                'format' => 'html',
+                'value' => function ($model) {
+                    if($model->avatar){
+                       return Html::img('http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$model->avatar,['width' => '70px']); 
+                    }
+                    else{
+                        return '暂无头像';
+                    }
+                    
+                },
+            ],
             //'birth',
             [
                 'label' => '生日',

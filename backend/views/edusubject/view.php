@@ -22,8 +22,21 @@ $this->registerJs("
     };
     ", \yii\web\View::POS_END);
 ?>
-<div class="edu-subject-view">
+<div class="row">
+<div class="edu-subject-view col-md-6">
+    <style type="text/css">
+        table.detail-view th {
+    width: 40% !important;
+}
 
+table.detail-view td {
+    width: 60% !important;
+}
+    table img{
+        width: 400px !important;
+        height: auto !important;
+    }
+    </style>
     <p>
         <?= Html::a(Yii::t('app', '修改'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', '删除'), ['delete', 'id' => $model->id], [
@@ -64,7 +77,13 @@ $this->registerJs("
                     return $val;
                 },
             ],
-            'que:ntext',
+            'que:html',
+            // [
+            //     'label' => '题干',
+            //     'attribute' => 'que',
+            //     'value' => $model->que,
+            //     'formart' => 'raw',
+            // ],
             //'que_sec:ntext',
             [
                 'label' => '选择题候选答案',
@@ -75,4 +94,5 @@ $this->registerJs("
         ],
     ]) ?>
 
+</div>
 </div>
