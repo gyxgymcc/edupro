@@ -39,8 +39,7 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2017-2018 <a href="#">教育平台</a>.</strong> 版♂权所有.
 </footer>
 
 <!-- Control Sidebar -->

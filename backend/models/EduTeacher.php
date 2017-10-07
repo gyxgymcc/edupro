@@ -83,4 +83,11 @@ class EduTeacher extends \yii\db\ActiveRecord
         $teacherInfo = self::findOne(['relate_user' => $uid]);
         return $teacherInfo['id'];
     }
+
+    public static function selfname()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $teacherInfo = self::findOne(['relate_user' => $uid]);
+        return $teacherInfo['teacher_name'];
+    }
 }
