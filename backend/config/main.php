@@ -13,6 +13,9 @@ return [
     'bootstrap' => ['log'],
     'modules' => [
         'gridview' => ['class' => 'kartik\grid\Module'],
+        'treemanager' =>  [
+            'class' => '\kartik\tree\Module',
+        ],
     ],
     'components' => [
         'request' => [

@@ -36,6 +36,7 @@
                     ['label' => '班级管理', 'icon' => 'home', 'url' => ['/educlass']],
                     ['label' => '试卷管理', 'icon' => 'list-alt', 'url' => ['/edupaper']],
                     ['label' => '题目管理', 'icon' => 'list', 'url' => ['/edusubject']],
+                    ['label' => '标签管理', 'icon' => 'tags', 'url' => ['/edutags']],
 
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
