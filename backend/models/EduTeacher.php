@@ -108,9 +108,9 @@ class EduTeacher extends \yii\db\ActiveRecord
     {
         $uid = Yii::$app->user->identity->id;
         $teacherInfo = self::findOne(['relate_user' => $uid]);
-        if(empty($teacherInfo)){
-            return '管理员';
+        if(empty($teacherInfo) || $teacherInfo['avatar'] == ''){
+            return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/teacher.png';
         }
-        return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$teacherInfo['avatar'];;
+        return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$teacherInfo['avatar'];
     }
 }
