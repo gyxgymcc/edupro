@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\EduPaper;
 use backend\models\EdupaperSearch;
+use backend\models\EduTeacher;
 use backend\models\EduRoom;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,6 +41,14 @@ class EdupaperController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $roomModel = new EduRoom();
         $room = $roomModel->find()->all();
+
+
+        if(!EduTeacher::isAdmin()){
+            $room = $roomModel->find()->where(['relate_teacher' => EduTeacher::relateUser()])->all();
+        }
+        else{
+            $room = $roomModel->find()->all();
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -77,7 +86,12 @@ class EdupaperController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $roomModel = new EduRoom();
-            $room = $roomModel->find()->all();
+            if(!EduTeacher::isAdmin()){
+                $room = $roomModel->find()->where(['relate_teacher' => EduTeacher::relateUser()])->all();
+            }
+            else{
+                $room = $roomModel->find()->all();
+            }
             return $this->render('create', [
                 'model' => $model,
                 'room' => $room,
@@ -99,7 +113,12 @@ class EdupaperController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $roomModel = new EduRoom();
-            $room = $roomModel->find()->all();
+            if(!EduTeacher::isAdmin()){
+                $room = $roomModel->find()->where(['relate_teacher' => EduTeacher::relateUser()])->all();
+            }
+            else{
+                $room = $roomModel->find()->all();
+            }
             return $this->render('update', [
                 'model' => $model,
                 'room' => $room,

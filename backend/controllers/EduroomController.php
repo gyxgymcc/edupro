@@ -41,9 +41,18 @@ class EduroomController extends Controller
         $searchModel = new EduroomSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $teacherModel = new EduTeacher();
-        $teacher = $teacherModel->find()->all();
+        //$teacher = $teacherModel->find()->all();
         $classModel = new EduClass();
-        $class = $classModel->find()->all();
+        //$class = $classModel->find()->all();
+
+        if(!EduTeacher::isAdmin()){
+            $teacher = $teacherModel->find()->where(['relate_user' => Yii::$app->user->identity->id])->all();
+            $class = $classModel->find()->where(['relate_teacher' => EduTeacher::relateUser()])->all();
+        }
+        else{
+            $teacher = $teacherModel->find()->all();
+            $class = $classModel->find()->all();
+        }
         // var_dump($teacher);
         // var_dump($class);
         // die;
@@ -89,9 +98,15 @@ class EduroomController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $teacherModel = new EduTeacher();
-            $teacher = $teacherModel->find()->all();
             $classModel = new EduClass();
-            $class = $classModel->find()->all();
+            if(!EduTeacher::isAdmin()){
+                $teacher = $teacherModel->find()->where(['relate_user' => Yii::$app->user->identity->id])->all();
+                $class = $classModel->find()->where(['relate_teacher' => EduTeacher::relateUser()])->all();
+            }
+            else{
+                $teacher = $teacherModel->find()->all();
+                $class = $classModel->find()->all();
+            }
             return $this->render('create', [
                 'model' => $model,
                 'teacher' => $teacher,

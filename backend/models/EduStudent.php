@@ -59,4 +59,6 @@ class EduStudent extends \yii\db\ActiveRecord
     {
         return new EduStudentQuery(get_called_class());
     }
+
+    
 }

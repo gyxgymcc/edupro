@@ -71,6 +71,8 @@ class EduteacherSearch extends EduTeacher
             ->andFilterWhere(['like', 'school', $this->school])
             ->andFilterWhere(['like', 'faculty', $this->faculty]);
 
+
+
         return $dataProvider;
     }
 }

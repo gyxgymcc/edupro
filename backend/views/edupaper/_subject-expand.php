@@ -18,12 +18,26 @@ use yii\widgets\DetailView;
         //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
-            'type',
-            'maxval',
-            'dif',
+            //'id',
             'que',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => '题型',
+                'attribute' => 'type',
+                'value' => function($model,$examType){
+                    $val = $model::findEt($model->type);
+                    return $val;
+                },
+            ],
+            'maxval',
+            [
+                'label' => '难度',
+                'attribute' => 'dif',
+                'value' => function($model,$examType){
+                    $val = $model::findDi($model->dif);
+                    return $val;
+                },
+            ],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
     ?>

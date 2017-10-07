@@ -7,6 +7,8 @@ use backend\models\EduSubject;
 use backend\models\EdusubjectSearch;
 use yii\web\Controller;
 use backend\models\EduPaper;
+use backend\models\EduTeacher;
+use backend\models\EduRoom;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use backend\models\EduSelection;
@@ -41,7 +43,17 @@ class EdusubjectController extends Controller
         $searchModel = new EdusubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $paperModel = new EduPaper();
-        $paper = $paperModel->find()->all();    
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            $roomids = array_column($rooms,'id');
+            $paper = $paperModel->find()->where(['in','relate_room',$roomids])->all();
+        }
+        else{
+            $paper = $paperModel->find()->all();
+        }
+
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];
         return $this->render('index', [
@@ -114,7 +126,20 @@ class EdusubjectController extends Controller
                 $id = 0;
             };
             $paperModel = new EduPaper();
-            $paper = $paperModel->find()->all();    
+            //$paper = $paperModel->find()->all();
+
+            if(!EduTeacher::isAdmin()){
+                $uid = Yii::$app->user->identity->id;
+                $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+                $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+                $roomids = array_column($rooms,'id');
+                
+                $paper = $paperModel->find()->where(['in','relate_room',$roomids])->all();
+            }
+            else{
+                $paper = $paperModel->find()->all();
+            }
+
             $examType = Yii::$app->params['examType'];
             $examDif = Yii::$app->params['examDif'];
             return $this->render('create', [
@@ -133,7 +158,20 @@ class EdusubjectController extends Controller
         $model = new EduSubject();
         $modelSelection = [new EduSelection];
         $paperModel = new EduPaper();
-        $paper = $paperModel->find()->all();
+        //$paper = $paperModel->find()->all();
+
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            $roomids = array_column($rooms,'id');
+            
+            $paper = $paperModel->find()->where(['in','relate_room',$roomids])->all();
+        }
+        else{
+            $paper = $paperModel->find()->all();
+        }
+
         $requestdata = Yii::$app->request->get();
         $examType = Yii::$app->params['examType'];
         $examDif = Yii::$app->params['examDif'];

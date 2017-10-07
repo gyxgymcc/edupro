@@ -68,4 +68,19 @@ class EduTeacher extends \yii\db\ActiveRecord
     {
         return new EduTeacherQuery(get_called_class());
     }
+
+    public static function isAdmin()
+    {
+        if(Yii::$app->user->identity->username == 'admin'){
+            return true;
+        }
+        return false;
+    }
+
+    public static function relateUser()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $teacherInfo = self::findOne(['relate_user' => $uid]);
+        return $teacherInfo['id'];
+    }
 }

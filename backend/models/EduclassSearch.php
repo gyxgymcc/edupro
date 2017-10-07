@@ -65,6 +65,12 @@ class EduclassSearch extends EduClass
 
         $query->andFilterWhere(['like', 'class_name', $this->class_name]);
 
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $query->andFilterWhere(['relate_teacher' => $teacherInfo->id]);
+        }
+
         return $dataProvider;
     }
 }

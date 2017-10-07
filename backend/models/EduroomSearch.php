@@ -71,6 +71,12 @@ class EduroomSearch extends EduRoom
             ]);
         }
 
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $query->andFilterWhere(['relate_teacher' => $teacherInfo->id]);
+        }
+
         $query->andFilterWhere(['like', 'room_name', $this->room_name])
             ->andFilterWhere(['like', 'relate_class', $this->relate_class]);
 

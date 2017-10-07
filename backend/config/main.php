@@ -27,6 +27,13 @@ return [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-yellow-light',
+                ],
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

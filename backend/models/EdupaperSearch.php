@@ -64,6 +64,16 @@ class EdupaperSearch extends EduPaper
             'relate_room' => $this->relate_room,
         ]);
 
+        // not a superadmin
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            $roomids = array_column($rooms,'id');
+            
+            $query->andFilterWhere(['in','relate_room',$roomids]);
+        }
+
         $query->andFilterWhere(['like', 'paper_name', $this->paper_name]);
 
         return $dataProvider;
