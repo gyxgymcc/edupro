@@ -88,6 +88,9 @@ class EduTeacher extends \yii\db\ActiveRecord
     {
         $uid = Yii::$app->user->identity->id;
         $teacherInfo = self::findOne(['relate_user' => $uid]);
+        if(empty($teacherInfo)){
+            return '管理员';
+        }
         return $teacherInfo['teacher_name'];
     }
 }
