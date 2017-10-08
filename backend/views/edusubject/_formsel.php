@@ -16,6 +16,18 @@ use wbraganca\dynamicform\DynamicFormWidget;
 
     <?php $form = ActiveForm::begin(['id' => 'dynamic-form']); ?>
 
+    <?php
+        if(!$model->isNewRecord){
+            ?>
+            <style type="text/css">
+                .remove-item{
+                    display: none;
+                }
+            </style>
+            <?php
+        }
+    ?>
+
     <?= $form->field($model, 'relate_paper')->widget(Select2::classname(), [
             'language' => 'de',
             'data' => ArrayHelper::map($paper, 'id', 'paper_name'),
@@ -54,10 +66,10 @@ use wbraganca\dynamicform\DynamicFormWidget;
     <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?>
 
     <?php 
-        $delbtn = '';
-        if($model->isNewRecord){
-            $delbtn = '.remove-item';
-        }
+        // $delbtn = '';
+        // if($model->isNewRecord){
+        //     $delbtn = '.remove-item';
+        // }
         DynamicFormWidget::begin([
         'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
         'widgetBody' => '.container-items', // required: css class selector
@@ -65,8 +77,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
         'limit' => 4, // the maximum times, an element can be cloned (default 999)
         'min' => 0, // 0 or 1 (default 1)
         'insertButton' => '.add-item', // css class
-        'deleteButton' => $delbtn,
-        //'deleteButton' => '.remove-item', // css class
+        //'deleteButton' => $delbtn,
+        'deleteButton' => '.remove-item', // css class
         'model' => $modelSelection[0],
         'formId' => 'dynamic-form',
         'formFields' => [
