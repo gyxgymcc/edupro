@@ -1,10 +1,9 @@
-A tesuto for my purojekuto
+An education projekuto
 ===============================
 
 hou hou
 
-menba 
+.....
 -------------------
-sucangyu
-gyxgymcc
 
+做的太慢..还望包涵
