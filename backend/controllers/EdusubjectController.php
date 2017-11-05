@@ -79,7 +79,7 @@ class EdusubjectController extends Controller
         $paperModel = new EduPaper();
         $paper = $paperModel->findOne($model->relate_paper);
         $modelSelection = new EduSelection;
-        $select = $modelSelection->find()->where(['relate_subject'=>$id])->all();
+        $select = $modelSelection->find()->where(['relate_subject'=>$id])->orderby('id desc')->all();
         $ansdatas = $modelSelection->find()->where(['relate_subject'=>$id,'iscorrect'=>1])->all();
         $num = count($select);
         $ansnum = count($ansdatas);

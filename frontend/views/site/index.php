@@ -14,16 +14,16 @@ $this->title = 'My Yii Application';
         background-color: aqua;
     }*/
     .row .col-xs-12:nth-child(1) .tile-stats{
-        background-color: pink;
+        background-color: white;
     }
     .row .col-xs-12:nth-child(2) .tile-stats{
-        background-color: green;
+        background-color: white;
     }
     .row .col-xs-12:nth-child(3) .tile-stats{
-        background-color: #00a65a;
+        background-color: white;
     }
     .row .col-xs-12:nth-child(4) .tile-stats{
-        background-color: green;
+        background-color: white;
     }
 </style>
 <div class="site-index">
@@ -34,7 +34,7 @@ $this->title = 'My Yii Application';
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
                         'icon' => 'list-alt',
-                        'header' => Html::a('已加入班级', ['createsel'],['style' => 'color:black;']),
+                        'header' => Html::a('已加入班级', ['studentclass/index'],['style' => 'color:black;']),
                         'text' => 'All orders list',
                         'number' => '7084',
                     ]

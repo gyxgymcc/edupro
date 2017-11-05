@@ -179,12 +179,12 @@ $this->registerJs("
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{view} {update} {delete}',
+                'template' => '{view} {update} ',
                 'buttons' => [
                     // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
                     'update' => function ($url, $model, $key) {
                         $options = [
-                            'title' => Yii::t('yii', 'update'),
+                            'title' => Yii::t('yii', '修改'),
                             'aria-label' => Yii::t('yii', 'update'),
                             'data-pjax' => '0',
                             'onClick' => 'test('.$model->type.','.$key.')',

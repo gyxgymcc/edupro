@@ -35,7 +35,7 @@ class EduSubject extends \yii\db\ActiveRecord
             [['relate_paper', 'maxval', 'dif', 'que', 'answer'], 'safe'],
             [['relate_paper', 'type', 'maxval', 'dif'], 'integer'],
             [['type','que_sec'],'safe'],
-            [['que', 'que_sec', 'answer'], 'string'],
+            [['que', 'que_sec', 'answer', 'ans_info'], 'string'],
         ];
     }
 
@@ -54,6 +54,7 @@ class EduSubject extends \yii\db\ActiveRecord
             'que_sec' => Yii::t('app', '选择题候选'),
             'answer' => Yii::t('app', '答案'),
             'tags' => Yii::t('app', '标签'),
+            'ans_info' => Yii::t('app', '答案解析'),
         ];
     }
 

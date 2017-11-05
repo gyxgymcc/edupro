@@ -20,6 +20,17 @@ $this->registerJs("
         };
         
     };
+
+    function test(type,key){
+        console.log(type);
+        var url = '/index.php?r=edusubject/update&id='+key;
+        var url1 = '/index.php?r=edusubject/updatesel&id='+key;
+        if(type == 2 || type == 3){
+            location.href = url;
+        }else if(type == 0 || type == 1) {
+            location.href = url1;
+        };
+    };
     ", \yii\web\View::POS_END);
 ?>
 <div class="row">
@@ -38,14 +49,8 @@ table.detail-view td {
     }
     </style>
     <p>
-        <?= Html::a(Yii::t('app', '修改'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', '删除'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <!-- <?= Html::a(Yii::t('app', '修改'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?> -->
+        <button class="btn btn-primary" onclick="test(<?=$model->type?>,<?=$model->id?>)">修改</button>
     </p>
 
     <?= DetailView::widget([
@@ -91,6 +96,7 @@ table.detail-view td {
                 'value'=>$model->que_sec,
             ],
             'answer:ntext',
+            'ans_info:html',
         ],
     ]) ?>
 

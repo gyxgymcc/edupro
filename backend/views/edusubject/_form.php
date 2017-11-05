@@ -32,6 +32,35 @@ $examTypes = array(['id' => 2,'name' => '填空题'], ['id' => 3,'name' => '应�
          ]); 
      ?>
 
+
+     <?= $form->field($model, 'que')->widget(CKEditor::className(), [
+        'options' => [
+            'rows' => 12,
+        ],
+        'preset' => 'advance',
+        'clientOptions' => [
+            'filebrowserUploadUrl' => Url::to(['/ckeditor/upload']),
+            'toolbarGroups' => 
+                [
+                    [ 'name' => 'clipboard',   'groups' => [ 'clipboard', 'undo' ] ],
+                    [ 'name' => 'editing',     'groups' => [ 'find', 'selection', 'spellchecker' ] ],
+                    [ 'name' => 'links' ],
+                    [ 'name' => 'insert' ],
+                    [ 'name' => 'forms' ],
+                    [ 'name' => 'tools' ],
+                    [ 'name' => 'document',    'groups' => [ 'mode', 'document', 'doctools' ] ],
+                    [ 'name' => 'others' ],
+              
+                    [ 'name' => 'basicstyles', 'groups' => [ 'basicstyles', 'cleanup' ] ],
+                    [ 'name' => 'paragraph',   'groups' => [ 'list', 'indent', 'blocks', 'align' ] ],
+                    [ 'name' => 'styles' ],
+                    [ 'name' => 'colors' ],
+                    [ 'name' => 'about' ]
+                ]
+        ],
+        
+    ]) ?>
+
     <?= $form->field($model, 'type')->widget(Select2::classname(), [
             'language' => 'de',
             'data' => ArrayHelper::map($examTypes, 'id', 'name'),
@@ -64,9 +93,16 @@ $examTypes = array(['id' => 2,'name' => '填空题'], ['id' => 3,'name' => '应�
 
     ?>
 
+
+
    <!--  <?= $form->field($model, 'que')->textarea(['rows' => 6]) ?> -->
 
-    <?= $form->field($model, 'que')->widget(CKEditor::className(), [
+    
+
+
+    <?= $form->field($model, 'answer')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'ans_info')->widget(CKEditor::className(), [
         'options' => [
             'rows' => 12,
         ],
@@ -93,9 +129,6 @@ $examTypes = array(['id' => 2,'name' => '填空题'], ['id' => 3,'name' => '应�
         ],
         
     ]) ?>
-
-
-    <?= $form->field($model, 'answer')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', '添加') : Yii::t('app', '修改'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
