@@ -18,6 +18,7 @@ class EduStudentClass extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
     public static function tableName()
     {
         return 'edu_student_class';
@@ -30,8 +31,9 @@ class EduStudentClass extends \yii\db\ActiveRecord
     {
         return [
             [['student_id', 'class_id'], 'required'],
-            [['student_id', 'class_id', 'gradute'], 'integer'],
+            [['student_id', 'class_id', 'gradute','is_in'], 'integer'],
             [['in_time'], 'string', 'max' => 50],
+            [['in_intro'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,6 +48,8 @@ class EduStudentClass extends \yii\db\ActiveRecord
             'class_id' => '班级',
             'in_time' => '加入时间',
             'gradute' => '毕业',
+            'is_in' => '审批',
+            'in_intro' => '申请信息',
         ];
     }
 
@@ -57,4 +61,6 @@ class EduStudentClass extends \yii\db\ActiveRecord
     {
         return new EduStudentClassQuery(get_called_class());
     }
+
+
 }

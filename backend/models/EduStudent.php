@@ -60,5 +60,16 @@ class EduStudent extends \yii\db\ActiveRecord
         return new EduStudentQuery(get_called_class());
     }
 
-    
+    public static function isStudent()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $studentInfo = self::find()->where(['relate_user' => $uid])->exists();
+        
+        return $studentInfo;
+    }
+
+    public function getClass()
+    {
+        return $this->hasMany(EduStudentClass::className(),['student_id' => 'id']);
+    }
 }

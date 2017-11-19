@@ -11,6 +11,9 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'gridview' => ['class' => 'kartik\grid\Module'],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',

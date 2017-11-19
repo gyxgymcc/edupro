@@ -20,6 +20,7 @@ class EduclassSearch extends EduClass
         return [
             [['id', 'relate_teacher'], 'integer'],
             [['class_name'], 'safe'],
+            [['teacher'], 'string'],
         ];
     }
 
@@ -43,6 +44,7 @@ class EduclassSearch extends EduClass
     {
         $query = EduClass::find();
 
+        $query->joinWith(['teacher']);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -60,15 +62,31 @@ class EduclassSearch extends EduClass
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'relate_teacher' => $this->relate_teacher,
+            //'relate_teacher' => $this->relate_teacher,
         ]);
 
         $query->andFilterWhere(['like', 'class_name', $this->class_name]);
 
-        if(!EduTeacher::isAdmin()){
+        $isStudent = EduStudent::isStudent();
+
+        //not student && not administrator
+        if(!EduTeacher::isAdmin() && !$isStudent){
             $uid = Yii::$app->user->identity->id;
             $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
             $query->andFilterWhere(['relate_teacher' => $teacherInfo->id]);
+        }
+
+        //is student
+        if($isStudent){
+            if($this->class_name === ''){
+                $query->andFilterWhere(['like', 'class_name', '2099']);
+            }
+            // $teacher = EduTeacher::findOne(['id' => $this->relate_teacher]);
+            // $schoolName = $teacher->school;
+            // $teachers = EduTeacher::
+            // $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            // var_dump($teacher);
+            // exit();
         }
 
         return $dataProvider;

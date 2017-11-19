@@ -33,7 +33,7 @@ class EduTeacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'school', 'faculty'], 'required'],
+            [['email', 'faculty'], 'required'],
             [['teacher_name', 'email', 'school', 'faculty'], 'string', 'max' => 50],
             [['avatar'], 'string', 'max' => 200],
             [['sex', 'phone'], 'string', 'max' => 20],
@@ -112,5 +112,10 @@ class EduTeacher extends \yii\db\ActiveRecord
             return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/teacher.png';
         }
         return 'http://'.$_SERVER['HTTP_HOST'].Yii::getAlias('@web').'/uploads/teacher/'.$teacherInfo['avatar'];
+    }
+
+    public static function getClass()
+    {
+        return $this->hasMany(EduRoom::className(),['id' => 'relate_room']);
     }
 }

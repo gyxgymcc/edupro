@@ -13,65 +13,73 @@ $this->title = 'My Yii Application';
 /*    #title1{
         background-color: aqua;
     }*/
-    .row .col-xs-12:nth-child(1) .tile-stats{
+    .fa♂:nth-child(1) .tile-stats{
         background-color: white;
+        color: lightpink;
     }
-    .row .col-xs-12:nth-child(2) .tile-stats{
+    .fa♂:nth-child(2) .tile-stats{
         background-color: white;
+        color: #2894FF;
     }
-    .row .col-xs-12:nth-child(3) .tile-stats{
+    .fa♂:nth-child(3) .tile-stats{
         background-color: white;
+        color: #4F9D9D;
     }
-    .row .col-xs-12:nth-child(4) .tile-stats{
+    .fa♂:nth-child(4) .tile-stats{
         background-color: white;
+        color: #949449;
     }
+    .fa♂ i{
+        color: #000000;
+    }
+
 </style>
 <div class="site-index">
     <section class="content">
         <div class="row">
-            <div class="col-xs-12 col-md-3" id='title1'>
+            <div class="col-xs-12 col-md-3 fa♂" id='title1'>
                 <?=
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
-                        'icon' => 'list-alt',
-                        'header' => Html::a('已加入班级', ['studentclass/index'],['style' => 'color:black;']),
-                        'text' => 'All orders list',
-                        'number' => '7084',
+                        'icon' => 'users',
+                        'header' => Html::a('班级', ['studentclass/index'],['style' => 'color:black;']),
+                        'text' => '学习知识要善于思考，思考，再思考。 —— 爱因斯坦',
+                        'number' => $classcount?$classcount.'个班级':'未加入班级',
                     ]
                 )
                 ?>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-3 fa♂">
                 <?=
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
-                        'icon' => 'pie-chart',
-                        'header' => 'Conversion',
-                        'text' => 'Users to orders',
+                        'icon' => 'newspaper-o',
+                        'header' => Html::a('未完成的试卷', ['studentclass/index'],['style' => 'color:black;']),
+                        'text' => '只要愿意学习，就一定能够学会。 —— 列宁',
                         'number' => '1.5%',
                     ]
                 )
                 ?>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-3 fa♂">
                 <?=
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
-                        'icon' => 'users',
-                        'header' => 'Users',
-                        'text' => 'Count of registered users',
+                        'icon' => 'list-ol',
+                        'header' => Html::a('成绩一览', ['studentclass/index'],['style' => 'color:black;']),
+                        'text' => '我们愈是学习，愈觉得自己的贫乏。 —— 雪莱',
                         'number' => '1807',
                     ]
                 )
                 ?>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="col-xs-12 col-md-3 fa♂">
                 <?=
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
                         'icon' => 'comments-o',
-                        'header' => 'Reviews',
-                        'text' => 'The next reviews are not approved',
+                        'header' => Html::a('班级通知', ['studentclass/index'],['style' => 'color:black;']),
+                        'text' => '人要独立生活，学习有用的技艺。 —— 凯德',
                         'number' => '31',
                     ]
                 )

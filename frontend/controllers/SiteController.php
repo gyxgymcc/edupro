@@ -12,6 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use backend\models\EduStudent;
+use backend\models\EduStudentClass;
 
 /**
  * Site controller
@@ -82,7 +84,16 @@ class SiteController extends Controller
             ]);
         }
         else{
-            return $this->render('index');
+            $userId = Yii::$app->user->id;
+            $studentModel = new EduStudent();
+            $studentInfo = $studentModel->findOne(['relate_user' => $userId]);
+            $studentClassInfo = $studentInfo->class;
+            $classcount = count($studentClassInfo);
+            // var_dump($studentClassInfo);
+            // exit();
+            return $this->render('index', [
+                'classcount' => $classcount,
+            ]);
         }
 
     }

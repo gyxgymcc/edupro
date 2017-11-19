@@ -66,9 +66,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
             // 'sex',
-            // 'phone',
-            // 'school',
-            // 'faculty',
+            'phone',
+            'school',
+            'faculty',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
