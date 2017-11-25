@@ -30,8 +30,8 @@ class EduStudentClass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_id', 'class_id'], 'required'],
-            [['student_id', 'class_id', 'gradute','is_in'], 'integer'],
+            [['student_id', 'class_id'], 'safe'],
+            [['student_id', 'class_id', 'gradute','is_in'], 'safe'],
             [['in_time'], 'string', 'max' => 50],
             [['in_intro'], 'string', 'max' => 255],
         ];
@@ -60,6 +60,14 @@ class EduStudentClass extends \yii\db\ActiveRecord
     public static function find()
     {
         return new EduStudentClassQuery(get_called_class());
+    }
+
+    public function getStudent(){
+        return $this->hasOne(EduStudent::className(),['id' => 'student_id']);
+    }
+
+    public function getClass(){
+        return $this->hasOne(EduClass::className(),['id' => 'class_id']);
     }
 
 

@@ -78,7 +78,7 @@ class EduclassSearch extends EduClass
 
         //is student
         if($isStudent){
-            if($this->class_name === ''){
+            if($this->class_name == ''){
                 $query->andFilterWhere(['like', 'class_name', '2099']);
             }
             // $teacher = EduTeacher::findOne(['id' => $this->relate_teacher]);

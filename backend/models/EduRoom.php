@@ -65,4 +65,9 @@ class EduRoom extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduClass::className(),['id' => 'relate_class']);
     }
+
+    public function getPapercount()
+    {
+        return $this->hasMany(EduPaper::className(),['relate_room' => 'id']);
+    }
 }

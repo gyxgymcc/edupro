@@ -47,7 +47,7 @@ class EdupaperSearch extends EduPaper
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => ['pageSize' => 20],
+            //'pagination' => ['pageSize' => 20],
         ]);
 
         $this->load($params);
@@ -64,14 +64,25 @@ class EdupaperSearch extends EduPaper
             'relate_room' => $this->relate_room,
         ]);
 
+        $isStudent = EduStudent::isStudent();
         // not a superadmin
-        if(!EduTeacher::isAdmin()){
+        if(!EduTeacher::isAdmin() && !$isStudent){
             $uid = Yii::$app->user->identity->id;
             $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
             $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
             $roomids = array_column($rooms,'id');
             
             $query->andFilterWhere(['in','relate_room',$roomids]);
+            $dataProvider->pagination->pageSize = 20;
+        }
+
+        if($isStudent){
+            $dataProvider->pagination->pageSize = 1;
+            if(isset($params['relate_room'])){
+                $query->andFilterWhere([
+                    'relate_room' => intval($params['relate_room']),
+                ]);
+            }
         }
 
         $query->andFilterWhere(['like', 'paper_name', $this->paper_name]);

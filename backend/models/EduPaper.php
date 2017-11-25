@@ -57,4 +57,83 @@ class EduPaper extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduRoom::className(),['id' => 'relate_room']);
     }
+
+    public function getDifflabel(){
+        $examDif = Yii::$app->params['examDif'];
+        $diffArr = array_column($examDif, 'name');
+        return $diffArr;
+    }
+
+    public function getDiff()
+    {   
+        $examDif = Yii::$app->params['examDif'];
+        $diffArr = array_column($examDif, 'id');
+        $subjekuto = EduSubject::find()->select(['SUM(1) AS count','dif'])->where(['relate_paper' => $this->id])->andWhere(['in', 'dif', $diffArr])->groupBy('dif')->asArray()->all();
+
+        $difArray = array_column($subjekuto,'count','dif');
+        foreach($examDif as $key => $val){
+            $examDif[$key]['count'] = (isset($difArray[$key])) ? $difArray[$key] : "0";
+        }
+
+        $data = array_column($examDif, 'count','dif');
+        return $data;
+    }
+
+    public function getTaglabel(){
+        $tagData = EduTags::find()->where(['root' => 3])->orderBy('id asc')->asArray()->all();
+        $tagArr = array_column($tagData, 'name');
+        return $tagArr;
+    }
+
+    public function getTagvalue(){
+        $tagData = EduTags::find()->where(['root' => 3])->orderBy('id asc')->asArray()->all();
+        $tagArr = array_column($tagData, 'id');
+        
+
+        $subject = EduSubject::find()->select(['id'])->where(['relate_paper' => $this->id])->asArray()->all();
+        $subjectIds = array_column($subject, 'id');
+
+        $tags = EduSubtags::find()->select(['SUM(1) AS count','tagid'])->where(['in', 'subid', $subjectIds])->andWhere(['in', 'tagid', $tagArr])->groupBy('tagid')->orderBy('tagid')->asArray()->all();
+       
+        $tempArr = array_column($tags, 'count', 'tagid');
+        
+        foreach ($tagData as $key => $value) {
+            $tagData[$key]['count'] = isset($tempArr[$value['id']]) ? $tempArr[$value['id']] : '0';
+        }
+
+        $data = array_column($tagData, 'count');
+        return $data;
+    }
+
+    public function getKnowlabel(){
+        $tagData = EduTags::find()->where(['root' => 12])->andWhere(['lvl' => 1])->orderBy('id asc')->asArray()->all();
+        $tagArr = array_column($tagData, 'name');
+        return $tagArr;
+    }
+
+
+    public function getKnowvalue(){
+        $tagData = EduTags::find()->where(['root' => 12])->andWhere(['lvl' => 1])->orderBy('id asc')->asArray()->all();
+        $tagArr = array_column($tagData, 'id');
+        
+
+        $subject = EduSubject::find()->select(['id'])->where(['relate_paper' => $this->id])->asArray()->all();
+        $subjectIds = array_column($subject, 'id');
+
+        $tags = EduSubtags::find()->select(['SUM(1) AS count','tagid'])->where(['in', 'subid', $subjectIds])->andWhere(['in', 'tagid', $tagArr])->groupBy('tagid')->orderBy('tagid')->asArray()->all();
+       
+        $tempArr = array_column($tags, 'count', 'tagid');
+        
+        $newArr = array();
+        foreach ($tagData as $key => $value) {
+            $value['count'] = isset($tempArr[$value['id']]) ? $tempArr[$value['id']] : '0';
+            if($value['count'] > 0){
+                array_push($newArr, $value);
+            }
+        }
+
+        $data['datas'] = array_column($newArr, 'count');
+        $data['labels'] = array_column($newArr, 'name');
+        return $data;
+    }
 }

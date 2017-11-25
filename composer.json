@@ -25,7 +25,8 @@
         "wbraganca/yii2-dynamicform": "dev-master",
         "kartik-v/yii2-tree-manager": "@dev",
         "2amigos/yii2-ckeditor-widget": "^2.0",
-        "kartik-v/yii2-editable": "@dev"
+        "kartik-v/yii2-editable": "@dev",
+        "2amigos/yii2-chartjs-widget": "~2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -58,4 +58,18 @@ class EduClass extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduTeacher::className(),['id' => 'relate_teacher']);
     }
+
+    public function getIn()
+    {
+        $uid = Yii::$app->user->identity->id;
+        $studentInfo = EduStudent::findOne(['relate_user' => $uid]);
+        $stuid = $studentInfo['id'];
+        $sc = EduStudentClass::findOne(['student_id' => $stuid,'class_id' => $this->id]);
+        if(empty($sc)){
+            return 0;
+        }
+        else{
+            return $sc->is_in;
+        }
+    }
 }

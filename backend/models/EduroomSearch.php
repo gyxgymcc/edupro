@@ -71,10 +71,25 @@ class EduroomSearch extends EduRoom
             ]);
         }
 
-        if(!EduTeacher::isAdmin()){
+        $isStudent = EduStudent::isStudent();
+
+        if(!EduTeacher::isAdmin() && !$isStudent){
             $uid = Yii::$app->user->identity->id;
             $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
             $query->andFilterWhere(['relate_teacher' => $teacherInfo->id]);
+        }
+
+        if($isStudent){
+            $uid = Yii::$app->user->identity->id;
+            $studentInfo = EduStudent::findOne(['relate_user' => $uid]);
+            $stuid = $studentInfo['id'];
+            $inClasses = EduStudentClass::find()->where(['student_id' => $stuid])->all();
+            if(!empty($inClasses)){
+                $classids = array_column($inClasses, 'class_id');
+            }else{
+                $classids = array();
+            }
+            $query->andFilterWhere(['in', 'relate_class', $classids]);
         }
 
         $query->andFilterWhere(['like', 'room_name', $this->room_name])

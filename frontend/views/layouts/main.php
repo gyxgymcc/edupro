@@ -88,8 +88,9 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         \yiister\gentelella\widgets\Menu::widget(
                             [
                                 "items" => [
-                                    ["label" => "Home", "url" => ["site/index"], "icon" => "home"],
-                                    ["label" => "login", "url" => ["site/login"], "icon" => "files-o"],
+                                    ["label" => "主页", "url" => ["site/index"], "icon" => "home"],
+                                    ["label" => "班级", "url" => ["studentclass/index"], "icon" => "files-o"],
+                                    ["label" => "课堂", "url" => ["studentroom/index"], "icon" => "files-o"],
                                     ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
                                     [
                                         "label" => "Widgets",
