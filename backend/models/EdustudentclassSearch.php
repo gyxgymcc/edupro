@@ -65,6 +65,17 @@ class EdustudentclassSearch extends EduStudentClass
             'gradute' => $this->gradute,
         ]);
 
+
+        $isStudent = EduStudent::isStudent();
+        if($isStudent){
+            $uid = Yii::$app->user->identity->id;
+            $studentInfo = EduStudent::findOne(['relate_user' => $uid]);
+            $stuid = $studentInfo['id'];
+            $query->andFilterWhere([
+                'student_id' => $stuid
+            ]);
+        }
+
         $query->andFilterWhere(['like', 'in_time', $this->in_time]);
 
         return $dataProvider;

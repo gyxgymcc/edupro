@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use backend\models\EduPaper;
 use backend\models\EdupaperSearch;
 
 class StudentpaperController extends \yii\web\Controller
@@ -28,6 +29,20 @@ class StudentpaperController extends \yii\web\Controller
         return $this->render('index',[
         	'dataProvider' => $dataProvider
         ]);
+    }
+
+    public function actionExam()
+    {
+    	$params = array();
+    	$requestData = Yii::$app->request->get();
+    	$params['relate_paper'] = $requestData['paperid'];
+    	$paper = EduPaper::findOne($requestData['paperid']);
+    	$subjects = $paper->subjects;
+    	
+    	return $this->render('exam',[
+    		'subjects' => $subjects,
+    		'paper' => $paper
+    	]);
     }
 
 }

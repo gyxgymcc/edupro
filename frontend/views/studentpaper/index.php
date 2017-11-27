@@ -37,6 +37,14 @@ $this->title = '试卷';
 				    		'value' => 'room.teacher.teacher_name'
 
 				    	],
+				    	[
+				    		'format' => 'raw',
+				    		'value' => function ($model){
+				    			return Html::a('<i class="fa fa-file-text-o" style="color:tomato;"></i>测验', '/index.php?r=studentpaper%2Fexam&paperid='.$model['id'],['class' => 'btn btn-app']).
+				    				Html::a('<i class="fa fa-bar-chart" style="color:darkblue;"></i>成绩查看', '/index.php?r=studentpaper%2Fscore&paperid='.$model['id'],['class' => 'btn btn-app'])
+				    			;
+				    		}
+				    	]
 					],
 				]
 			);

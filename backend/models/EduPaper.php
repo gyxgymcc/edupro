@@ -58,6 +58,10 @@ class EduPaper extends \yii\db\ActiveRecord
         return $this->hasOne(EduRoom::className(),['id' => 'relate_room']);
     }
 
+    public function getSubjects(){
+        return $this->hasMany(EduSubject::className(),['relate_paper' => 'id']);
+    }
+
     public function getDifflabel(){
         $examDif = Yii::$app->params['examDif'];
         $diffArr = array_column($examDif, 'name');

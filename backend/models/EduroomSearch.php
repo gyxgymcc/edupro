@@ -87,7 +87,7 @@ class EduroomSearch extends EduRoom
             if(!empty($inClasses)){
                 $classids = array_column($inClasses, 'class_id');
             }else{
-                $classids = array();
+                $classids = ['2099'];
             }
             $query->andFilterWhere(['in', 'relate_class', $classids]);
         }
