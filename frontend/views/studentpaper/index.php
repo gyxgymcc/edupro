@@ -53,7 +53,7 @@ $this->title = '试卷';
 </div>
 
 <div class="row">
-	<div class="col-md-3">
+	<!-- <div class="col-md-3">
 		<?php
 		$model = $dataProvider->getModels()[0];
 		?>
@@ -105,10 +105,10 @@ $this->title = '试卷';
 			    }
 			});
 		</script>
-	</div>
-	<div class="col-md-1">
+	</div> -->
+	<!-- <div class="col-md-1">
 		
-	</div>
+	</div> -->
 	<div class="col-md-3">
 		<h4>试卷能力维度分布</h4>
 		<canvas id="tagChart" width="300" height="300"></canvas>

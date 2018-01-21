@@ -3,7 +3,7 @@ answer.controller("answerCtrl", function($scope,$http,$sce) {
 	$scope.csrfToken = $('meta[name="csrf-token"]').attr("content");
 	$scope.paperid = 0;
 	$scope.subjects = [];
-	$scope.postdata = [];
+	$scope.postdata = {};
 	$scope.trustAsHtml = $sce.trustAsHtml;
 
 	$scope.getPaper = function(paperid){
@@ -21,8 +21,9 @@ answer.controller("answerCtrl", function($scope,$http,$sce) {
 	        	//console.log(response.data)
 	        	$scope.subjects = response.data
 	        	angular.forEach($scope.subjects,function(value,key){
-	        		$scope.postdata[key] = []
+	        		$scope.postdata[key] = {}
 	        		$scope.postdata[key]['sub_id'] = value.id
+	        		$scope.postdata[key]['total_score'] = value.maxval
 	        		if(0 == value.type ){
 	        			$http({
 					        method: 'POST',
@@ -52,7 +53,7 @@ answer.controller("answerCtrl", function($scope,$http,$sce) {
 	}
 
 	$scope.dif = function(difstr){
-		$scope.arr = ['普通','一般','困难','地狱','噩梦'];
+		$scope.arr = ['简单','交易','普通','较难','难'];
 		//console.log($scope.arr[difstr])
 		return $scope.arr[difstr];
 	}
@@ -87,7 +88,24 @@ answer.controller("answerCtrl", function($scope,$http,$sce) {
 	}
 
 	$scope.getCheck = function(){
-		console.log($scope.postdata)
+		$scope.tempdata = angular.toJson($scope.postdata)
+		
+		$http({
+	        method: 'POST',
+	        url: 'index.php?r=studentpaper/setanswer',
+	        headers: {
+	        	"Content-Type": "application/x-www-form-urlencoded",
+	        	"X-CSRF-Token": $scope.csrfToken
+	        },
+	        data: $.param({
+	        	data: $scope.tempdata,
+	        	paperid: $scope.paperid,
+	        }),
+	        }).then(function successCallback(response) {
+	        	alert("交卷完成"); 
+				window.history.back(-1); 
+	      	}, function errorCallback(response) {
+	    });
 	}
 
 	$scope.paperid = $scope.getParameterByName('paperid',window.location.href)

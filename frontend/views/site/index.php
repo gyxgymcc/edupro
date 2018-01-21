@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+$this->title = '教育平台';
 ?>
 <style type="text/css">
     /*.icon{}
@@ -27,7 +27,7 @@ $this->title = 'My Yii Application';
     }
     .fa♂:nth-child(4) .tile-stats{
         background-color: white;
-        color: #949449;
+        color: orange;
     }
     .fa♂ i{
         color: #000000;
@@ -78,9 +78,9 @@ $this->title = 'My Yii Application';
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
                         'icon' => 'comments-o',
-                        'header' => Html::a('班级通知', ['studentclass/index'],['style' => 'color:black;']),
+                        'header' => Html::a('班级通知', ['announcement/index'],['style' => 'color:black;']),
                         'text' => '人要独立生活，学习有用的技艺。 —— 凯德',
-                        'number' => '31',
+                        'number' => $accouncementCount?$accouncementCount.'条公告':'暂无公告',
                     ]
                 )
                 ?>
@@ -88,18 +88,36 @@ $this->title = 'My Yii Application';
         </div>
 
         <div class="row">
-            <div class="col-md-12 col-xs-12">
-                <div id="w7" class="x_panel">
-                    <div class="x_title">
-                        <h2><i class="fa fa-arrow-up"></i> Collapsable panel</h2>
-                        <ul id="w8" class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content" style="display: block;">
-                        <p>You can hide this text. Just click a collapse button in a panel header.</p>
-                    </div>
+            <div class="col-md-4">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>公告栏<small>班级通知</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <!-- <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li> -->
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <?php 
+                        foreach ($announcementInfo as $key => $value) {
+                            ?>
+                            <article class="media event">
+                              <a class="pull-left date">
+                                <p class="month"><?php echo intval(date('m',strtotime($value['created_at']))).'月'; ?></p>
+                                <p class="day"><?php echo date('d',strtotime($value['created_at'])); ?></p>
+                              </a>
+                              <div class="media-body">
+                                <a class="title" href="#"><?=$value['title']?></a>
+                                <p><?=$value['content']?></p>
+                              </div>
+                            </article>
+                            <?php
+                        }
+                    ?>
+                  </div>
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ use backend\models\EdupaperSearch;
 use backend\models\EduStudent;
 use backend\models\EduSubject;
 use backend\models\EduSelection;
+use backend\models\EduAnswer;
 
 class StudentpaperController extends \yii\web\Controller
 {
@@ -65,6 +66,31 @@ class StudentpaperController extends \yii\web\Controller
         $selection = EduSelection::find()->where(['relate_subject' => $subid])->asArray()->all();
 
         return json_encode($selection);
+    }
+
+    public function actionSetanswer(){
+        $requestData = Yii::$app->request->post();
+
+        
+        $data = json_decode($requestData['data']);
+
+        $uid = Yii::$app->user->identity->id;
+        $studentInfo = EduStudent::findOne(['relate_user' => $uid]);
+        $stuid = $studentInfo['id'];
+
+        $paperid = $requestData['paperid'];
+        foreach ($data as $key => $value) {
+            $answerModel = new EduAnswer();
+            $answerModel->stu_id = $stuid;
+            $answerModel->paper_id = $paperid;
+            $answerModel->sub_id = $value->sub_id;
+            $answerModel->total_score = $value->total_score;
+            if(isset($value->stu_answer)){
+                $answerModel->answer = $value->stu_answer;
+            }
+            $answerModel->save();
+        }
+        return 1;
     }
 
 }

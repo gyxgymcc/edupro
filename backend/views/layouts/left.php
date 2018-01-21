@@ -44,6 +44,7 @@ use backend\models\EduTeacher;
                     ['label' => '试卷管理', 'icon' => 'list-alt', 'url' => ['/edupaper']],
                     ['label' => '题目管理', 'icon' => 'list', 'url' => ['/edusubject']],
                     ['label' => '标签管理', 'icon' => 'tags', 'url' => ['/edutags']],
+                    ['label' => '公告管理', 'icon' => 'microphone', 'url' => ['/eduannouncement']],
 
                     // ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],

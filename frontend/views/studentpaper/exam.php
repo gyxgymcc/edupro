@@ -43,7 +43,7 @@ $this->registerCssFile('@web/css/angular-wizard.css');
                             <span style="font-size:16px;"><b><?= $paper->room->room_name ?></b></span> の <a><?= $paper->paper_name ?></a>
                           </div>
                           <span class="label label-info">难度: {{ dif(sub.dif) }}</span>
-                          <span class="label label-warning">粪值: {{ sub.maxval }}分</span>
+                          <span class="label label-warning">分值: {{ sub.maxval }}分</span>
                         </div>
                       </div>
                     </li>

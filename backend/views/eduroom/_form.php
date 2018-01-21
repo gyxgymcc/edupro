@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
 
     <!-- <?= $form->field($model, 'start_time')->textInput(['maxlength' => true]) ?> -->
     <?= $form->field($model,'start_time')->widget(DatePicker::classname(), [
-		    'options' => ['placeholder' => '请选这日期'],
+		    'options' => ['placeholder' => '开办日期'],
 		    'pluginOptions' => [
 			    'autoclose'=>true,
 			    'format' => 'yyyy-m-d',
@@ -29,7 +29,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'relate_teacher')->widget(Select2::classname(), [
             'language' => 'de',
             'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
-            'options' => ['placeholder' => '请选择教师'],
+            'options' => ['placeholder' => '任课教师'],
             'pluginOptions' => [
                 'allowClear' => true
             ],
@@ -39,7 +39,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'relate_class')->widget(Select2::classname(), [
             'language' => 'de',
             'data' => ArrayHelper::map($class, 'id', 'class_name'),
-            'options' => ['placeholder' => '请选择班级'],
+            'options' => ['placeholder' => '班级'],
             'pluginOptions' => [
                 'allowClear' => true
             ],

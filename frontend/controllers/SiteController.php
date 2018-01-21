@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use backend\models\EduStudent;
 use backend\models\EduStudentClass;
+use backend\models\EduAnnouncement;
 
 /**
  * Site controller
@@ -91,8 +92,15 @@ class SiteController extends Controller
             $classcount = count($studentClassInfo);
             // var_dump($studentClassInfo);
             // exit();
+
+            $announcementInfo = EduAnnouncement::getStudentAnnouncement();
+            $announcementCount = count($announcementInfo);
+
+
             return $this->render('index', [
                 'classcount' => $classcount,
+                'accouncementCount' => $announcementCount,
+                'announcementInfo' => $announcementInfo,
             ]);
         }
 
