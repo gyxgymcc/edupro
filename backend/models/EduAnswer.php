@@ -63,4 +63,9 @@ class EduAnswer extends \yii\db\ActiveRecord
     {
         return new EduAnswerQuery(get_called_class());
     }
+
+    public function getSubject()
+    {
+        return $this->hasOne(EduSubject::className(),['id' => 'sub_id']);
+    }
 }

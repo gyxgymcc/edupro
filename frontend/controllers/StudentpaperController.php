@@ -15,6 +15,7 @@ use backend\models\EduStudent;
 use backend\models\EduSubject;
 use backend\models\EduSelection;
 use backend\models\EduAnswer;
+use backend\models\EduAnswerCheck;
 
 class StudentpaperController extends \yii\web\Controller
 {
@@ -35,6 +36,7 @@ class StudentpaperController extends \yii\web\Controller
         ]);
     }
 
+    //考试
     public function actionExam()
     {
     	// $params = array();
@@ -46,6 +48,16 @@ class StudentpaperController extends \yii\web\Controller
     	return $this->render('exam',[
     		'paper' => $paper
     	]);
+    }
+
+    //看分
+    public function actionScore()
+    {
+        
+        
+        return $this->render('score',[
+
+        ]);
     }
 
     public function actionExamdata(){
@@ -90,7 +102,17 @@ class StudentpaperController extends \yii\web\Controller
             }
             $answerModel->save();
         }
-        return 1;
+        $paperModel = EduPaper::findOne($paperid);
+        $teacherid = $paperModel->room->relate_teacher;
+
+        $answerCheck = new EduAnswerCheck();
+        $answerCheck->paper_id = $paperid;
+        $answerCheck->stu_id = $stuid;
+        $answerCheck->is_check = 0;
+        $answerCheck->exam_time = date('Y-m-d h:i',time());
+        $answerCheck->teacher_id = $teacherid;
+        $answerCheck->save();
+        return $teacherid;
     }
 
 }

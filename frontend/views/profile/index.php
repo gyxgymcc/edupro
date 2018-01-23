@@ -48,7 +48,7 @@ $username = $userInfo['student_name'];
                         <li>
                             <p><?=$value->class_name?></p>
                             <div class="progress progress_sm">
-                               <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="<?=rand(30,90)?>" aria-valuenow="50" style="width: 50%;"></div>
+                               <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="<?=rand(50,50)?>" aria-valuenow="50" style="width: 50%;"></div>
                             </div>
                          </li>
                         <?php
@@ -77,70 +77,47 @@ $username = $userInfo['student_name'];
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                            <!-- start recent activity -->
                            <ul class="messages">
-                              <li>
-                                 <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                 <div class="message_date">
-                                    <h3 class="date text-info">24</h3>
-                                    <p class="month">May</p>
-                                 </div>
-                                 <div class="message_wrapper">
-                                    <h4 class="heading">Desmond Davison</h4>
-                                    <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                    <br>
-                                    <p class="url">
-                                       <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                       <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                    </p>
-                                 </div>
-                              </li>
-                              <li>
-                                 <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                 <div class="message_date">
-                                    <h3 class="date text-error">21</h3>
-                                    <p class="month">May</p>
-                                 </div>
-                                 <div class="message_wrapper">
-                                    <h4 class="heading">Brian Michaels</h4>
-                                    <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                    <br>
-                                    <p class="url">
-                                       <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                       <a href="#" data-original-title="">Download</a>
-                                    </p>
-                                 </div>
-                              </li>
-                              <li>
-                                 <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                 <div class="message_date">
-                                    <h3 class="date text-info">24</h3>
-                                    <p class="month">May</p>
-                                 </div>
-                                 <div class="message_wrapper">
-                                    <h4 class="heading">Desmond Davison</h4>
-                                    <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                    <br>
-                                    <p class="url">
-                                       <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                       <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                    </p>
-                                 </div>
-                              </li>
-                              <li>
-                                 <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                 <div class="message_date">
-                                    <h3 class="date text-error">21</h3>
-                                    <p class="month">May</p>
-                                 </div>
-                                 <div class="message_wrapper">
-                                    <h4 class="heading">Brian Michaels</h4>
-                                    <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                                    <br>
-                                    <p class="url">
-                                       <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                       <a href="#" data-original-title="">Download</a>
-                                    </p>
-                                 </div>
-                              </li>
+                              <?php
+                                 foreach ($checks as $key => $value) {
+                                    ?>
+
+                                    <li>
+                                       <i class="fa fa-file-text" style="font-size: 25px;" class="avatar" alt="Avatar" aria-hidden="true"></i>
+                                       <div class="message_date">
+                                          <h3 class="date text-info"><?php echo date('d',strtotime($value['exam_time'])); ?></h3>
+                                          <p class="month"><?php echo intval(date('m',strtotime($value['exam_time']))).'月'; ?></p>
+                                       </div>
+                                       <div class="message_wrapper">
+                                          <h4 class="heading"><?php echo $value->paper->paper_name;?></h4>
+                                          <blockquote class="message">
+                                             <span class="label label-primary">课堂: <?php echo $value->paper->room->room_name;?></span>
+                                             <span class="label label-info">班级: <?php echo $value->paper->room->class->class_name;?></span>
+                                             <?php
+                                                if($value['is_check'] == 0){
+                                                   ?>
+                                                      <span class="label label-danger">未批阅</span>
+                                                   <?php
+                                                }
+                                                else{
+                                                   ?>
+                                                      <span class="label label-success">已批阅</span>
+                                                      <a href="<?php echo '/index.php?r=studentpaper%2Fscore&paperid='.$value['id'];?>" style="float: right;" type="button" class="btn btn-success btn-sm">查看成绩</a>
+                                                   <?php
+                                                }
+                                             ?>
+                                          </blockquote>
+                                          <br>
+                                          <p class="url">
+                                             <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                             <a href=""><i class="fa fa-address-book-o"></i>监考教师: <?php echo $value->teacher->teacher_name;?></a>
+                                          </p>
+
+                                       </div>
+                                    </li>
+                                    <?php
+                                 }
+
+                              ?>
                            </ul>
                            <!-- end recent activity -->
                         </div>

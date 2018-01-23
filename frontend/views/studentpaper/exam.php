@@ -40,7 +40,7 @@ $this->registerCssFile('@web/css/angular-wizard.css');
                               
                            </h2>
                           <div class="byline">
-                            <span style="font-size:16px;"><b><?= $paper->room->room_name ?></b></span> の <a><?= $paper->paper_name ?></a>
+                            <span style="font-size:16px;"><b><?= $paper->room->room_name ?></b></span> 的 <a><?= $paper->paper_name ?></a>
                           </div>
                           <span class="label label-info">难度: {{ dif(sub.dif) }}</span>
                           <span class="label label-warning">分值: {{ sub.maxval }}分</span>
@@ -71,7 +71,7 @@ $this->registerCssFile('@web/css/angular-wizard.css');
                         <div class="block_content">
                            <div class="form-group">
                               <p ng-repeat="co in sub.choice">
-                                 <input type="radio" ng-checked="postdata[$parent.$index].stu_answer" ng-model="postdata[$parent.$index].stu_answer" name="{{ co.id }}" value="{{ co.id }}"/>{{ co.content }}<br/>
+                                 <input type="radio" ng-checked="postdata[$parent.$index].stu_answer" ng-model="postdata[$parent.$index].stu_answer" name="{{ co.id }}" value="{{ co.content }}"/>{{ co.content }}<br/>
                               </p>
                            </div>
                         </div>

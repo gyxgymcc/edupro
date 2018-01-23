@@ -16,6 +16,7 @@ use backend\models\EduStudent;
 use backend\models\EduClass;
 use backend\models\EduStudentClass;
 use backend\models\EduAnnouncement;
+use backend\models\EduAnswerCheck;
 
 
 
@@ -25,10 +26,16 @@ class ProfileController extends Controller
 	public function actionIndex(){
 		$classModel = new EduClass();
     	$classes = $classModel->find()->all();
+
+    	$stuid = EduStudent::studentId();
+    	$checks = EduAnswerCheck::find()->where(['stu_id' => $stuid])->all();
+
 		return $this->render('index',[
 			'classes' => $classes,
+			'checks' => $checks,
         ]);
 	}
+
 
 
 }

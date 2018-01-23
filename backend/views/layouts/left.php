@@ -45,7 +45,7 @@ use backend\models\EduTeacher;
                     ['label' => '题目管理', 'icon' => 'list', 'url' => ['/edusubject']],
                     ['label' => '标签管理', 'icon' => 'tags', 'url' => ['/edutags']],
                     ['label' => '公告管理', 'icon' => 'microphone', 'url' => ['/eduannouncement']],
-
+                    ['label' => '阅卷', 'icon' => 'microphone', 'url' => ['/eduanswercheck']],
                     // ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     // ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     // ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
