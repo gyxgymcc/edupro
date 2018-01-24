@@ -1,5 +1,5 @@
-var check = angular.module("check", ["mgo-angular-wizard"])
-check.controller("checkCtrl", function($scope,$http,$sce) {
+var score = angular.module("score", ["mgo-angular-wizard"])
+score.controller("scoreCtrl", function($scope,$http,$sce) {
 	$scope.csrfToken = $('meta[name="csrf-token"]').attr("content");
 	$scope.paperid = 0;
 	$scope.subjects = [];
@@ -9,7 +9,7 @@ check.controller("checkCtrl", function($scope,$http,$sce) {
 	$scope.getPaper = function(paperid){
 		$http({
 	        method: 'POST',
-	        url: 'index.php?r=eduanswercheck/examdata',
+	        url: 'index.php?r=studentpaper/scoreexamdata',
 	        headers: {
 	        	"Content-Type": "application/x-www-form-urlencoded",
 	        	"X-CSRF-Token": $scope.csrfToken
@@ -29,7 +29,7 @@ check.controller("checkCtrl", function($scope,$http,$sce) {
 	        		if(0 == value.type ){
 	        			$http({
 					        method: 'POST',
-					        url: 'index.php?r=eduanswercheck/selection',
+					        url: 'index.php?r=studentpaper/selection',
 					        headers: {
 					        	"Content-Type": "application/x-www-form-urlencoded",
 					        	"X-CSRF-Token": $scope.csrfToken
@@ -117,7 +117,7 @@ check.controller("checkCtrl", function($scope,$http,$sce) {
 		window.history.back(-1);
 	}
 
-	$scope.paperid = $scope.getParameterByName('id',window.location.href)
+	$scope.paperid = $scope.getParameterByName('paperid',window.location.href)
 	
 	//console.log($scope.paperid)
 	$scope.getPaper($scope.paperid);

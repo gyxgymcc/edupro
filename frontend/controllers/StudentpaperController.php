@@ -17,6 +17,7 @@ use backend\models\EduSelection;
 use backend\models\EduAnswer;
 use backend\models\EduAnswerCheck;
 
+
 class StudentpaperController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -50,13 +51,45 @@ class StudentpaperController extends \yii\web\Controller
     	]);
     }
 
+    //考卷数据
+    public function actionScoreexamdata()
+    {
+        $requestData = Yii::$app->request->post();
+        $params['relate_paper'] = $requestData['paperid'];
+        $checkModel = EduAnswerCheck::findOne($requestData['paperid']);
+        $paperid = $checkModel->paper_id;
+        $subjects = EduSubject::find()->where(['relate_paper' => $paperid])->asArray()->all();
+
+        $stuid = $checkModel->stu_id;
+        $answers = EduAnswer::find()->where(['stu_id' => $stuid,'paper_id' => $paperid])->asArray()->all();
+        $tempArray = array_column($answers, 'answer', 'sub_id');
+        $asidArray = array_column($answers, 'id', 'sub_id');
+        foreach ($subjects as $key => $value) {
+            $subjects[$key]['stu_answer'] = $tempArray[$value['id']];
+            $subjects[$key]['as_id'] = $asidArray[$value['id']];
+        }
+        return json_encode($subjects);
+    }
+
     //看分
     public function actionScore()
     {
-        
-        
-        return $this->render('score',[
+        $requestData = Yii::$app->request->get();
+        $checkModel = EduAnswerCheck::findOne($requestData['paperid']);
 
+        //错题
+        $stuid = EduStudent::studentId();
+        $paperid = $checkModel->paper_id;
+
+        $err = EduAnswer::find()->where(['stu_id' => $stuid, 'paper_id' => $paperid])->all();
+
+        //得分
+        $totalScore = EduAnswer::find()->select(['SUM(final_score) AS count','SUM(total_score) AS tcount'])->where(['stu_id' => $stuid, 'paper_id' => $paperid])->groupBy('paper_id')->asArray()->all();
+
+        return $this->render('score',[
+            'checkModel' => $checkModel,
+            'err' => $err,
+            'totalScore' => $totalScore,
         ]);
     }
 

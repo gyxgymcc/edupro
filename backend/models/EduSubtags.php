@@ -52,4 +52,9 @@ class EduSubtags extends \yii\db\ActiveRecord
     {
         return new EduSubtagsQuery(get_called_class());
     }
+
+    public function getTag()
+    {
+        return $this->hasOne(EduTags::className(),['id' => 'tagid']);
+    }
 }
