@@ -143,7 +143,7 @@
 								  <p class="sm">
 								  	<i class="icon-globe"></i> - 夏颖<br/>
 								  </p>
-								  <img src="http://teacher.eighto.cn/uploads/teacher/20180125155329.jpg" style="width: 300px;">
+								  
 							  </div><!-- col-xs-6 -->
 						  </div><!-- row -->
 					  </div><!-- Tab Contact -->
