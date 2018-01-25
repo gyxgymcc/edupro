@@ -75,5 +75,4 @@ return [
         ],
     ],
     'params' => $params,
-    'defaultRoute' => 'eduanswercheck/index',
 ];
