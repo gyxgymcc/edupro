@@ -66,7 +66,7 @@ $this->title = '教育平台';
                 \yiister\gentelella\widgets\StatsTile::widget(
                     [
                         'icon' => 'list-ol',
-                        'header' => Html::a('成绩一览', ['studentclass/index'],['style' => 'color:black;']),
+                        'header' => Html::a('成绩一览', ['profile/index'],['style' => 'color:black;']),
                         'text' => '我们愈是学习，愈觉得自己的贫乏。 —— 雪莱',
                         'number' => '1807',
                     ]
