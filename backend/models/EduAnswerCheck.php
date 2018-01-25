@@ -73,4 +73,12 @@ class EduAnswerCheck extends \yii\db\ActiveRecord
     {
         return $this->hasOne(EduTeacher::className(),['id' => 'teacher_id']);
     }
+
+    // public function getFalsedata()
+    // {
+    //     $paperid = $this->parper_id;
+    //     $stuid = $this->stu_id;
+
+    //     $false = EduAnswer::find()->where(['stu_id' => ''])
+    // }
 }

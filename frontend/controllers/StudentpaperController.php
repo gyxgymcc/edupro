@@ -86,10 +86,18 @@ class StudentpaperController extends \yii\web\Controller
         //得分
         $totalScore = EduAnswer::find()->select(['SUM(final_score) AS count','SUM(total_score) AS tcount'])->where(['stu_id' => $stuid, 'paper_id' => $paperid])->groupBy('paper_id')->asArray()->all();
 
+        //平均分
+        $totalStuscore = EduAnswer::find()->select(['SUM(final_score) AS count','SUM(total_score) AS tcount'])->where(['paper_id' => $paperid])->groupBy('paper_id')->asArray()->all();
+
+        $stuCount = EduAnswerCheck::find()->select(['COUNT(1) AS count'])->where(['paper_id' => $paperid])->asArray()->all();
+
+        $difper = $totalStuscore[0]['count']/$stuCount[0]['count']/$totalScore[0]['tcount'];
+
         return $this->render('score',[
             'checkModel' => $checkModel,
             'err' => $err,
             'totalScore' => $totalScore,
+            'difper' => $difper,
         ]);
     }
 

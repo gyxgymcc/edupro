@@ -43,7 +43,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>
+                    <a href="/" class="site_title"><i class="fa fa-user"></i> <span>
                         <?php
                         $userId = Yii::$app->user->getId();
                         $studentModel = new EduStudent();
@@ -68,7 +68,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <?php
                         echo Dialog::widget();
                     ?>
-                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img" id='profile_img'>
+                        <img src="http://teacher.eighto.cn/uploads/teacher/b1hDEgLPfVuQau3cWGt-NSTDzdGyUUMi.jpg" alt="..." class="img-circle profile_img" id='profile_img'>
                     </div>
                     <div class="profile_info">
                         <span>学生</span>
@@ -90,66 +90,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 "items" => [
                                     ["label" => "主页", "url" => ["site/index"], "icon" => "home"],
                                     ["label" => "班级", "url" => ["studentclass/index"], "icon" => "files-o"],
-                                    ["label" => "课堂", "url" => ["studentroom/index"], "icon" => "files-o"],
-                                    ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
-                                    [
-                                        "label" => "Widgets",
-                                        "icon" => "th",
-                                        "url" => "#",
-                                        "items" => [
-                                            ["label" => "Menu", "url" => ["site/menu"]],
-                                            ["label" => "Panel", "url" => ["site/panel"]],
-                                        ],
-                                    ],
-                                    [
-                                        "label" => "Badges",
-                                        "url" => "#",
-                                        "icon" => "table",
-                                        "items" => [
-                                            [
-                                                "label" => "Default",
-                                                "url" => "#",
-                                                "badge" => "123",
-                                            ],
-                                            [
-                                                "label" => "Success",
-                                                "url" => "#",
-                                                "badge" => "new",
-                                                "badgeOptions" => ["class" => "label-success"],
-                                            ],
-                                            [
-                                                "label" => "Danger",
-                                                "url" => "#",
-                                                "badge" => "!",
-                                                "badgeOptions" => ["class" => "label-danger"],
-                                            ],
-                                        ],
-                                    ],
-                                    [
-                                        "label" => "Multilevel",
-                                        "url" => "#",
-                                        "icon" => "table",
-                                        "items" => [
-                                            [
-                                                "label" => "Second level 1",
-                                                "url" => "#",
-                                            ],
-                                            [
-                                                "label" => "Second level 2",
-                                                "url" => "#",
-                                                "items" => [
-                                                    [
-                                                        "label" => "Third level 1",
-                                                        "url" => "#",
-                                                    ],
-                                                    [
-                                                        "label" => "Third level 2",
-                                                        "url" => "#",
-                                                    ],
-                                                ],
-                                            ],
-                                        ],
-                                    ],
+                                    ["label" => "课堂", "url" => ["studentroom/index"], "icon" => "university"],
+                                    ["label" => "个人资料", "url" => ["profile/index"], "icon" => "clipboard"],
                                 ],
                             ]
                         )
@@ -190,7 +132,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="http://placehold.it/128x128" alt=""><?=$username?>
+                                <img src="http://teacher.eighto.cn/uploads/teacher/b1hDEgLPfVuQau3cWGt-NSTDzdGyUUMi.jpg" alt=""><?=$username?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

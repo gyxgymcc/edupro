@@ -86,7 +86,7 @@ class EduSubject extends \yii\db\ActiveRecord
 
     public function getSt()
     {
-        return $this->hasOne(EduSubtags::className(),['subid' => 'id']);
+        return $this->hasMany(EduSubtags::className(),['subid' => 'id']);
     }
 
     public static function findEt($typeid){

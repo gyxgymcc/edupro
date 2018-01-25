@@ -109,6 +109,49 @@ class EduPaper extends \yii\db\ActiveRecord
         return $data;
     }
 
+    public function getTagvalue2(){
+        $tagData = EduTags::find()->where(['root' => 3])->orderBy('id asc')->asArray()->all();
+        $tagData2 = $tagData;
+        $tagArr = array_column($tagData, 'id');
+        
+        $stuid = EduStudent::studentId();
+
+        $subject = EduAnswer::find()->select(['sub_id'])->where(['stu_id' => $stuid, 'paper_id' => $this->id, 'correct' => 1])->asArray()->all();
+        $subjectIds = array_column($subject, 'sub_id');
+
+        $subject2 = EduSubject::find()->select(['id'])->where(['relate_paper' => $this->id])->asArray()->all();
+        $subjectIds2 = array_column($subject, 'id');
+
+        $tags = EduSubtags::find()->select(['SUM(1) AS count','tagid'])->where(['in', 'subid', $subjectIds])->andWhere(['in', 'tagid', $tagArr])->groupBy('tagid')->orderBy('tagid')->asArray()->all();
+
+        $tags2 = EduSubtags::find()->select(['SUM(1) AS count','tagid'])->where(['in', 'subid', $subjectIds2])->andWhere(['in', 'tagid', $tagArr])->groupBy('tagid')->orderBy('tagid')->asArray()->all();
+       
+        $tempArr = array_column($tags, 'count', 'tagid');
+
+        $tempArr2 = array_column($tags2, 'count', 'tagid');
+        
+        foreach ($tagData as $key => $value) {
+            $tagData[$key]['count'] = isset($tempArr[$value['id']]) ? $tempArr[$value['id']] : '0';
+        }
+
+        foreach ($tagData2 as $key => $value) {
+            $tagData2[$key]['count'] = isset($tempArr2[$value['id']]) ? $tempArr2[$value['id']] : '0';
+        }
+
+        //$tagData = array_merge($tagData,$tagData2);
+
+        $data = array_column($tagData, 'count');
+
+        $data2 = array_column($tagData2, 'count');
+
+        //$data = array_merge($data,$data2);
+        //array_push($data, $data2);
+
+        return $data;
+    }
+
+
+
     public function getKnowlabel(){
         $tagData = EduTags::find()->where(['root' => 12])->andWhere(['lvl' => 1])->orderBy('id asc')->asArray()->all();
         $tagArr = array_column($tagData, 'name');
