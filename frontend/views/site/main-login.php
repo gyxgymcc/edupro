@@ -143,7 +143,9 @@
 								  <p class="sm">
 								  	<i class="icon-globe"></i> - 夏颖<br/>
 								  </p>
-								  
+								  <p class="sm">
+								  	<i class="icon-envelope"></i>   1274041911@qq.com
+								  </p>
 							  </div><!-- col-xs-6 -->
 						  </div><!-- row -->
 					  </div><!-- Tab Contact -->
