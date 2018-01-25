@@ -108,7 +108,7 @@ $this->title = '试卷';
 	<!-- <div class="col-md-1">
 		
 	</div> -->
-	<div class="col-md-3">
+	<!-- <div class="col-md-3">
 		<h4>试卷能力维度分布</h4>
 		<canvas id="tagChart" width="300" height="300"></canvas>
 		<script>
@@ -139,9 +139,9 @@ $this->title = '试卷';
 			    },
 			});
 		</script>
-	</div>
+	</div> -->
 
-	<div class="col-md-4">
+	<!-- <div class="col-md-4">
 		<h4>试卷知识点统计</h4>
 		<canvas id="knowchart" width="300" height="300"></canvas>
 		<script>
@@ -180,7 +180,7 @@ $this->title = '试卷';
 			    },
 			});
 		</script>
-	</div>
+	</div> -->
 </div>
 
 <div class="row">
