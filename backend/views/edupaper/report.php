@@ -131,7 +131,7 @@ $this->title = $model->paper_name.'(测试报告)';
             </div>
             <!-- /.box-body -->
         </div>
-        
+
         <!-- /.box -->
 
     </div>

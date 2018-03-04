@@ -77,6 +77,9 @@ class SiteController extends Controller
 
             $papers = $paperModel::find()->where(['in','relate_room',$roomids])->all();
         }
+        else{
+            $papers = $paperModel::find()->all();
+        }
 
 
         return $this->render('index',[
