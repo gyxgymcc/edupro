@@ -103,12 +103,21 @@ class EduclassController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $teacherModel = new EduTeacher();
+        if(!EduTeacher::isAdmin()){
+            $teacher = $teacherModel->find()->where(['relate_user' => Yii::$app->user->identity->id])->all();
+        }
+        else{
+            $teacher = $teacherModel->find()->all();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('update', [
                 'model' => $model,
+                'teacher' => $teacher,
             ]);
         }
     }

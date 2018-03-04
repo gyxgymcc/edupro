@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', '修改');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'teacher' => $teacher,
     ]) ?>
 
 </div>

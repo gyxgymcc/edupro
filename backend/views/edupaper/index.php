@@ -60,7 +60,8 @@ $this->registerJs("
     <!-- <p>
         <?= Html::a(Yii::t('app', '添加试卷'), ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
-<?= GridView::widget([
+<?php try {
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'hover' => true,
@@ -78,17 +79,17 @@ $this->registerJs("
                 'class' => 'kartik\grid\SerialColumn',
                 'header' => '试卷序号',
                 'pageSummary' => '',
-                'pageSummaryOptions' => ['class'=>'text-left text-warning'],
+                'pageSummaryOptions' => ['class' => 'text-left text-warning'],
             ],
             [
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'expandAllTitle' => 'Expand all',
                 'collapseTitle' => 'Collapse all',
-                'expandIcon'=>'<span class="glyphicon glyphicon-expand"></span>',
+                'expandIcon' => '<span class="glyphicon glyphicon-expand"></span>',
                 'value' => function ($model, $key, $index, $column) {
                     return GridView::ROW_COLLAPSED;
                 },
-                'detail'=>function ($model, $key, $index, $column) {
+                'detail' => function ($model, $key, $index, $column) {
                     $sC = new EdusubjectSearch;
                     $sC->relate_paper = $key;
                     $dP = $sC->search(Yii::$app->request->queryParams);
@@ -97,8 +98,8 @@ $this->registerJs("
                         'dataProvider' => $dP,
                     ]);
                 },
-                'detailOptions'=>[
-                    'class'=> 'kv-state-enable',
+                'detailOptions' => [
+                    'class' => 'kv-state-enable',
                 ],
 
 
@@ -121,32 +122,32 @@ $this->registerJs("
                     'pluginOptions' => [
                         'allowClear' => true,
                     ],
-                    
+
                 ]),
 
             ],
             [
-                'label'=>'操作题目',
-                'format'=>'raw',
-                'value' => function($data,$key){
+                'label' => '操作题目',
+                'format' => 'raw',
+                'value' => function ($data, $key) {
                     // return Html::button('添加本试卷题目',$options = [
                     //     'onclick'=>'dialog('.$key.')',
                     //     'id'=>'btn-prompt',
                     //     'class'=>'btn btn-primary',
                     // ]);
                     return '<div class="btn-group">
-                  <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="glyphicon glyphicon-plus"></i>添加本试卷题目 <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li>'.Html::a('选择题', '/index.php?r=edusubject%2Fcreatesel&papreid='.$key).'</li>
-                    <li>'.Html::a('非选择题', '/index.php?r=edusubject%2Fcreateunsel&id='.$key).'</li>
-                  </ul>
-                </div>';
+                      <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-plus"></i>添加本试卷题目 <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>' . Html::a('选择题', '/index.php?r=edusubject%2Fcreatesel&papreid=' . $key) . '</li>
+                        <li>' . Html::a('非选择题', '/index.php?r=edusubject%2Fcreateunsel&id=' . $key) . '</li>
+                      </ul>
+                    </div>';
                 }
             ],
             [
-                'header'=>'操作试卷',
+                'header' => '操作试卷',
                 'headerOptions' => ['style' => 'width:200px;'],
                 'class' => 'kartik\grid\ActionColumn',
                 // 'template' => '{user-view} {update} {delete}',
@@ -163,9 +164,11 @@ $this->registerJs("
                 //     },
 
                 // ],
-               
+
             ],
         ],
-    ]); ?>
+    ]);
+} catch (Exception $e) {
+} ?>
 </div>
 

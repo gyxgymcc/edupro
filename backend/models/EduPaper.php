@@ -183,4 +183,12 @@ class EduPaper extends \yii\db\ActiveRecord
         $data['labels'] = array_column($newArr, 'name');
         return $data;
     }
+
+    public function getAnswers(){
+        return $this->hasMany(EduAnswerCheck::className(),['paper_id' => 'id']);
+    }
+
+    public function getPertime(){
+
+    }
 }

@@ -6,6 +6,10 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\EduTeacher;
+use backend\models\EduClass;
+use backend\models\EduRoom;
+use backend\models\EduPaper;
 
 /**
  * Site controller
@@ -62,7 +66,22 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $paperModel = new EduPaper();
+
+        if(!EduTeacher::isAdmin()){
+            $uid = Yii::$app->user->identity->id;
+            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            $roomids = array_column($rooms,'id');
+
+
+            $papers = $paperModel::find()->where(['in','relate_room',$roomids])->all();
+        }
+
+
+        return $this->render('index',[
+            'papers' => $papers,
+        ]);
     }
 
     /**

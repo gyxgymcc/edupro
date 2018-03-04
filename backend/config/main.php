@@ -75,4 +75,5 @@ return [
         ],
     ],
     'params' => $params,
+    'defaultRoute' => 'site/index',
 ];

@@ -40,40 +40,43 @@ $this->registerJs("
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
-<?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'pjax' => true,
-        'panel' => [
-            'heading' => '<h3 class="panel-title">' . $this->title,
-            'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>添加', ['create'],
-                    ['class' => 'btn btn-success']) . ' ' .
-                Html::a('<i class="glyphicon glyphicon-repeat"></i>刷新', ['index'], ['class' => 'btn btn-info']),
-        ],
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
-            'class_name',
-            [
-                'label' => '教师',
-                'attribute' => 'relate_teacher',
-                'value' => 'teacher.teacher_name',
-                'filter' => Select2::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'relate_teacher',
-                    'hideSearch' => false,
-                    'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
-                    'options' => [
-                        'placeholder' => '选择教师',
-                    ],
-                    'pluginOptions' => [
-                        'allowClear' => true,
-                    ],
-                    
-                ]),
+<?php try {
+      echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'pjax' => true,
+            'panel' => [
+                'heading' => '<h3 class="panel-title">' . $this->title,
+                'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>添加', ['create'],
+                        ['class' => 'btn btn-success']) . ' ' .
+                    Html::a('<i class="glyphicon glyphicon-repeat"></i>刷新', ['index'], ['class' => 'btn btn-info']),
             ],
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id',
+                'class_name',
+                [
+                    'label' => '教师',
+                    'attribute' => 'relate_teacher',
+                    'value' => 'teacher.teacher_name',
+                    'filter' => Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'relate_teacher',
+                        'hideSearch' => false,
+                        'data' => ArrayHelper::map($teacher, 'id', 'teacher_name'),
+                        'options' => [
+                            'placeholder' => '选择教师',
+                        ],
+                        'pluginOptions' => [
+                            'allowClear' => true,
+                        ],
+
+                    ]),
+                ],
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]);
+    } catch (Exception $e) {
+    } ?>
 </div>

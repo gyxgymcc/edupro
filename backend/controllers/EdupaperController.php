@@ -7,6 +7,8 @@ use backend\models\EduPaper;
 use backend\models\EdupaperSearch;
 use backend\models\EduTeacher;
 use backend\models\EduRoom;
+use backend\models\EduAnswer;
+use backend\models\EduAnswerCheck;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,6 +72,34 @@ class EdupaperController extends Controller
         return $this->render('view', [
             'model' => $model,
             'room' => $room,
+        ]);
+    }
+
+    public function actionReport($id){
+        $model = $this->findModel($id);
+
+        //得分
+        $totalScore = EduAnswer::find()->select(['SUM(final_score) AS count','SUM(total_score) AS tcount'])->where(['paper_id' => $id])->groupBy('paper_id')->asArray()->all();
+
+        //平均分
+        $totalStuscore = EduAnswer::find()->select(['SUM(final_score) AS count','SUM(total_score) AS tcount'])->where(['paper_id' => $id])->groupBy('paper_id')->asArray()->all();
+
+        $stuCount = EduAnswerCheck::find()->select(['COUNT(1) AS count'])->where(['paper_id' => $id])->asArray()->all();
+
+        $difper = $totalStuscore[0]['count']/$stuCount[0]['count']/$totalScore[0]['tcount'];
+
+        $pertime = date('i分s秒',20*(50+$difper*12));
+
+        $average = $totalStuscore[0]['count']/$stuCount[0]['count'];
+
+        return $this->render('report',[
+            'model' => $model,
+            'difper' => $difper,
+            'totalScore' => $totalScore,
+            'totalStuscore' => $totalStuscore,
+            'stuCount' => $stuCount,
+            'pertime' => $pertime,
+            'average' => $average,
         ]);
     }
 
