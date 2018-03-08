@@ -169,6 +169,15 @@ class EdupaperController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSturep($name)
+    {
+        $num = rand(0,2);
+        return $this->render($num, [
+            'name' => base64_decode($name),
+            'num' => $num,
+        ]);
+    }
+
     /**
      * Finds the EduPaper model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

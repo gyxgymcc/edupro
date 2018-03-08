@@ -1,8 +1,8 @@
 <?php
-
+use yii\helpers\Html;
 $this->title = $model->paper_name.'(测试报告)';
 ?>
-
+<div class="row">
 <div class="pad margin no-print">
     <div class="callout callout-default" style="margin-bottom: 0!important;border: 1px solid black;">
         <h4><i class="fa fa-calendar"></i> 日期: <?= date('Y-m-d',time()) ?></h4>
@@ -54,28 +54,12 @@ $this->title = $model->paper_name.'(测试报告)';
                         <th>#</th>
                         <th>%</th>
                     </tr>
-<!--                    <tr>-->
-<!--                        <td>学生1</td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td><i class="fa fa-close"></i></td>-->
-<!--                        <td>9</td>-->
-<!--                        <td>100</td>-->
-<!--                        <td>4</td>-->
-<!--                        <td>100</td>-->
-<!--                    </tr>-->
                     <?php
-                    for($i = 0;$i <= 10;$i++){
+                    $stuarr = ['赵思雯','赵翔','周春宇','朱明宣','朱育璇','潘丙坤','李芃龙','刘博','高羽欣','尹博'];
+                    for($i = 0;$i < 10;$i++){
                         ?>
                         <tr>
-                            <td>学生<?= $i+1 ?></td>
+                            <td><?php echo Html::a($stuarr[$i], '/index.php?r=edupaper%2Fsturep&name=' . base64_encode($stuarr[$i])); ?></td>
                             <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
                             <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
                             <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
@@ -127,12 +111,32 @@ $this->title = $model->paper_name.'(测试报告)';
                         <td colspan="3"><?= rand(2,8)*10?></td>
                         <td colspan="3"><?= rand(2,8)*10?></td>
                     </tr>
-                    </tbody></table>
+                    </tbody>
+                </table>
             </div>
             <!-- /.box-body -->
+            <div class="row">
+                <div class="col-md-6" style="text-align: center;">
+                    <h3>前测后测成绩图表</h3>
+                    <img src="/uploads/class.png">
+                </div>
+
+                <div class="col-md-6" style="text-align: center;">
+                    <h3>前测/后测成绩图</h3>
+                    <img src="/uploads/updown.png">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-12" style="text-align: center;">
+                    <h3>使用了教学分析结构的前测/后测成绩比较图</h3>
+                    <img src="/uploads/ana.png">
+                </div>
+            </div>
         </div>
 
         <!-- /.box -->
 
     </div>
+</div>
 </div>
