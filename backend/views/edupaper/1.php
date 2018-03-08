@@ -34,6 +34,7 @@ $this->title = $name.'诊断报告';
 					<h5>3.答对题目知识点雷达图</h5>
 					<img src="/uploads/<?php echo $num;?>/3.png">
 				</div>
+				
 				<div class="box-body table-responsive no-padding">
 					<table class="table table-bordered" style="border: 1px black solid;">
 						<tbody>
