@@ -26,7 +26,8 @@
         "kartik-v/yii2-tree-manager": "@dev",
         "2amigos/yii2-ckeditor-widget": "^2.0",
         "kartik-v/yii2-editable": "@dev",
-        "2amigos/yii2-chartjs-widget": "~2.0"
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "kartik-v/yii2-checkbox-x": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

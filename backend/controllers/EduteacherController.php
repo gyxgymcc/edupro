@@ -148,6 +148,22 @@ class EduteacherController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionStulist()
+    {
+        return $this->render('stulist');
+    }
+
+    public function actionJzlist()
+    {
+        return $this->render('jzlist');
+    }
+
+    public function actionRep()
+    {
+        return $this->render('rep');
+    }
+
+
     /**
      * Finds the EduTeacher model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
