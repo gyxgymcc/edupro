@@ -102,6 +102,7 @@ $username = $userInfo['student_name'];
                                                    ?>
                                                       <span class="label label-success">已批阅</span>
                                                       <a href="<?php echo '/index.php?r=studentpaper%2Fscore&paperid='.$value['id'];?>" style="float: right;" type="button" class="btn btn-success btn-sm">查看成绩</a>
+                                                      <a href="<?php echo '/index.php?r=studentpaper%2Fpret&';?>" style="float: right;" type="button" class="btn btn-info btn-sm">反馈报告</a>
                                                    <?php
                                                 }
                                              ?>

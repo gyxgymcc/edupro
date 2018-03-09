@@ -156,4 +156,12 @@ class StudentpaperController extends \yii\web\Controller
         return $teacherid;
     }
 
+    public function actionPret(){
+        $num = rand(0,2);
+
+        return $this->render($num, [
+            'num' => $num,
+        ]);
+    }
+
 }

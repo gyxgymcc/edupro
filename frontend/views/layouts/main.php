@@ -91,7 +91,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                     ["label" => "主页", "url" => ["site/index"], "icon" => "home"],
                                     ["label" => "班级", "url" => ["studentclass/index"], "icon" => "files-o"],
                                     ["label" => "课堂", "url" => ["studentroom/index"], "icon" => "university"],
-                                    ["label" => "个人资料", "url" => ["profile/index"], "icon" => "clipboard"],
+                                    ["label" => "个人中心", "url" => ["profile/index"], "icon" => "clipboard"],
                                 ],
                             ]
                         )
