@@ -97,7 +97,7 @@ $this->title = '教育平台后台管理';
                             echo '<br/>';
                             echo '<br/>';
                             echo '<br/>';
-                            echo Html::a('查看报告', ['eduteacher/rep','id' => $val->id], ['class' => 'btn btn-default'])
+                            echo Html::a('查看报告', ['eduteacher/rep','id' => 0], ['class' => 'btn btn-default'])
                          ?>
                     </div>
                 </div>
