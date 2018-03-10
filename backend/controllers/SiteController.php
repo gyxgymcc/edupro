@@ -69,13 +69,14 @@ class SiteController extends Controller
         $paperModel = new EduPaper();
 
         if(!EduTeacher::isAdmin()){
-            $uid = Yii::$app->user->identity->id;
-            $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
-            $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
-            $roomids = array_column($rooms,'id');
+            // $uid = Yii::$app->user->identity->id;
+            // $teacherInfo = EduTeacher::findOne(['relate_user' => $uid]);
+            // $rooms = EduRoom::find()->select('id')->where(['relate_teacher' => $teacherInfo->id])->asArray()->all();
+            // $roomids = array_column($rooms,'id');
 
 
-            $papers = $paperModel::find()->where(['in','relate_room',$roomids])->all();
+            // $papers = $paperModel::find()->where(['in','relate_room',$roomids])->all();
+            $papers = $paperModel::find()->all();
         }
         else{
             $papers = $paperModel::find()->all();
