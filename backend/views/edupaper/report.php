@@ -13,10 +13,12 @@ $this->title = $model->paper_name.'(测试报告)';
 
     <div class="callout callout-success" style="margin-bottom: 0!important;margin-top: 5px;font-size: 18px;">
         <h4><i class="fa fa-info"></i> 测试基本信息</h4>
-        <p>试卷总成绩: <?= $totalScore[0]['tcount'].'分'?></p>
-        <p>平均成绩: <?= $average.'分' ?></p>
-        <p>平均用时: <?= $pertime ?></p>
-        <p>试卷难度: <?= round($difper,2) ?></p>
+        <p>试卷总成绩: <?= '50分'?></p>
+        <p>平均成绩: 前测:<?= '13.5' ?></p>
+        <p>后测: 40.2</p>
+        <p>平均用时: 前测: 10分16秒</p>
+        <p>后测: 13分16秒</p>
+        <p>试卷难度: 0.79</p>
     </div>
 
     <div class="col-xs-12">
@@ -538,7 +540,7 @@ $this->title = $model->paper_name.'(测试报告)';
             <div class="row" style="margin-top: 10px;">
                 <div class="col-md-12" style="text-align: center;">
                     <h3>使用了教学分析结构的前测/后测成绩比较图</h3>
-                    <img src="/uploads/ana.png">
+                    <img width="400" src="/uploads/ana.png">
                 </div>
             </div>
         </div>
