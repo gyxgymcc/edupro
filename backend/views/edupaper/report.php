@@ -11,15 +11,13 @@ $this->title = $model->paper_name.'(测试报告)';
         <span style="margin-right: 20px;color: #408080">测试名称: <b><?= $model->paper_name ?></b></span>
     </div>
 
-    <div class="callout callout-info" style="margin-bottom: 0!important;margin-top: 5px;font-size: 18px;">
+    <div class="callout callout-success" style="margin-bottom: 0!important;margin-top: 5px;font-size: 18px;">
         <h4><i class="fa fa-info"></i> 测试基本信息</h4>
         <p>试卷总成绩: <?= '50分'?></p>
-        <p>平均成绩:</p>
-        <span class="label label-warning">前测: 13.5</span>
-        <span class="label label-warning">后测: 40.2</span>
-        <p>平均用时: </p>
-        <span class="label label-warning">前测: 10分16秒</span>
-        <span class="label label-warning">后测: 13分16秒</span>
+        <p>平均成绩: 前测:<?= '13.5' ?></p>
+        <p>后测: 40.2</p>
+        <p>平均用时: 前测: 10分16秒</p>
+        <p>后测: 13分16秒</p>
         <p>试卷难度: 0.79</p>
     </div>
 
@@ -27,7 +25,7 @@ $this->title = $model->paper_name.'(测试报告)';
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">试题情况统计表</h3>
-                <p>1.前测</p>
+                <span class="label label-warning">1.前测</span>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -279,7 +277,7 @@ $this->title = $model->paper_name.'(测试报告)';
             <br/>
             <br/>
             <br/>
-            <p>2.后测</p>
+            <span class="label label-warning">2.后测</span>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-bordered">
                     <tbody>
