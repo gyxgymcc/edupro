@@ -23,6 +23,7 @@ $this->title = $model->paper_name.'(测试报告)';
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">试题情况统计表</h3>
+                <p>1.前测</p>
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -40,8 +41,8 @@ $this->title = $model->paper_name.'(测试报告)';
                     <tr>
                         <th>题号</th>
                         <th>1</th>
-                        <th>2</th>
                         <th>3</th>
+                        <th>2</th>
                         <th>4</th>
                         <th>5</th>
                         <th>6</th>
@@ -56,60 +57,467 @@ $this->title = $model->paper_name.'(测试报告)';
                     </tr>
                     <?php
                     $stuarr = ['赵思雯','赵翔','周春宇','朱明宣','朱育璇','潘丙坤','李芃龙','刘博','高羽欣','尹博'];
-                    for($i = 0;$i < 10;$i++){
                         ?>
                         <tr>
-                            <td><?php echo Html::a($stuarr[$i], '/index.php?r=edupaper%2Fsturep&name=' . base64_encode($stuarr[$i])); ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(0,1)?"<i class=\"fa fa-close\"></i>":"<i class='fa fa-check'></i>" ?></td>
-                            <td><?= rand(2,10)?></td>
-                            <td><?= rand(1,10)*10 ?></td>
-                            <td><?= rand(2,10)?></td>
-                            <td><?= rand(1,10)*10 ?></td>
+                            <td><?php echo Html::a('赵思雯', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('赵思雯')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td>4</td>
+                            <td>40</td>
+                            <td>0</td>
+                            <td>0</td>
                         </tr>
-                    <?php
-                    }
-                    ?>
+                        <tr>
+                            <td><?php echo Html::a('赵翔', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('赵翔')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>2</td>
+                            <td>20</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('周春宇', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('周春宇')); ?></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td>2</td>
+                            <td>20</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('朱明宣', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('朱明宣')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('朱育璇', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('朱育璇')); ?></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('潘丙坤', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('潘丙坤')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('李芃龙', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('李芃龙')); ?></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>4</td>
+                            <td>40</td>
+                            <td>1</td>
+                            <td>25</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('刘博', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('刘博')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td>4</td>
+                            <td>40</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('高羽欣', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('高羽欣')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('尹博', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('尹博')); ?></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
                     <tr>
                         <td>做对学生数#</td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
-                        <td><?= rand(2,8)?></td>
+                        <td>6</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>0</td>
                     </tr>
                     <tr>
                         <td>做对学生百分率</td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
-                        <td><?= rand(2,8)*10?></td>
+                        <td>60</td>
+                        <td>30</td>
+                        <td>50</td>
+                        <td>20</td>
+                        <td>40</td>
+                        <td>20</td>
+                        <td>40</td>
+                        <td>40</td>
+                        <td>20</td>
+                        <td>0</td>
                     </tr>
                     <tr>
                         <td>目标掌握百分率</td>
-                        <td colspan="2"><?= rand(2,8)*10?></td>
-                        <td colspan="2"><?= rand(2,8)*10?></td>
-                        <td colspan="3"><?= rand(2,8)*10?></td>
-                        <td colspan="3"><?= rand(2,8)*10?></td>
+                        <td colspan="2">0</td>
+                        <td colspan="2">10</td>
+                        <td colspan="3">0</td>
+                        <td colspan="3">0</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <p>2.后测</p>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>目标</th>
+                        <th colspan="2">1</th>
+                        <th colspan="2">2</th>
+                        <th colspan="3">3</th>
+                        <th colspan="3">4</th>
+                        <th colspan="2">题目</th>
+                        <th colspan="2">目标</th>
+                    </tr>
+                    <tr>
+                        <th>题号</th>
+                        <th>1</th>
+                        <th>3</th>
+                        <th>2</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>#</th>
+                        <th>%</th>
+                        <th>#</th>
+                        <th>%</th>
+                    </tr>
+                    <?php
+                    $stuarr = ['赵思雯','赵翔','周春宇','朱明宣','朱育璇','潘丙坤','李芃龙','刘博','高羽欣','尹博'];
+                        ?>
+                        <tr>
+                            <td><?php echo Html::a('赵思雯', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('赵思雯')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>9</td>
+                            <td>100</td>
+                            <td>4</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td><?php echo Html::a('赵翔', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('赵翔')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>5</td>
+                            <td>50</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('周春宇', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('周春宇')); ?></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>6</td>
+                            <td>60</td>
+                            <td>1</td>
+                            <td>25</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('朱明宣', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('朱明宣')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>6</td>
+                            <td>60</td>
+                            <td>1</td>
+                            <td>25</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('朱育璇', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('朱育璇')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>8</td>
+                            <td>80</td>
+                            <td>2</td>
+                            <td>50</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('潘丙坤', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('潘丙坤')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td>8</td>
+                            <td>80</td>
+                            <td>3</td>
+                            <td>75</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('李芃龙', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('李芃龙')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>9</td>
+                            <td>90</td>
+                            <td>4</td>
+                            <td>100</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('刘博', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('刘博')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>8</td>
+                            <td>80</td>
+                            <td>3</td>
+                            <td>75</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('高羽欣', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('高羽欣')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td>7</td>
+                            <td>70</td>
+                            <td>1</td>
+                            <td>25</td>
+                        </tr>
+
+                        <tr>
+                            <td><?php echo Html::a('尹博', '/index.php?r=edupaper%2Fsturep&name=' . base64_encode('尹博')); ?></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td><i class='fa fa-check'></i></td>
+                            <td>3</td>
+                            <td>30</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    <tr>
+                        <td>做对学生数#</td>
+                        <td>9</td>
+                        <td>7</td>
+                        <td>9</td>
+                        <td>8</td>
+                        <td>10</td>
+                        <td>5</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td>9</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>做对学生百分率</td>
+                        <td>90</td>
+                        <td>70</td>
+                        <td>90</td>
+                        <td>80</td>
+                        <td>100</td>
+                        <td>50</td>
+                        <td>70</td>
+                        <td>70</td>
+                        <td>90</td>
+                        <td>80</td>
+                    </tr>
+                    <tr>
+                        <td>目标掌握百分率</td>
+                        <td colspan="2">60</td>
+                        <td colspan="2">70</td>
+                        <td colspan="3">60</td>
+                        <td colspan="3">40</td>
                     </tr>
                     </tbody>
                 </table>
